@@ -83,6 +83,7 @@ namespace Sem3Project.Controllers
                     effectiveDate = result.EffectiveDate.ToString("dd/mm/yyyy"),
                     expireDate = result.ExpireDate.ToString("dd/mm/yyyy"),
                     vehiclePolicy = vehicleInsuranceCreateDto.VehiclePolicyId,
+                    url = _config["Jwt:Issuer"] + "?token=" + result.Token
                 };
 
                 await _mailService.SendMailAsyncWithTemplate(
@@ -100,6 +101,22 @@ namespace Sem3Project.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult VerifyInsurance([FromQuery] string token)
+        {
+            var result = _vehicleInsuranceRepository.VerifyInsurance(token);
+            
+            if (result == false)
+            {
+                return BadRequest(new { message = "Invalid token" });
+            }
+            else
+            {
+                return Ok(new { message = "Verify insurance success" });
             }
         }
 
