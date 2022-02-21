@@ -26,7 +26,7 @@ namespace Sem3Project.Services
         {
             var apiKey = _configuration["SendGridAPIKey"];
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("mrpsawn1996@gmail.com", "DoanDucBao");
+            var from = new EmailAddress("tranbinhoccho1@gmail.com", "DoanDucBao");
             var to = new EmailAddress(toEmail);
             //var plainTextContent = "and easy to do anywhere, even with C#";
             //var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
@@ -40,7 +40,7 @@ namespace Sem3Project.Services
             var apiKey = _configuration["SendGridAPIKey"];
             var client = new SendGridClient(apiKey);
             var sendGridMessage = new SendGridMessage();
-            sendGridMessage.SetFrom("mrpsawn1996@gmail.com", "DoanDucBao");
+            sendGridMessage.SetFrom("tranbinhoccho1@gmail.com", "DoanDucBao");
             sendGridMessage.AddTo(toEmail);
             sendGridMessage.SetTemplateId(templateId);
             sendGridMessage.SetTemplateData(data);

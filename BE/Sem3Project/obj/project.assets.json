@@ -5819,11 +5819,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Sem3Project\\BE\\Sem3Project\\Sem3Project.csproj",
+      "projectUniqueName": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
       "projectName": "Sem3Project",
-      "projectPath": "D:\\GitHub\\Sem3Project\\BE\\Sem3Project\\Sem3Project.csproj",
+      "projectPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Sem3Project\\BE\\Sem3Project\\obj\\",
+      "outputPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
