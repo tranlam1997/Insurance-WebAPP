@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <form>
-            <h3 class="fw-bolder h2 text-center pb-4">Sign up to Global Insurance</h3>
+            <h3 class="fw-bolder h2 text-center pb-4">Sign up to Psawn Insurance</h3>
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" class="form-control form-control-lg"/>
