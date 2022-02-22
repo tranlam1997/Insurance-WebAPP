@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,14 +8,19 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../components/SignUp.vue')
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('../components/LogIn.vue')
+    path: '/signin',
+    name: 'signin',
+    component: () => import('../components/SignIn.vue')
   },
   {
     path: '/forgot-password',
     name: 'forgot-password',
     component: () => import('../components/ForgotPassword.vue')
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: () => Home
   }
 ]
 

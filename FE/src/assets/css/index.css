@@ -4,14 +4,10 @@
 
 body {
     font-weight: 400;
-    background-image: url("../login-background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
 }
 
 .vertical-center {
-    margin-top: 3rem;
+    margin-top: 6rem;
     display: flex;
     text-align: left;
     justify-content: center;

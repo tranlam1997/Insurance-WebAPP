@@ -31,8 +31,9 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    data() {
-        return {}
-    }
+  name: 'SignIn',
+  data() {
+    return {}
+  },
 });
 </script>

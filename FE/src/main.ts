@@ -5,5 +5,10 @@ import router from './router'
 import store from './store'
 import "bootstrap/dist/css/bootstrap.css"
 import '@/assets/css/index.css'
+import NavBar from './components/NavBar.vue'
 
-createApp(App).use(store).use(router).mount('#app')
+const vm = createApp(App).use(store).use(router);
+
+vm.component("NavBar", NavBar);
+
+vm.mount('#app');
