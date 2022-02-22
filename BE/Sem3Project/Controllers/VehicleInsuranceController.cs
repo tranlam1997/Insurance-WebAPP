@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Sem3Project.Filters;
 using Sem3Project.Models;
 using Sem3Project.Models.Dtos;
 using Sem3Project.Repositories;
 using Sem3Project.Repositories.IRepository;
 using Sem3Project.Services;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
@@ -104,7 +107,7 @@ namespace Sem3Project.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("verify")]
         [AllowAnonymous]
         public IActionResult VerifyInsurance([FromQuery] string token)
         {
@@ -117,6 +120,103 @@ namespace Sem3Project.Controllers
             else
             {
                 return Ok(new { message = "Verify insurance success" });
+            }
+        }
+
+        [HttpGet("logged")]
+        [Authorize]
+        public IActionResult GetInsurances([FromQuery] PaginationFilter paginationFilter)
+        {
+            try
+            {
+                var currentUser = GetCurrentUser();
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePolicies(paginationFilter, currentUser.Id);
+                var metadata = new
+                {
+                    vehicleInsurances.TotalCount,
+                    vehicleInsurances.PageSize,
+                    vehicleInsurances.CurrentPage,
+                    vehicleInsurances.HasNext,
+                    vehicleInsurances.HasPrevious,
+                };
+
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+                var vehicleInsuranceDtos = new List<VehicleInsuranceDto>();
+                foreach (var vehicleInsurance in vehicleInsurances)
+                {
+                    VehicleInsuranceDto data = _mapper.Map<VehicleInsuranceDto>(vehicleInsurance);
+                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(vehicleInsurance.VehiclePolicy);
+                    data.VehiclePolicy = vehiclePolicy;
+                    
+                    vehicleInsuranceDtos.Add(data);
+                }
+
+                return Ok(new
+                {
+                    Data = vehicleInsuranceDtos,
+                    metadata = metadata
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator,Staff")]
+        public IActionResult GetInsurancesForAdmin(
+            [FromQuery] PaginationFilter paginationFilter, 
+            [FromQuery] VehicleInsuranceFilter vehicleInsuranceFilter
+        ) {
+            try
+            {
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePoliciesForAdmin(paginationFilter, vehicleInsuranceFilter);
+                var metadata = new
+                {
+                    vehicleInsurances.TotalCount,
+                    vehicleInsurances.PageSize,
+                    vehicleInsurances.CurrentPage,
+                    vehicleInsurances.HasNext,
+                    vehicleInsurances.HasPrevious,
+                };
+
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+                var vehicleInsuranceForAdminDtos = new List<VehicleInsuranceForAdminDto>();
+                foreach (var vehicleInsurance in vehicleInsurances)
+                {
+                    VehicleInsuranceForAdminDto data = _mapper.Map<VehicleInsuranceForAdminDto>(vehicleInsurance);
+                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(vehicleInsurance.VehiclePolicy);
+                    data.VehiclePolicy = vehiclePolicy;
+
+                    //Do user có liên kết tới bảng khác nên sẽ bị lỗi JSON
+                    UserForAdminDto user = _mapper.Map<UserForAdminDto>(vehicleInsurance.User);
+                    data.UserForAdminDto = user;
+
+                    //Viết thế này thì các trường trống sẽ mặc định là null
+                    //data.User = new User()
+                    //{
+                    //    Id = vehicleInsurance.User.Id,
+                    //    Email = vehicleInsurance.User.Email,
+                    //    FirtsName = vehicleInsurance.User.FirtsName,
+                    //    LastName = vehicleInsurance.User.LastName,
+                    //    PhoneNumber = vehicleInsurance.User.PhoneNumber,
+                    //    Role = vehicleInsurance.User.Role,
+                    //};
+
+                    vehicleInsuranceForAdminDtos.Add(data);
+                }
+                return Ok(new
+                {
+                    Data = vehicleInsuranceForAdminDtos,
+                    metadata = metadata
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
 

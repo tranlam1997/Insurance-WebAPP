@@ -31,7 +31,7 @@ namespace Sem3Project.Models
 
         public string Status { get; set; }
 
-        public Boolean IsVerified { get; set; } = false;
+        public bool IsVerified { get; set; } = false;
 
         public string Token { get; set; }
 

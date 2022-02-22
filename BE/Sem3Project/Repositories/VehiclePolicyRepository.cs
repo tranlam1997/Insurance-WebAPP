@@ -1,5 +1,4 @@
-﻿using Sem3Project.Controllers;
-using Sem3Project.Data;
+﻿using Sem3Project.Data;
 using Sem3Project.Filters;
 using Sem3Project.Helpers;
 using Sem3Project.Models;

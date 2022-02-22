@@ -16,6 +16,8 @@ namespace Sem3Project.Repositories.IRepository
 
         PagedList<VehicleInsurance> GetVehiclePolicies(PaginationFilter paginationFilter, string userId);
 
+        PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(PaginationFilter paginationFilter, VehicleInsuranceFilter vehicleInsuranceFilter);
+
         bool VerifyInsurance(string token);
 
         bool Save();

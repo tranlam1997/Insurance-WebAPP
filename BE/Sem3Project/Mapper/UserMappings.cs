@@ -9,6 +9,7 @@ namespace Sem3Project.Mapper
         public UserMappings()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserForAdminDto>().ReverseMap();
         }
     }
 }

@@ -38,19 +38,18 @@ namespace Sem3Project.Models
 
         public string Status { get; set; }
 
-        public Boolean IsVerified { get; set; } = false;
+        public bool IsVerified { get; set; } = false;
 
         public string Token { get; set; }
 
-
         // Navigation Properties
         [Required(ErrorMessage = "User Id is required")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required(ErrorMessage = "Vehicle Policy Id is required")]
-        public VehiclePolicy VehiclePolicy { get; set; }
+        public virtual VehiclePolicy VehiclePolicy { get; set; }
 
         [Required(ErrorMessage = "Receipt Id is required")]
-        public Receipt Receipt { get; set; }
+        public virtual Receipt Receipt { get; set; }
     }
 }

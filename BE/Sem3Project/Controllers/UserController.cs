@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Sem3Project.Filters;
-using Sem3Project.Helpers;
 using Sem3Project.Models;
 using Sem3Project.Models.Dtos;
 using Sem3Project.Repositories;
@@ -18,7 +17,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sem3Project.Controllers
 {

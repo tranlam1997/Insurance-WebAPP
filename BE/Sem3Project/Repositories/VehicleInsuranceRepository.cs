@@ -1,4 +1,5 @@
-﻿using Sem3Project.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sem3Project.Data;
 using Sem3Project.Filters;
 using Sem3Project.Helpers;
 using Sem3Project.Models;
@@ -49,7 +50,63 @@ namespace Sem3Project.Repositories
 
         public PagedList<VehicleInsurance> GetVehiclePolicies(PaginationFilter paginationFilter, string userId)
         {
-            throw new System.NotImplementedException();
+            return PagedList<VehicleInsurance>.ToPagedList(
+                _db.VehicleInsurances
+                    .OrderBy(vi => vi.CreatedDate)
+                    .Include(vi => vi.VehiclePolicy)
+                    .Where(vi => vi.User.Id == Guid.Parse(userId))
+                    .ToList(),
+                paginationFilter.PageNumber,
+                paginationFilter.PageSize
+            );
+        }
+
+        public PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(
+            PaginationFilter paginationFilter,
+            VehicleInsuranceFilter vehicleInsuranceFilter
+        ) {
+            var x = _db.VehicleInsurances
+                .Include(vi => vi.VehiclePolicy)
+                .Include(vi => vi.User)
+                .OrderBy(vi => vi.CreatedDate); 
+
+            if (!string.IsNullOrWhiteSpace(vehicleInsuranceFilter.Search))
+            {
+                x = (IOrderedQueryable<VehicleInsurance>)x.Where(u =>
+                        u.User.Email.ToLower().Contains(vehicleInsuranceFilter.Search.Trim().ToLower()) ||
+                        u.User.PhoneNumber.Contains(vehicleInsuranceFilter.Search.Trim().ToLower())
+                );
+            }
+
+            if (vehicleInsuranceFilter.IsVerified == "true" || vehicleInsuranceFilter.IsVerified == "false")
+            {
+                bool isVerified;
+
+                if (vehicleInsuranceFilter.IsVerified == "true")
+                {
+                    isVerified = true;
+                }
+                else
+                {
+                    isVerified = false;
+                }
+
+                x = (IOrderedQueryable<VehicleInsurance>)x.Where(vi => vi.IsVerified == isVerified);
+            }
+
+            if (vehicleInsuranceFilter.IsPaid == "false")
+            {
+                x = (IOrderedQueryable<VehicleInsurance>)x.Where(vi => vi.Receipt == null);
+            }
+
+            //x = (IOrderedQueryable<VehicleInsurance>)x
+
+
+            return PagedList<VehicleInsurance>.ToPagedList(
+                x.ToList(),
+                paginationFilter.PageNumber,
+                paginationFilter.PageSize
+            );
         }
 
         public bool Save()

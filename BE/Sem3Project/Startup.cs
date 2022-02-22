@@ -77,6 +77,7 @@ namespace Sem3Project
             services.AddAutoMapper(typeof(LifePolicyMappings));
             services.AddAutoMapper(typeof(HomePolicyMappings));
             services.AddAutoMapper(typeof(MedicalPolicyMappings));
+            services.AddAutoMapper(typeof(VehicleInsuranceMappings));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVehiclePolicyRepository, VehiclePolicyRepository>();
