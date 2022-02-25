@@ -1,6 +1,5 @@
 <template>
   <app-header></app-header>
-  <i class="fas fa-times w-screen h-screen"></i>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component"></component>

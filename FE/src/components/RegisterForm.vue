@@ -1,13 +1,13 @@
 <template>
 
 <!-- The Modal -->
-    <div id="register" class="modal-register" :class="{hidden: !registerState}">
-  <span onclick="document.getElementById('id01').style.display='none'"
-class="close" title="Close Modal">&times;</span>
+    <div id="register" class="modal-register flex flex-row justify-center align-center" :class="{hidden: !registerState}">
 
   <!-- Modal Content -->
   <form class="modal-content animate flex flex-col p-8 max-w-max" action="/action_page.php">
-
+      <div class="header-register text-black text-3xl font-black text-center">
+          Register
+      </div>
     <div class="container flex flex-col">
       <label for="name" class="inline-block mb-2"><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
@@ -36,8 +36,8 @@ class="close" title="Close Modal">&times;</span>
       <div class="mt-3 pl-1 flex flex-row gap-1">
       <input type="checkbox" name="tos" value="1"
         class="w-4 h-4 rounded self-center" />
-      <label class="" keypath="register.accept" tag="label">
-        <a class="underline"><b>I agree on Terms and Condition</b></a>
+      <label class="tos" keypath="register.accept" tag="label">
+        <a class="border-b border-black" style="cursor: pointer;"><b>I agree on Terms and Condition</b></a>
       </label>
     </div>
 
@@ -46,8 +46,8 @@ class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="footerLogin container flex flex-row mt-8 justify-between">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancelbtn block rounded text-white py-2 px-3" @click.prevent="toggleLoginModal">Cancel</button>
-      <span class="psw self-center">Already have an account ?<a href="#" class="text-blue-500 hover:text-blue-600 font-medium underline">Sign in</a></span>
+      <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancelbtn block rounded text-white py-2 px-3" @click.prevent="toggleRegisterModal">Cancel</button>
+      <span class="psw self-center">Already have an account ?<a href="#" class="text-blue-500 hover:text-blue-600 font-medium underline" @click.prevent="toggleBetweenLoginAndRegisterModal">Sign in</a></span>
     </div>
   </form>
 </div>
@@ -63,13 +63,13 @@ export default {
       registerState: state => state.registerModalShow
     }),
       methods: {
-    ...mapMutations(['toggleLoginModal', 'toggleRegisterModal']),
+    ...mapMutations(['toggleLoginModal', 'toggleRegisterModal', 'toggleBetweenLoginAndRegisterModal']),
   },
 }
 </script>
 
 <style scoped lang="scss">
-  .modalRegister {
+  .modal-register {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 50%;
@@ -83,9 +83,9 @@ export default {
 
 /* Modal Content/Box */
 .modal-content {
-  position: relative;
-  top: 10%;
-  background-color: #fefefe;
+  position: fixed;
+  top: -5%;
+  background-color: #DCDCDC;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -95,6 +95,14 @@ export default {
   background-color: rgb(244 63 94);
   &:hover {
     background-color: rgb(238, 30, 65)
+  }
+}
+
+.tos{
+  a {
+    &:hover {
+      color: black;
+    }
   }
 }
 

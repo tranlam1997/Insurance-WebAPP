@@ -1,6 +1,6 @@
 <template>
   <!-- Header -->
-  <header id="header" class="bg-blue-800 ">
+  <header id="header" class="bg-blue-800 text-base">
     <nav class="container m-auto flex justify-between py-3 px-4">
       <!-- App Name -->
       <router-link class="text-white font-bold uppercase text-2xl mr-4 self-center"

@@ -1,21 +1,22 @@
 <template>
 <!-- The Modal -->
-  <div id="login" class="modalLogin" :class="{hidden: !loginState}">
-  <span onclick="document.getElementById('id01').style.display='none'"
-class="close" title="Close Modal">&times;</span>
+  <div id="login" class="modal-login flex flex-row justify-center align-center" :class="{hidden: !loginState}">
 
   <!-- Modal Content -->
   <form class="modal-content animate flex flex-col p-8 max-w-max" action="/action_page.php">
-    <div class="imgcontainer">
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <div class="header-login m-auto">
+      <img src="../../public/assets/img/logo-brand.png" class="container" alt="logo brand">
     </div>
 
     <div class="container flex flex-col">
-      <label for="uname" class="inline-block mb-2"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
+      <label for="uname" class="inline-block mb-2"><b>Username/Email</b></label>
+      <input type="text" placeholder="Enter Username/Email" name="uname" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
           duration-500 focus:outline-none focus:border-black rounded">
-
+      <div class="flex flex-row justify-between">
       <label for="psw" class="inline-block mb-2"><b>Password</b></label>
+      <span class="psw self-center text-sm"> <a href="#" class="text-blue-500 hover:text-blue-600 font-medium">Forgot password?</a></span>
+      </div>
+
       <input type="password" placeholder="Enter Password" name="psw" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
           duration-500 focus:outline-none focus:border-black rounded">
 
@@ -28,7 +29,7 @@ class="close" title="Close Modal">&times;</span>
 
     <div class="footerLogin container flex flex-row mt-2 justify-between">
       <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancelbtn block rounded text-white py-2 px-3" @click.prevent="toggleLoginModal">Cancel</button>
-      <span class="psw self-center">Forgot <a href="#" class="text-blue-500 hover:text-blue-600 font-medium underline">password?</a></span>
+      <span class="psw self-center text-sm">New to Psawn Insurance? <a href="#" class="text-blue-500 hover:text-blue-600 font-medium underline" @click.prevent="toggleBetweenLoginAndRegisterModal">Sign up</a></span>
     </div>
   </form>
 </div>
@@ -44,13 +45,13 @@ export default {
       loginState: state => state.loginModalShow
     }),
       methods: {
-    ...mapMutations(['toggleLoginModal', 'toggleRegisterModal']),
+    ...mapMutations(['toggleLoginModal', 'toggleRegisterModal','toggleBetweenLoginAndRegisterModal']),
   },
 }
 </script>
 
 <style scoped lang="scss">
-  .modalLogin {
+  .modal-login {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 50%;
@@ -64,12 +65,26 @@ export default {
 
 /* Modal Content/Box */
 .modal-content {
-  position: relative;
+  position: fixed;
   top: 10%;
-  background-color: #fefefe;
+  background-color: #DCDCDC;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.header-login {
+  padding: 0;
+  margin-top: -5rem;
+  img {
+  position: relative;
+  border-radius: 50%;
+  top: -5rem;
+  height: auto;
+  padding: 0;
+  margin-bottom: -5rem;
+  }
+
 }
 
 .cancelbtn {

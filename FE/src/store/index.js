@@ -6,11 +6,15 @@ export default createStore({
     registerModalShow: false,
   },
   mutations: {
-    toggleLoginModal: (state) => {
+    toggleLoginModal(state) {
       state.loginModalShow = !state.loginModalShow;
     },
     toggleRegisterModal(state) {
       state.registerModalShow = !state.registerModalShow;
     },
+    toggleBetweenLoginAndRegisterModal(state) {
+      state.loginModalShow = !state.loginModalShow;
+      state.registerModalShow = !state.registerModalShow;
+    }
   },
 });

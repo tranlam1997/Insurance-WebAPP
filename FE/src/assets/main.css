@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 16px;
+}
+
 a {
   transition: all 0.15s ease;
 }
