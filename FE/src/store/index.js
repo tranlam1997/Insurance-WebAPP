@@ -1,13 +1,16 @@
 import { createStore } from 'vuex';
 
-
 export default createStore({
   state: {
-    authModalShow: false,
+    loginModalShow: false,
+    registerModalShow: false,
   },
   mutations: {
-    toggleAuthModal: (state) => {
-      state.authModalShow = !state.authModalShow;
+    toggleLoginModal: (state) => {
+      state.loginModalShow = !state.loginModalShow;
+    },
+    toggleRegisterModal(state) {
+      state.registerModalShow = !state.registerModalShow;
     },
   },
 });

@@ -44,35 +44,3 @@ a:hover {
 input[type="file"]{
   margin-top: 20px;
 }
-
-.progress-bar {
-  background-size: 1rem 1rem;
-  background-image: linear-gradient(
-    45deg, rgba(255,255,255,.15) 
-    25%, transparent 
-    25%, transparent 
-    50%, rgba(255,255,255,.15) 
-    50%,rgba(255,255,255,.15) 
-    75%, transparent 
-    75%, transparent
-  );
-  animation: progress-bar-stripes 1s linear infinite;
-}
-
-@keyframes progress-bar-stripes {
-  0% {
-    background-position: 1rem 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-@keyframes slide {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: -4000px 0;
-  }
-}

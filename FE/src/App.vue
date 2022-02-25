@@ -1,24 +1,29 @@
 <template>
   <app-header></app-header>
+  <i class="fas fa-times w-screen h-screen"></i>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component"></component>
     </transition>
   </router-view>
- <auth-modal />
-
+  <log-in-form></log-in-form>
+  <register-form></register-form>
 </template>
 
 <script>
 import AppHeader from './components/Header.vue'
-import AuthModal from './components/Auth.vue';
+import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+import LogInForm from './components/LoginForm.vue'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AuthModal,
-  }
+    LoginForm,
+    RegisterForm,
+    LogInForm
+}
 }
 </script>
 
