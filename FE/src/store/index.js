@@ -17,4 +17,5 @@ export default createStore({
       state.registerModalShow = !state.registerModalShow;
     }
   },
+  
 });

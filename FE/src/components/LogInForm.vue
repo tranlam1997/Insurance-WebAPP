@@ -1,57 +1,157 @@
 <template>
-<!-- The Modal -->
-  <div id="login" class="modal-login flex flex-row justify-center align-center" :class="{hidden: !loginState}">
-
-  <!-- Modal Content -->
-  <form class="modal-content animate flex flex-col p-8 max-w-max" action="/action_page.php">
-    <div class="header-login m-auto">
-      <img src="../../public/assets/img/logo-brand.png" class="container" alt="logo brand">
+  <!-- The Modal -->
+  <div
+    class="modal-login flex flex-row justify-center align-center"
+    :class="{ hidden: !loginState }"
+  >
+    <div
+      class="text-white text-center font-bold px-10 py-3 text-xl fixed top-0 rounded-3xl z-10"
+      v-if="login_show_alert"
+      :class="login_alert_variant"
+    >
+      {{ login_alert_msg }}
     </div>
 
-    <div class="container flex flex-col">
-      <label for="uname" class="inline-block mb-2"><b>Username/Email</b></label>
-      <input type="text" placeholder="Enter Username/Email" name="uname" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
-          duration-500 focus:outline-none focus:border-black rounded">
-      <div class="flex flex-row justify-between">
-      <label for="psw" class="inline-block mb-2"><b>Password</b></label>
-      <span class="psw self-center text-sm"> <a href="#" class="text-blue-500 hover:text-blue-600 font-medium">Forgot password?</a></span>
+    <!-- Modal Content -->
+    <vee-form
+      class="modal-content animate flex flex-col p-8 max-w-max"
+      :validation-schema="loginSchema"
+      @submit="login"
+    >
+      <div class="header-login m-auto">
+        <img
+          src="../../public/assets/img/logo-brand.png"
+          class="container"
+          alt="logo brand"
+        />
+      </div>
+      <div class="container flex flex-col">
+        <div>
+          <label for="email" class="inline-block mb-2"
+            ><b>Email Address</b></label
+          >
+          <vee-field
+            type="email"
+            placeholder="Enter Email Address"
+            name="email"
+            size="50"
+            required
+            v-model="email"
+            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+          />
+          <ErrorMessage class="text-red-600" name="email" />
+        </div>
+
+        <div>
+          <div class="flex flex-row justify-between">
+            <label for="password" class="inline-block mb-2"
+              ><b>Password</b></label
+            >
+            <span class="self-center text-sm">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium"
+                >Forgot password?</a
+              ></span
+            >
+          </div>
+          <vee-field
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            size="50"
+            required
+            v-model="password"
+            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+          />
+          <ErrorMessage class="text-red-600" name="password" />
+        </div>
+
+        <button
+          type="submit"
+          :disabled="!enableSubmit()"
+          :class="{'opacity-50': !enableSubmit(), 'cursor-not-allowed': !enableSubmit()}"
+          class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
+        >
+          Login
+        </button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember" /> Remember
+          me
+        </label>
       </div>
 
-      <input type="password" placeholder="Enter Password" name="psw" size="50" required class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition
-          duration-500 focus:outline-none focus:border-black rounded">
-
-      <button type="submit" class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition
-        hover:bg-blue-700">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="footerLogin container flex flex-row mt-2 justify-between">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancelbtn block rounded text-white py-2 px-3" @click.prevent="toggleLoginModal">Cancel</button>
-      <span class="psw self-center text-sm">New to Psawn Insurance? <a href="#" class="text-blue-500 hover:text-blue-600 font-medium underline" @click.prevent="toggleBetweenLoginAndRegisterModal">Sign up</a></span>
-    </div>
-  </form>
-</div>
+      <div class="footerLogin container flex flex-row mt-2 justify-between">
+        <button
+          type="button"
+          onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn block rounded text-white py-2 px-3"
+          @click.prevent="toggleLoginModal"
+        >
+          Cancel
+        </button>
+        <span class="psw self-center text-sm"
+          >New to Psawn Insurance?
+          <a
+            href="#"
+            class="text-blue-500 hover:text-blue-600 font-medium underline"
+            @click.prevent="toggleBetweenLoginAndRegisterModal"
+            >Sign up</a
+          ></span
+        >
+      </div>
+    </vee-form>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { mapMutations } from 'vuex'
+import { mapState } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
-    name: 'LoginForm',
-    computed: mapState({
-      loginState: state => state.loginModalShow
-    }),
-      methods: {
-    ...mapMutations(['toggleLoginModal', 'toggleRegisterModal','toggleBetweenLoginAndRegisterModal']),
+  name: "LoginForm",
+  computed: mapState({
+    loginState: (state) => state.loginModalShow,
+  }),
+  data() {
+    return {
+      email: "",
+      password: "",
+      loginSchema: {
+        email: "required|email",
+        password: "required|min:3|max:32",
+      },
+      login_in_submission: false,
+      login_show_alert: false,
+      login_alert_variant: "bg-blue-500",
+      login_alert_msg: "Please wait! We are logging you in.",
+    };
   },
-}
+  methods: {
+    ...mapMutations([
+      "toggleLoginModal",
+      "toggleRegisterModal",
+      "toggleBetweenLoginAndRegisterModal",
+    ]),
+    login() {
+      this.login_in_submission = true;
+      this.login_show_alert = true;
+      this.login_alert_variant = "bg-blue-500";
+      this.login_alert_msg = "Please wait! We are logging you in.";
+
+      setTimeout(() => {
+        this.login_alert_variant = "bg-green-500";
+        this.login_alert_msg = "Success! You are now logged in.";
+        window.location.reload();
+      }, 2000);
+    },
+    enableSubmit() {
+      return this.password && this.email
+    }
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .modal-login {
+.modal-login {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 50%;
@@ -60,14 +160,14 @@ export default {
   height: 100%;
   transform: translate(-50%, -50%);
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
   position: fixed;
   top: 10%;
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -77,39 +177,20 @@ export default {
   padding: 0;
   margin-top: -5rem;
   img {
-  position: relative;
-  border-radius: 50%;
-  top: -5rem;
-  height: auto;
-  padding: 0;
-  margin-bottom: -5rem;
+    position: relative;
+    border-radius: 50%;
+    top: -5rem;
+    height: auto;
+    padding: 0;
+    margin-bottom: -5rem;
   }
-
 }
 
 .cancelbtn {
   background-color: rgb(244 63 94);
   &:hover {
-    background-color: rgb(238, 30, 65)
+    background-color: rgb(238, 30, 65);
   }
-}
-
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.close {
-  &:hover, &:focus {
-      color: red;
-      cursor: pointer;
-  }
-
 }
 
 label {
@@ -119,16 +200,24 @@ label {
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
 }
-  
+
 @keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 </style>
