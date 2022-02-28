@@ -1,28 +1,42 @@
 <template>
-    <nav-bar></nav-bar>
+  <app-header></app-header>
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
+  <log-in-form></log-in-form>
+  <register-form></register-form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script>
+import AppHeader from './components/Header.vue'
+import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+import LogInForm from './components/LoginForm.vue'
 
-export default defineComponent({
+export default {
   name: 'App',
-  data() {
-    return {
-      homeView: true,
-      formLoginView: false,
-      aboutView: false,
-    }
-  },
-});
+  components: {
+    AppHeader,
+    LoginForm,
+    RegisterForm,
+    LogInForm
+}
+}
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style>
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.3s linear;
+}
+
+.fade-leave-to {
+  transition: all 0.3s linear;
+  opacity: 0;
 }
 </style>
