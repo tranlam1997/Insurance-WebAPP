@@ -95,7 +95,10 @@ namespace Sem3Project
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(
-                options => options.WithOrigins("url_fe").AllowAnyMethod()
+                builder => builder
+                 .AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
             );
 
             if (env.IsDevelopment())
