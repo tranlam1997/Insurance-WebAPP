@@ -1,6 +1,6 @@
 <template>
-  <app-header></app-header>
-  <router-view v-slot="{ Component }">
+  <router-view name="newHeader" class="view"></router-view>
+  <router-view  v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component"></component>
     </transition>
@@ -10,16 +10,12 @@
 </template>
 
 <script>
-import AppHeader from './components/Header.vue'
-import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import LogInForm from './components/LoginForm.vue'
 
 export default {
   name: 'App',
   components: {
-    AppHeader,
-    LoginForm,
     RegisterForm,
     LogInForm
 }

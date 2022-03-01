@@ -7,8 +7,6 @@
     <button type="button" disabled class="border p-2 hover:bg-white hover:text-black">Learn More</button>
   </div>
   </div>
-  <div class="container ">
-  </div>
 </div>
 
 </template>

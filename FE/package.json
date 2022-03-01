@@ -17,6 +17,7 @@
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "@vee-validate/rules": "^4.5.9",
     "autoprefixer": "^9",
+    "axios": "^0.26.0",
     "core-js": "^3.6.5",
     "firebase": "^9.6.7",
     "lodash": "^4.17.21",
@@ -25,6 +26,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vee-validate": "^4.5.9",
     "vue": "^3.0.0",
+    "vue-axios": "^3.4.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

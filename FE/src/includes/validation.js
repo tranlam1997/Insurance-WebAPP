@@ -15,6 +15,14 @@ export default {
       const phoneRegex = /^\+?[0-9]{10,15}$/;
       return phoneRegex.test(value);
     };
+    const isValidPassword = (value) => {
+      const passwordRegex = /^((?=.*\d)(?=.*[A-Z])(?=.).{6,16})$/;
+      return passwordRegex.test(value);
+    }
+    const isValidName = (value) => {
+      const nameRegex = /^(?!.*\d)[^!<>?=+@{}_$%]+$/;
+      return nameRegex.test(value);
+    }
     defineRule('required', required);
     defineRule('tos', required);
     defineRule('min', min);
@@ -26,6 +34,8 @@ export default {
     defineRule('passwords_mismatch', confirmed);
     defineRule('excluded', excluded);
     defineRule('phone',isValidPhone)
+    defineRule('password', isValidPassword)
+    defineRule('name', isValidName)
     configure({
       generateMessage: (ctx) => {
         const filterString = ctx.field.replace(/([A-Z])/g, " $1")
@@ -34,7 +44,7 @@ export default {
           required: `The field ${field} is required.`,
           min: `The field ${field} is too short.`,
           max: `The field ${field} is too long.`,
-          alpha_spaces: `The field ${field} may only contain alphabetical characters and spaces.`,
+          alpha_spaces: `The field ${field} must only contain alphabetical characters and spaces.`,
           email: `The field ${field} must be a valid email.`,
           phone: `The field ${field} must be a valid phone number`,
           min_value: `The field ${field} is too low.`,
@@ -42,6 +52,8 @@ export default {
           excluded: `You are not allowed to use this value for the field ${field}.`,
           passwords_mismatch: "The passwords don't match.",
           tos: 'You must accept the Terms of Service.',
+          password: `The field ${field} must be not less than 6 characters and contain at least one uppercase letter and one number.`,
+          name: `The field ${field} must not contain number and special characters`
         };
 
         const message = messages[ctx.rule.name]

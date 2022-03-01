@@ -16,14 +16,15 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
-
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 
 const app = createApp(App);
-
 app.use(store);
 app.use(router);
 app.use(VeeValidatePlugin);
+app.use(VueAxios, axios);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.mount('#app');

@@ -2,12 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
+const Header = () => import('@/components/Header.vue');
 
 const routes = [
   {
-    name: 'Home',
-    path: '/', // example.com/
-    component: Home,
+    path: '/',
+    name: 'Home', // example.com/
+    components: {
+      default: Home,
+      newHeader: Header,
+    }
   },
   {
     name: 'About',
@@ -15,8 +19,8 @@ const routes = [
     component: About,
   },
   {
-    path: '/:catchAll(.*)*',
-    redirect: { name: 'home' },
+    name: 'User',
+    path: '/user/:id',
   },
 ];
 

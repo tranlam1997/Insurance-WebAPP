@@ -6,7 +6,7 @@
     :class="{ hidden: !registerState }"
   >
     <div
-      class="text-white text-center font-bold px-10 py-3 h-14 text-xl sticky top-0 rounded-3xl z-10"
+      class="text-white text-center font-bold px-8 py-2 h-14 text-l sticky top-0 rounded-3xl z-10 flex justify-center align-center"
       v-if="reg_show_alert"
       :class="reg_alert_variant"
     >
@@ -15,7 +15,7 @@
     <!-- Modal Content -->
     <vee-form
       :validation-schema="registerSchema"
-      class="modal-content animate flex flex-col p-8 max-w-max"
+      class="modal-content animate flex flex-col p-8 "
       @submit="register"
     >
       <div class="header-register text-black text-3xl font-black text-center">
@@ -116,7 +116,7 @@
           <ErrorMessage class="text-red-600" name="phoneNumber" />
         </div>
 
-        <div>
+        <div class="">
           <label for="password" class="inline-block mb-2"
             ><b>Password</b></label
           >
@@ -124,12 +124,15 @@
             type="password"
             placeholder="Enter Password"
             name="password"
-            size="50"
+            size="10"
             required
             class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             v-model="password"
           />
-          <ErrorMessage class="text-red-600" name="password" />
+          <ErrorMessage
+            class="text-red-600"
+            name="password"
+          />
         </div>
 
         <div>
@@ -214,16 +217,57 @@ export default {
       "toggleRegisterModal",
       "toggleBetweenLoginAndRegisterModal",
     ]),
-    register() {
-      this.reg_show_alert = true;
-      this.reg_alert_variant = "bg-blue-500";
-      this.reg_alert_msg = "Please wait! Your account is being created.";
-
-      setTimeout(() => {
+    async register() {
+      try {
+        this.reg_show_alert = true;
+        this.reg_alert_variant = "bg-blue-500";
+        this.reg_alert_msg = "Please wait! Your account is being created.";
+        const response = await this.axios({
+          method: "post",
+          url: `https://localhost:44312/api/User/register`,
+          data: {
+            firtsName: this.firstName,
+            lastName: this.lastName,
+            dateOfBirth: this.dateOfBirth,
+            email: this.email,
+            address: this.address,
+            phoneNumber: this.phoneNumber,
+            password: this.password,
+          },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-type": "application/json",
+          },
+        });
         this.reg_alert_variant = "bg-green-500";
-        this.reg_alert_msg = "Success! Your account has been created.";
-        window.location.reload();
-      }, 2000);
+        this.reg_alert_msg = response.data.message;
+        setTimeout(() => {
+          this.reg_show_alert = false;
+          this.reg_alert_variant = "bg-green-500";
+          this.reg_alert_msg = "Please wait! Your account is being created.";
+          this.emptyDataInput();
+          this.toggleBetweenLoginAndRegisterModal();
+        }, 1500);
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response)
+          this.login_alert_msg = error.response.data?.title
+            ? error.response.data.title
+            : error.response.data.message;
+          this.login_alert_variant = "bg-red-500";
+          this.login_show_alert = true;
+          setTimeout(() => {
+            this.login_show_alert = false;
+            this.login_alert_variant = "bg-blue-500";
+          }, 2000);
+        } else if (error.request) {
+          console.log('hahaha2')
+          console.log(error.request);
+        } else {
+          console.log('hahaha3')
+          console.log("Error", error.message);
+        }
+      }
     },
     enableRegisterButton() {
       return (
@@ -237,6 +281,17 @@ export default {
         this.confirm_password
       );
     },
+    emptyDataInput() {
+      this.firstName = "";
+      this.lastName = "";
+      this.dateOfBirth = "";
+      this.email = "";
+      this.address = "";
+      this.phoneNumber = "";
+      this.password = "";
+      this.confirm_password = "";
+      this.tos = false;
+    },
   },
   data() {
     return {
@@ -249,18 +304,15 @@ export default {
       password: "",
       confirm_password: "",
       registerSchema: {
-        firstName: "required|min:3|max:100|alpha_spaces",
-        lastName: "required|min:3|max:100|alpha_spaces",
+        firstName: "required|min:3|max:100|name",
+        lastName: "required|min:3|max:100|name",
         dateOfBirth: "required",
         email: "required|email",
         address: "required|min:3|max:100",
         phoneNumber: "required|phone",
-        password: "required|min:3|max:100",
+        password: "required|password",
         confirm_password: "passwords_mismatch:@password",
         tos: "tos",
-      },
-      userData: {
-        country: "USA",
       },
       reg_show_alert: false,
       reg_alert_variant: "bg-blue-500",
@@ -290,7 +342,7 @@ export default {
   background-color: #dcdcdc;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 30%; /* Could be more or less, depending on screen size */
 }
 
 .cancelbtn {

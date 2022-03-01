@@ -5,7 +5,7 @@
     :class="{ hidden: !loginState }"
   >
     <div
-      class="text-white text-center font-bold px-10 py-3 text-xl fixed top-0 rounded-3xl z-10"
+      class="text-white text-center font-bold px-8 py-2 text-l fixed top-0 rounded-3xl z-10 flex justify-center align-center"
       v-if="login_show_alert"
       :class="login_alert_variant"
     >
@@ -68,7 +68,10 @@
         <button
           type="submit"
           :disabled="!enableSubmit()"
-          :class="{'opacity-50': !enableSubmit(), 'cursor-not-allowed': !enableSubmit()}"
+          :class="{
+            'opacity-50': !enableSubmit(),
+            'cursor-not-allowed': !enableSubmit(),
+          }"
           class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
         >
           Login
@@ -113,11 +116,12 @@ export default {
   }),
   data() {
     return {
+      userToken: "",
       email: "",
       password: "",
       loginSchema: {
         email: "required|email",
-        password: "required|min:3|max:32",
+        password: "required",
       },
       login_in_submission: false,
       login_show_alert: false,
@@ -130,22 +134,58 @@ export default {
       "toggleLoginModal",
       "toggleRegisterModal",
       "toggleBetweenLoginAndRegisterModal",
+      "toggleUserInterface",
     ]),
-    login() {
-      this.login_in_submission = true;
-      this.login_show_alert = true;
-      this.login_alert_variant = "bg-blue-500";
-      this.login_alert_msg = "Please wait! We are logging you in.";
-
-      setTimeout(() => {
+    async login() {
+      try {
+        this.login_in_submission = true;
+        this.login_show_alert = true;
+        this.login_alert_variant = "bg-blue-500";
+        this.login_alert_msg = "Please wait! We are logging you in.";
+        const response = await this.axios({
+          method: "post",
+          url: `https://localhost:44312/api/User/login`,
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-type": "application/json",
+          },
+        });
+        this.userToken = response.data.token;
         this.login_alert_variant = "bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
-        window.location.reload();
-      }, 2000);
+        setTimeout(() => {
+          this.turnOffLoginModal();
+        }, 500);
+        this.$store.dispatch("toggleUserInterface");
+      } catch (error) {
+        if (error.response) {
+          this.login_alert_msg = error.response.data?.title
+            ? error.response.data.title
+            : error.response.data.message;
+          this.login_alert_variant = "bg-red-500";
+          this.login_show_alert = true;
+          setTimeout(() => {
+            this.login_show_alert = false;
+            this.login_alert_variant = "bg-blue-500";
+          }, 2000);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log("Error", error.message);
+        }
+      }
+    },
+    turnOffLoginModal() {
+      this.login_show_alert = false;
+      this.toggleLoginModal();
     },
     enableSubmit() {
-      return this.password && this.email
-    }
+      return this.password && this.email;
+    },
   },
 };
 </script>
