@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
 const Header = () => import('@/components/Header.vue');
+const Footer = () => import('@/components/Footer.vue');
 
 const routes = [
   {
@@ -10,13 +11,18 @@ const routes = [
     name: 'Home', // example.com/
     components: {
       default: Home,
-      newHeader: Header,
+      Header,
+      Footer,
     }
   },
   {
     name: 'About',
     path: '/about',
-    component: About,
+    components: {
+      default: About,
+      Header,
+      Footer,
+    }
   },
   {
     name: 'User',

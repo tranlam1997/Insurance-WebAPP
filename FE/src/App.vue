@@ -1,10 +1,11 @@
 <template>
-  <router-view name="newHeader" class="view"></router-view>
+  <router-view name="Header"></router-view>
   <router-view  v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component"></component>
     </transition>
   </router-view>
+  <router-view name="Footer"></router-view>
   <log-in-form></log-in-form>
   <register-form></register-form>
 </template>
