@@ -164,19 +164,19 @@
       <div class="flex flex-col gap-5">
         <div class="flex flex-row gap-5">
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img3.jpg" alt="" />
             <p>New year new income</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img9.jpg" alt="" />
             <p>New report for Psawn Insurance</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img5.jpg" alt="" />
             <p>Insurance policy updated</p>
@@ -184,19 +184,19 @@
         </div>
         <div class="flex flex-row gap-5">
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img6.jpg" alt="" />
-            <p style="left: 2%">New idea about manage insurance policy</p>
+            <p style="left: 2%;">New idea about manage insurance policy</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img10.jpg" alt="" />
-            <p style="top: -25%; left: 5%">Cyber Insurance</p>
+            <p style="left: 5%">Cyber Insurance</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img8.jpg" alt="" />
             <p>Psawn Easy Win Lucky Draw</p>
@@ -311,7 +311,7 @@ export default {
 .sub-main-2,
 .sub-main-3 {
   img {
-    filter: drop-shadow(8px 8px 10px gray) brightness(80%);
+    filter: drop-shadow(8px 8px 10px gray) brightness(75%);
     transition: all 0.3s linear 0.1s;
     cursor: pointer;
 
@@ -324,7 +324,7 @@ export default {
   p {
     transition: all 0.3s linear 0.1s;
     position: relative;
-    top: -18%;
+    top: -20%;
     left: 5%;
   }
 }
