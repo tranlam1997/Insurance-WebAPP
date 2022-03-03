@@ -28,16 +28,16 @@
               class="dropdown-content flex-col absolute top-19 bg-blue-800 border-b hidden"
             >
               <li class="p-3 mt-3">
-                <a href="/">Health Insurance</a>
+                <a href="/">Home Insurance</a>
               </li>
               <li class="p-3">
                 <a href="/">Life Insurance</a>
               </li>
               <li class="p-3">
-                <a href="/">Body Insurance</a>
+                <a href="/">Medical Insurance</a>
               </li>
               <li class="p-3">
-                <a href="/">Property Insurance</a>
+                <a href="/">Vehicle Insurance</a>
               </li>
             </ul>
           </li>

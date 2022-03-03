@@ -7,17 +7,17 @@
       <h1>Lives made <span class="italic font-semibold">better.</span></h1>
     </div>
     <div class="achievement flex flex-row gap-10 justify-between mt-24 mx-10">
-      <div class="business">
+      <div class="business p-8 flex-1">
         <i class="fa-solid fa-building-columns text-5xl"></i>
         <h2 class="mt-5 mb-2 font-bold">Our Business</h2>
         <p class="font-thin">Psawn provides financial advice, insurance, as well as wealth and asset management solutions to help people make their decisions easier and lives better, and to ensure they are well-protected.</p>
       </div>
-      <div class="history">
+      <div class="history p-8 flex-1">
         <i class="fa-solid fa-book-open text-5xl"></i>
         <h2 class="mt-5 mb-2 font-bold">Our History</h2>
         <p class="font-thin">Psawn was founded in 2022 by a group of professionals who had a passion for providing financial advice and wealth management solutions to people. Today, Manulife is the largest financial services company in the world.</p>
       </div>
-      <div class="award">
+      <div class="award p-8 flex-1">
         <i class="fa-solid fa-medal text-5xl"></i>
         <h2 class="mt-5 mb-2 font-bold">Our Awards</h2>
         <p class="font-thin">Psawn has been awarded the “Best Financial Services Company” by the Financial Services Association of America (FSA) for its services and products.</p>
@@ -38,5 +38,9 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.business, .history, .award {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 </style>
