@@ -16,7 +16,7 @@
     <vee-form
       class="modal-content animate flex flex-col p-8 max-w-max"
       :validation-schema="loginSchema"
-      @submit="login"
+      @submit="handleLogin"
     >
       <div class="header-login m-auto">
         <img
@@ -36,7 +36,7 @@
             name="email"
             size="50"
             required
-            v-model="email"
+            v-model="user.email"
             class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
           />
           <ErrorMessage class="text-red-600" name="email" />
@@ -59,7 +59,7 @@
             name="password"
             size="50"
             required
-            v-model="password"
+            v-model="user.password"
             class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
           />
           <ErrorMessage class="text-red-600" name="password" />
@@ -108,17 +108,20 @@
 <script>
 import { mapState } from "vuex";
 import { mapMutations } from "vuex";
+import User from '../models/user';
 
 export default {
   name: "LoginForm",
   computed: mapState({
-    loginState: (state) => state.loginModalShow,
+    loginState: (state) => state.toggle.loginModalShow,
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
   }),
   data() {
     return {
       userToken: "",
-      email: "",
-      password: "",
+      user: new User('','', '', '', '', '', '', '', '',),
       loginSchema: {
         email: "required|email",
         password: "required",
@@ -129,38 +132,41 @@ export default {
       login_alert_msg: "Please wait! We are logging you in.",
     };
   },
+    created() {
+      console.log('login', this.loginState, this.loggedIn)
+    if (this.loggedIn) {
+      this.$router.push('/profile');
+    }
+  },
   methods: {
     ...mapMutations([
-      "toggleLoginModal",
-      "toggleRegisterModal",
-      "toggleBetweenLoginAndRegisterModal",
-      "toggleUserInterface",
+      "toggle/toggleLoginModal",
+      "toggle/toggleRegisterModal",
+      "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
-    async login() {
+    toggleLoginModal() {
+      this['toggle/toggleLoginModal']();
+    },
+    toggleRegisterModal() {
+      this['toggle/toggleRegisterModal']();
+    },
+    toggleBetweenLoginAndRegisterModal() {
+      this['toggle/toggleBetweenLoginAndRegisterModal']();
+    },
+    async handleLogin() {
       try {
         this.login_in_submission = true;
         this.login_show_alert = true;
         this.login_alert_variant = "bg-blue-500";
         this.login_alert_msg = "Please wait! We are logging you in.";
-        const response = await this.axios({
-          method: "post",
-          url: `https://localhost:44312/api/User/login`,
-          data: {
-            email: this.email,
-            password: this.password,
-          },
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-type": "application/json",
-          },
-        });
-        this.userToken = response.data.token;
+        const response = await this.$store.dispatch('auth/login', this.user)
+        this.userToken = response.token;
         this.login_alert_variant = "bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
         setTimeout(() => {
           this.turnOffLoginModal();
         }, 500);
-        this.$store.dispatch("toggleUserInterface");
+        this.$store.dispatch("toggle/toggleUserInterface");
       } catch (error) {
         if (error.response) {
           this.login_alert_msg = error.response.data?.title
@@ -181,10 +187,10 @@ export default {
     },
     turnOffLoginModal() {
       this.login_show_alert = false;
-      this.toggleLoginModal();
+      this['toggle/toggleLoginModal']();
     },
     enableSubmit() {
-      return this.password && this.email;
+      return this.user.password && this.user.email;
     },
   },
 };

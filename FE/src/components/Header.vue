@@ -45,7 +45,7 @@
           <li class="self-center">
             <router-link class="" :to="{ name: 'About' }"> About </router-link>
           </li>
-          <li class="self-center" :class="{ hidden: userLoginState }">
+          <li class="self-center" :class="{ hidden: loggedIn }">
             <div class="flex flex-row gap-2">
               <a class="self-center" href="#" @click.prevent="toggleLoginModal">
                 Login
@@ -60,7 +60,7 @@
               </button>
             </div>
           </li>
-          <li class="self-center" :class="{ hidden: !userLoginState }">
+          <li class="self-center" :class="{ hidden: !loggedIn }" v-click-outside="clickOutSide">
             <a @click.prevent="toggleUserModalShow"
               ><i class="fa-solid fa-user text-l mx-4 cursor-pointer"></i
             ></a>
@@ -68,13 +68,16 @@
               class="dropdown-content flex-col absolute top-19 right-5 bg-blue-900"
               :class="{ hidden: !userModalShow }"
             >
-              <li class="px-6 py-3 mt-3">
-                <a href="/">Profile</a>
+              <li class="px-6 py-3 mt-3" v-if="email">
+                {{ email }}
+              </li>
+              <li class="px-6 py-3 pb-4">
+                <router-link to="/profile"><a href="/">Profile</a></router-link>
               </li>
               <li class="px-6 pt-3 pb-4">
                 <a href="/">Settings</a>
               </li>
-              <li class="px-6 pb-2 pt-3 border-t">
+              <li class="px-6 pb-2 pt-3 border-t" @click.prevent="logOut">
                 <a href="/">Logout</a>
               </li>
             </div>
@@ -90,16 +93,44 @@ import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "Header",
+  data() {
+    return {
+      email: JSON.parse(localStorage.getItem("user"))
+        ? JSON.parse(localStorage.getItem("user")).email
+        : "",
+    };
+  },
   computed: mapState({
-    userLoginState: (state) => state.userLoginState,
-    userModalShow: (state) => state.userModalShow,
+    userModalShow: (state) => state.toggle.userModalShow,
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
   }),
   methods: {
     ...mapMutations([
-      "toggleLoginModal",
-      "toggleRegisterModal",
-      "toggleUserModalShow",
+      "toggle/toggleLoginModal",
+      "toggle/toggleRegisterModal",
+      "toggle/toggleUserModalShow",
     ]),
+    toggleLoginModal() {
+      this["toggle/toggleLoginModal"]();
+    },
+    toggleRegisterModal() {
+      this["toggle/toggleRegisterModal"]();
+    },
+    toggleUserModalShow() {
+      this["toggle/toggleUserModalShow"]();
+    },
+    logOut() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/");
+    },
+    clickOutSide() {
+      console.log(this.userModalShow)
+      if(this.userModalShow) {
+        this.toggleUserModalShow();
+      }
+    },
   },
 };
 </script>

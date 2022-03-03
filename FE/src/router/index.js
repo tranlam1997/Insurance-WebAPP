@@ -4,6 +4,7 @@ const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
 const Header = () => import('@/components/Header.vue');
 const Footer = () => import('@/components/Footer.vue');
+const Profile = () => import('@/views/Profile.vue'); 
 
 const routes = [
   {
@@ -20,6 +21,15 @@ const routes = [
     path: '/about',
     components: {
       default: About,
+      Header,
+      Footer,
+    }
+  },
+  {
+    name: 'Profile',
+    path: '/profile',
+    components: {
+      default: Profile,
       Header,
       Footer,
     }
