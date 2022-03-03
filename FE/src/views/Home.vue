@@ -187,7 +187,7 @@
             class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
           >
             <img src="../../public/assets/img/sub-main-2-img6.jpg" alt="" />
-            <p style="left: 2%;">New idea about manage insurance policy</p>
+            <p style="left: 2%; top: -25%;">New idea about manage insurance policy</p>
           </div>
           <div
             class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
