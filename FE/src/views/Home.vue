@@ -38,9 +38,9 @@
         >
       </div>
       <div
-        class="flex flex-col flex-1 justify-center self-start px-10 h-80 cursor-pointer"
+        class="flex flex-col flex-1 justify-start self-start px-10 h-80 cursor-pointer"
       >
-        <div class="flex flex-row gap-5 justify-between">
+        <div class="flex flex-row gap-5 justify-between mt-5">
           <p
             class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
           >
@@ -65,9 +65,9 @@
         </p>
       </div>
       <div
-        class="flex flex-col justify-center flex-1 self-start px-10 h-80 cursor-pointer"
+        class="flex flex-col justify-start flex-1 self-start px-10 h-80 cursor-pointer"
       >
-        <div class="flex flex-row gap-5 justify-between">
+        <div class="flex flex-row gap-5 justify-between mt-5">
           <p
             class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
           >
@@ -93,9 +93,9 @@
         </p>
       </div>
       <div
-        class="flex flex-col justify-center flex-1 self-start px-10 h-80 cursor-pointer"
+        class="flex flex-col justify-start flex-1 self-start px-10 h-80 cursor-pointer"
       >
-        <div class="flex flex-row gap-5 justify-between">
+        <div class="flex flex-row gap-5 justify-between mt-5">
           <p
             class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
           >
