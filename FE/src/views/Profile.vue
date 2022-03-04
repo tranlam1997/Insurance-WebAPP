@@ -19,7 +19,7 @@
       <div class="self-start flex flex-col gap-8 w-full">
         <div class="flex flex-row gap-10 justify-between">
           <div class="profile-head">
-            <h5>Jonny Key</h5>
+            <h5>{{user.data.firtsName + ' ' + user.data.lastName}}</h5>
             <h6>Web Developer and Designer</h6>
             <ul class="flex flex-row gap-2 pt-8" id="myTab" role="tablist">
               <li class="nav-item">
@@ -62,27 +62,31 @@
         <div class="flex flex-col gap-3">
           <div class="flex flex-row">
             <p class="w-48 font-bold">ID:</p>
-            <p class="">{{}}</p>
+            <p class="">{{ user.data.id }}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Name:</p>
-            <p class="flex-1">Jonny Key</p>
+            <p class="flex-1">{{ user.data.firtsName + ' ' + user.data.lastName }}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Date Of Birth:</p>
-            <p class="flex-1">09-12-1988</p>
+            <p class="flex-1">{{ user.data.dateOfBirth}}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Email:</p>
-            <p class="flex-1">johnykey@gmail.com</p>
+            <p class="flex-1">{{ user.data.email }}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Phone:</p>
-            <p class="flex-1">0963587178</p>
+            <p class="flex-1">{{user.data.phoneNumber}}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Address:</p>
-            <p class="flex-1">123 Van Hung Street, Ha Noi</p>
+            <p class="flex-1">{{user.data.address}}</p>
+          </div>
+          <div class="flex flex-row">
+            <p class="w-48 font-bold">Role:</p>
+            <p class="flex-1">{{user.data.role}}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Password:</p>
@@ -103,8 +107,22 @@
 </template>
 
 <script>
+import UserService from '../services/user.service.js';
+
 export default {
   name: "Profile",
+  data() {
+    return {
+      user: null
+    }
+  },
+  created() {
+    console.log(this.user)
+    UserService.getUserInfo().then((response) => {
+        this.user = response.data;
+      })
+    console.log(this.user)
+  }
 };
 </script>
 
