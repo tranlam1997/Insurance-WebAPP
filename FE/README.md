@@ -1,16 +1,18 @@
-# fe
 
-## Project setup
+# This is the FE system for Insurance project
+# To run this service please properly, please run BE system and this simultaneously
+
+## First to run this FE system you need to run this command
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### To run this service, run this command
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### To compiles and minifies for production, run this command
 ```
 yarn build
 ```
