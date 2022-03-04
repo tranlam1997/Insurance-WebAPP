@@ -2,6 +2,7 @@
 Install Microsoft SQL Server, replace Server name and Authentication of ConnectionStrings.DefaultConnection in appsettings.json file (BE folder).
 
 Create database by using command:
+
 .Net Cli:
 ```bash
 dotnet ef database update
