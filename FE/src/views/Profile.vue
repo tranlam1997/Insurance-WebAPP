@@ -62,7 +62,7 @@
         <div class="flex flex-col gap-3">
           <div class="flex flex-row">
             <p class="w-48 font-bold">ID:</p>
-            <p class="">key1t43b</p>
+            <p class="">{{}}</p>
           </div>
           <div class="flex flex-row">
             <p class="w-48 font-bold">Name:</p>

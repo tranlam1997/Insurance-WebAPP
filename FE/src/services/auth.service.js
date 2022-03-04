@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 const API_URL = 'https://localhost:44312/api/User/';
 
 class AuthService {
@@ -10,7 +11,9 @@ class AuthService {
       })
       .then(response => {
         if (response.data.token) {
-          localStorage.setItem('user', JSON.stringify({...response.data, email: user.email, password: user.password}));
+          const decoded = jwt_decode(response.data.token);
+          const userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
+          localStorage.setItem('user', JSON.stringify({...response.data, id: userId, email: user.email, password: user.password}));
         }
         return response.data;
       });
