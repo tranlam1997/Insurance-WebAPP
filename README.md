@@ -1,4 +1,4 @@
-## Create your database and schema:
+## Create your database:
 Install Microsoft SQL Server, replace Server name and Authentication of ConnectionStrings.DefaultConnection in appsettings.json file (BE folder).
 
 .Net Cli:
