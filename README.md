@@ -1,5 +1,6 @@
 ## Create your database and schema:
 Install Microsoft SQL Server, change Server name and Authentication of ConnectionStrings.DefaultConnection in appsettings.json file.
+
 .Net Cli:
 ```bash
 dotnet ef database update
