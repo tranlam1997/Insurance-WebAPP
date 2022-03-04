@@ -158,7 +158,7 @@
             v-model="tos"
           />
           <label class="tos" keypath="register.accept" tag="label">
-            <a class="border-b border-black" style="cursor: pointer"
+            <a class="border-b border-black" style="cursor: pointer" target="_blank" href="https://www.sec.gov/Archives/edgar/data/1222840/000122284008000014/exhibit10533insuranceriskmgm.htm"
               ><b>I agree on Terms and Condition</b></a
             >
           </label>
