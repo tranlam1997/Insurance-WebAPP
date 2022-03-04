@@ -1,6 +1,13 @@
 <template>
   <!------ Include the above in your HEAD tag ---------->
-
+  <div
+    class="text-white text-center font-bold px-8 py-2 text-l fixed top-1/6 rounded-3xl z-10 flex justify-center align-center"
+    v-if="edit_show_alert"
+    :class="edit_alert_variant"
+    style="left: 40%"
+  >
+    {{ edit_alert_msg }}
+  </div>
   <div class="container profile m-auto my-24 border p-8">
     <div class="flex flex-row">
       <div class="w-96">
@@ -221,6 +228,9 @@ export default {
       },
       userData: new User("", "", "", "", "", "", "", "", ""),
       user: null,
+      edit_show_alert: false,
+      edit_alert_variant: "bg-blue-500",
+      edit_alert_msg: "Please wait!",
     };
   },
   methods: {
@@ -230,17 +240,30 @@ export default {
       this["toggle/toggleEditModalShow"]();
     },
     async handleEdit() {
-      UserService.editUserInfo(this.userData)
-        .then((response) => {
-          UserService.getUserInfo().then((response) => {
-            this.user = response.data;
+      (this.edit_show_alert = true),
+        (this.edit_alert_variant = "bg-blue-500"),
+        (this.edit_alert_msg = "Please wait!"),
+        UserService.editUserInfo(this.userData)
+          .then((response) => {
+            this.edit_alert_variant = "bg-green-500";
+            this.edit_alert_msg = "Successfully updated!";
+            setTimeout(() => {
+              this.edit_show_alert = false;
+            }, 1500);
+            UserService.getUserInfo().then((response) => {
+              this.user = response.data;
+            });
+            this.toggleEditModalShow();
+            return response;
+          })
+          .catch((error) => {
+            (this.edit_alert_variant = "bg-red-500"),
+              (this.edit_alert_msg = error),
+              setTimeout(() => {
+                this.edit_show_alert = false;
+              }, 1500);
+            console.log(error);
           });
-          this.toggleEditModalShow();
-          return response;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     },
   },
   created() {
