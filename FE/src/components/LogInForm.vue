@@ -108,7 +108,7 @@
 <script>
 import { mapState } from "vuex";
 import { mapMutations } from "vuex";
-import User from '../models/user';
+import User from "../models/user";
 
 export default {
   name: "LoginForm",
@@ -116,12 +116,12 @@ export default {
     loginState: (state) => state.toggle.loginModalShow,
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-    }
+    },
   }),
   data() {
     return {
       userToken: "",
-      user: new User('','', '', '', '', '', '', '', '',),
+      user: new User("", "", "", "", "", "", "", "", ""),
       loginSchema: {
         email: "required|email",
         password: "required",
@@ -134,7 +134,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push("/profile");
     }
   },
   methods: {
@@ -144,21 +144,25 @@ export default {
       "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
     toggleLoginModal() {
-      this['toggle/toggleLoginModal']();
+      this.login_show_alert = false;
+      this["toggle/toggleLoginModal"]();
     },
     toggleRegisterModal() {
-      this['toggle/toggleRegisterModal']();
+      this.login_show_alert = false;
+      this["toggle/toggleRegisterModal"]();
     },
     toggleBetweenLoginAndRegisterModal() {
-      this['toggle/toggleBetweenLoginAndRegisterModal']();
+      this.login_show_alert = false;
+      this["toggle/toggleBetweenLoginAndRegisterModal"]();
     },
     async handleLogin() {
       try {
         this.login_in_submission = true;
         this.login_show_alert = true;
         this.login_alert_variant = "bg-blue-500";
+        this.timeOut();
         this.login_alert_msg = "Please wait! We are logging you in.";
-        const response = await this.$store.dispatch('auth/login', this.user)
+        const response = await this.$store.dispatch("auth/login", this.user);
         this.userToken = response.token;
         this.login_alert_variant = "bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
@@ -186,7 +190,17 @@ export default {
     },
     turnOffLoginModal() {
       this.login_show_alert = false;
-      this['toggle/toggleLoginModal']();
+      this["toggle/toggleLoginModal"]();
+    },
+    timeOut() {
+      setTimeout(() => {
+        if (this.loginState || !this.loggedIn) {
+          this.login_alert_variant = "bg-red-500";
+          this.login_show_alert = true;
+          this.login_alert_msg = "Request timed out. Please try again.";
+          setTimeout(() => { this.login_show_alert =false}, 2000)
+        }
+      }, 5000);
     },
     enableSubmit() {
       return this.user.password && this.user.email;
