@@ -5,7 +5,7 @@ Install Microsoft SQL Server, replace Server name and Authentication of Connecti
 ```bash
 dotnet ef database update
 ```
-Visual studio Power shell:
+or Visual studio Power shell:
 ```
 Update-Database
 ```
