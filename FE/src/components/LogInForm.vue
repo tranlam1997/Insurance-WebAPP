@@ -132,8 +132,7 @@ export default {
       login_alert_msg: "Please wait! We are logging you in.",
     };
   },
-    created() {
-      console.log('login', this.loginState, this.loggedIn)
+  created() {
     if (this.loggedIn) {
       this.$router.push('/profile');
     }

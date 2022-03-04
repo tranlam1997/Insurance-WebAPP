@@ -5,6 +5,7 @@ export const toggle =  {
     loginModalShow: false,
     registerModalShow: false,
     userModalShow: false,
+    editModalShow: false
   },
   mutations: {
     toggleLoginModal(state) {
@@ -19,6 +20,9 @@ export const toggle =  {
     },
     toggleUserModalShow(state) {
       state.userModalShow = !state.userModalShow;
+    },
+    toggleEditModalShow(state) {
+      state.editModalShow = !state.editModalShow;
     }
   },
   actions: {

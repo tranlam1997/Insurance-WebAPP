@@ -126,7 +126,6 @@ export default {
       this.$router.push("/");
     },
     clickOutSide() {
-      console.log(this.userModalShow)
       if(this.userModalShow) {
         this.toggleUserModalShow();
       }

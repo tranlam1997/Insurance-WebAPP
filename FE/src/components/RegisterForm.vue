@@ -17,6 +17,7 @@
       :validation-schema="registerSchema"
       class="modal-content animate flex flex-col p-8"
       @submit="submitRegister"
+      ref="form"
     >
       <div class="header-register text-black text-3xl font-black text-center">
         Register
@@ -224,12 +225,15 @@ export default {
       "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
     toggleLoginModal() {
+      this.$refs.form.resetForm()
       this['toggle/toggleLoginModal']();
     },
     toggleRegisterModal() {
+      this.$refs.form.resetForm()
       this['toggle/toggleRegisterModal']();
     },
     toggleBetweenLoginAndRegisterModal() {
+      this.$refs.form.resetForm()
       this['toggle/toggleBetweenLoginAndRegisterModal']();
     },
     async submitRegister() {
@@ -244,7 +248,7 @@ export default {
           this.reg_show_alert = false;
           this.reg_alert_variant = "bg-green-500";
           this.reg_alert_msg = "Please wait! Your account is being created.";
-          this.emptyDataInput();
+          this.$refs.form.resetForm()
           this['toggle/toggleBetweenLoginAndRegisterModal']();
         }, 1500);
       } catch (error) {
@@ -277,17 +281,6 @@ export default {
         this.confirm_password &&
         this.tos
       );
-    },
-    emptyDataInput() {
-      this.user.firstName = "";
-      this.user.lastName = "";
-      this.user.dateOfBirth = "";
-      this.user.email = "";
-      this.user.address = "";
-      this.user.phoneNumber = "";
-      this.user.password = "";
-      this.confirm_password = "";
-      this.tos = false;
     },
   },
   data() {
