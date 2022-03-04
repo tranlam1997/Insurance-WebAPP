@@ -151,6 +151,31 @@ namespace Sem3Project.Controllers
             }
         }
 
+        [HttpGet("me")]
+        [Authorize]
+        public IActionResult GetMe()
+        {
+            try
+            {
+                var currentUser = GetCurrentUser();
+                var userInfo = _userRepository.GetUser(currentUser.Id);
+
+                if (userInfo == null)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                else
+                {
+                    var userDto = _mapper.Map<UserDto>(userInfo);
+                    return Ok(new { Data = userDto });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
         [HttpGet("{id}")]
         [Authorize(Roles = "Administrator,Staff")]
         public IActionResult GetUser(string id)
