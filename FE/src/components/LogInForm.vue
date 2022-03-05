@@ -171,7 +171,6 @@ export default {
       this["toggle/toggleBetweenLoginAndRegisterModal"]();
     },
     async handleLogin() {
-      this.isRememberMe();
       try {
         this.login_in_submission = true;
         this.login_show_alert = true;
