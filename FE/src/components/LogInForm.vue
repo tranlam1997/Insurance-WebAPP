@@ -17,6 +17,7 @@
       class="modal-content animate flex flex-col p-8 max-w-max"
       :validation-schema="loginSchema"
       @submit="handleLogin"
+      ref="form"
     >
       <div class="header-login m-auto">
         <img
@@ -77,8 +78,13 @@
           Login
         </button>
         <label>
-          <input type="checkbox" checked="checked" name="remember" /> Remember
-          me
+          <input
+            type="checkbox"
+            checked="checked"
+            v-model="rememberMe"
+            name="remember"
+          />
+          Remember me
         </label>
       </div>
 
@@ -114,12 +120,14 @@ export default {
   name: "LoginForm",
   computed: mapState({
     loginState: (state) => state.toggle.loginModalShow,
+    editState: (state) => state.toggle.editModalShow,
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   }),
   data() {
     return {
+      rememberMe: false,
       userToken: "",
       user: new User("", "", "", "", "", "", "", "", ""),
       loginSchema: {
@@ -133,6 +141,10 @@ export default {
     };
   },
   created() {
+    if (localStorage.getItem("rememberMe")) {
+      this.rememberMe = true;
+      this.user.email = localStorage.getItem("email");
+    }
     if (this.loggedIn) {
       this.$router.push("/profile");
     }
@@ -144,18 +156,22 @@ export default {
       "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
     toggleLoginModal() {
+      this.$refs.form.resetForm()
       this.login_show_alert = false;
       this["toggle/toggleLoginModal"]();
     },
     toggleRegisterModal() {
+      this.$refs.form.resetForm()
       this.login_show_alert = false;
       this["toggle/toggleRegisterModal"]();
     },
     toggleBetweenLoginAndRegisterModal() {
+      this.$refs.form.resetForm()
       this.login_show_alert = false;
       this["toggle/toggleBetweenLoginAndRegisterModal"]();
     },
     async handleLogin() {
+      this.isRememberMe();
       try {
         this.login_in_submission = true;
         this.login_show_alert = true;
@@ -167,7 +183,7 @@ export default {
         this.login_alert_variant = "bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
         setTimeout(() => {
-          this.turnOffLoginModal();
+          this.toggleLoginModal();
         }, 500);
         this.$store.dispatch("toggle/toggleUserInterface");
       } catch (error) {
@@ -188,24 +204,40 @@ export default {
         }
       }
     },
-    turnOffLoginModal() {
-      this.login_show_alert = false;
-      this["toggle/toggleLoginModal"]();
-    },
     timeOut() {
       setTimeout(() => {
         if (this.loginState || !this.loggedIn) {
           this.login_alert_variant = "bg-red-500";
           this.login_show_alert = true;
           this.login_alert_msg = "Request timed out. Please try again.";
-          setTimeout(() => { this.login_show_alert =false}, 2000)
+          setTimeout(() => {
+            this.login_show_alert = false;
+          }, 2000);
         }
       }, 5000);
     },
     enableSubmit() {
       return this.user.password && this.user.email;
     },
-  },
+    emptyInputData() {
+      this.user.email = "";
+      this.user.password = "";
+      this.rememberMe = false;
+    },
+    },
+    isRememberMe() {
+      if (
+        this.rememberMe &&
+        this.user.email !== "" &&
+        this.user.password !== ""
+      ) {
+        localStorage.setItem("email", this.user.email);
+        localStorage.setItem("rememberMe", this.rememberMe);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("rememberMe");
+      }
+    },
 };
 </script>
 

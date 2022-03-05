@@ -5,7 +5,8 @@ export const toggle =  {
     loginModalShow: false,
     registerModalShow: false,
     userModalShow: false,
-    editModalShow: false
+    editModalShow: false,
+    changePasswordModalShow: false,
   },
   mutations: {
     toggleLoginModal(state) {
@@ -23,11 +24,9 @@ export const toggle =  {
     },
     toggleEditModalShow(state) {
       state.editModalShow = !state.editModalShow;
+    },
+    toggleChangePasswordModalShow(state) {
+      state.changePasswordModalShow = !state.changePasswordModalShow;
     }
-  },
-  actions: {
-    toggleUserInterface(context) {
-      context.commit('toggleUserInterface')
-    }
-  } 
+  }
 };

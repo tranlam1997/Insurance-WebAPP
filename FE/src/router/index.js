@@ -5,6 +5,7 @@ const About = () => import('@/views/About.vue');
 const Header = () => import('@/components/Header.vue');
 const Footer = () => import('@/components/Footer.vue');
 const Profile = () => import('@/views/Profile.vue'); 
+const ChangePassword = () => import('@/components/ChangePassword.vue')
 
 const routes = [
   {
@@ -32,7 +33,13 @@ const routes = [
       default: Profile,
       Header,
       Footer,
+    },
+    children: [
+      {
+      path: 'changePassword',
+      component: ChangePassword
     }
+    ]
   },
   {
     name: 'User',

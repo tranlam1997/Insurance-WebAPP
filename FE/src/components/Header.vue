@@ -66,7 +66,7 @@
             ></a>
             <div
               class="dropdown-content flex-col absolute top-19 right-5 bg-blue-900"
-              :class="{ hidden: !userModalShow }"
+              v-if="userModalShow"
             >
               <li class="px-6 py-3 mt-3" v-if="email">
                 {{ email }}
@@ -95,9 +95,7 @@ export default {
   name: "Header",
   data() {
     return {
-      email: JSON.parse(localStorage.getItem("user"))
-        ? JSON.parse(localStorage.getItem("user")).email
-        : "",
+      email: ""
     };
   },
   computed: mapState({
@@ -106,6 +104,16 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     },
   }),
+  watch: {
+    loggedIn: {
+      handler(newValue) {
+        if(newValue) {
+          this.email = JSON.parse(localStorage.getItem("user")).email;
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     ...mapMutations([
       "toggle/toggleLoginModal",

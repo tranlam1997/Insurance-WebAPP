@@ -19,10 +19,5 @@ export const user =  {
       toggleUserModalShow(state) {
         state.userModalShow = !state.userModalShow;
       }
-    },
-    actions: {
-      toggleUserInterface(context) {
-        context.commit('toggleUserInterface')
-      }
-    } 
+    }, 
   };

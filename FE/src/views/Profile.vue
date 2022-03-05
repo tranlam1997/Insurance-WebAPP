@@ -187,9 +187,12 @@
                 <button
                   type="button"
                   class="border border-black p-1 mr-96 hover:bg-gray-300"
+                  @click.prevent="renderChangePassword"
+                  :class="{hidden: changePasswordState}"
                 >
                   Change password
                 </button>
+                <router-view user="user"></router-view>
               </div>
             </div>
             <button
@@ -215,6 +218,7 @@ export default {
   name: "Profile",
   computed: mapState({
     editState: (state) => state.toggle.editModalShow,
+    changePasswordState: (state) => state.toggle.changePasswordModalShow,
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
@@ -234,7 +238,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["toggle/toggleEditModalShow"]),
+    ...mapMutations(["toggle/toggleEditModalShow", "toggle/toggleChangePasswordModalShow"]),
     toggleEditModalShow() {
       this.$refs.form.resetForm();
       this["toggle/toggleEditModalShow"]();
@@ -265,11 +269,20 @@ export default {
             console.log(error);
           });
     },
+    renderChangePassword() {
+      this.$router.push('/profile/changePassword');
+      this['toggle/toggleChangePasswordModalShow']();
+    },
   },
   created() {
     UserService.getUserInfo().then((response) => {
       this.user = response.data;
     });
+  },
+  mounted() {
+    if (this.editState) {
+      this.toggleEditModalShow();
+    }
   },
 };
 </script>
