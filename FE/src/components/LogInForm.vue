@@ -54,15 +54,29 @@
               ></span
             >
           </div>
-          <vee-field
-            type="password"
-            placeholder="Enter Password"
-            name="password"
-            size="50"
-            required
-            v-model="user.password"
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          />
+          <div class="flex flex-row">
+            <vee-field
+              :type="showType"
+              placeholder="Enter Password"
+              name="password"
+              size="20"
+              required
+              v-model="user.password"
+              class="w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            />
+            <div
+              class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+              @click="togglePassword"
+            >
+              <span :class="{ hidden: showPassword }">
+                <i class="fa-solid fa-eye"></i>
+              </span>
+              <span :class="{ hidden: !showPassword }">
+                <i class="fa-solid fa-eye-slash"></i>
+              </span>
+            </div>
+          </div>
+
           <ErrorMessage class="text-red-600" name="password" />
         </div>
 
@@ -128,6 +142,8 @@ export default {
   data() {
     return {
       rememberMe: false,
+      showType: "password",
+      showPassword: false,
       userToken: "",
       user: new User("", "", "", "", "", "", "", "", ""),
       loginSchema: {
@@ -138,6 +154,7 @@ export default {
       login_show_alert: false,
       login_alert_variant: "bg-blue-500",
       login_alert_msg: "Please wait! We are logging you in.",
+      time: null
     };
   },
   created() {
@@ -155,18 +172,22 @@ export default {
       "toggle/toggleRegisterModal",
       "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+      this.showType = this.showType === "password" ? "text" : "password";
+    },
     toggleLoginModal() {
-      this.$refs.form.resetForm()
+      this.$refs.form.resetForm();
       this.login_show_alert = false;
       this["toggle/toggleLoginModal"]();
     },
     toggleRegisterModal() {
-      this.$refs.form.resetForm()
+      this.$refs.form.resetForm();
       this.login_show_alert = false;
       this["toggle/toggleRegisterModal"]();
     },
     toggleBetweenLoginAndRegisterModal() {
-      this.$refs.form.resetForm()
+      this.$refs.form.resetForm();
       this.login_show_alert = false;
       this["toggle/toggleBetweenLoginAndRegisterModal"]();
     },
@@ -176,8 +197,8 @@ export default {
         this.login_in_submission = true;
         this.login_show_alert = true;
         this.login_alert_variant = "bg-blue-500";
-        this.timeOut();
         this.login_alert_msg = "Please wait! We are logging you in.";
+        this.time = setTimeout(this.requestTimeOut, 5000);
         const response = await this.$store.dispatch("auth/login", this.user);
         this.userToken = response.token;
         this.login_alert_variant = "bg-green-500";
@@ -188,6 +209,7 @@ export default {
         this.$store.dispatch("toggle/toggleUserInterface");
       } catch (error) {
         if (error.response) {
+        clearTimeout(this.time);
           this.login_alert_msg = error.response.data?.title
             ? error.response.data.title
             : error.response.data.message;
@@ -204,17 +226,15 @@ export default {
         }
       }
     },
-    timeOut() {
-      setTimeout(() => {
-        if (this.loginState || !this.loggedIn) {
-          this.login_alert_variant = "bg-red-500";
-          this.login_show_alert = true;
-          this.login_alert_msg = "Request timed out. Please try again.";
-          setTimeout(() => {
-            this.login_show_alert = false;
-          }, 2000);
-        }
-      }, 5000);
+    requestTimeOut() {
+      if (this.loginState || !this.loggedIn) {
+        this.login_alert_variant = "bg-red-500";
+        this.login_show_alert = true;
+        this.login_alert_msg = "Request timed out. Please try again.";
+        setTimeout(() => {
+          this.login_show_alert = false;
+        }, 2000);
+      }
     },
     enableSubmit() {
       return this.user.password && this.user.email;
@@ -237,7 +257,7 @@ export default {
         localStorage.removeItem("rememberMe");
       }
     },
-  }
+  },
 };
 </script>
 

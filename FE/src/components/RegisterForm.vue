@@ -121,15 +121,29 @@
           <label for="password" class="inline-block mb-2"
             ><b>Password</b></label
           >
-          <vee-field
-            type="password"
-            placeholder="Enter Password"
-            name="password"
-            size="10"
-            required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-            v-model="user.password"
-          />
+          <div class="flex flex-row">
+            <vee-field
+              :type="showType"
+              placeholder="Enter Password"
+              name="password"
+              size="10"
+              required
+              class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+              v-model="user.password"
+            />
+            <div
+              class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+              @click="togglePassword"
+            >
+              <span :class="{ hidden: showPassword }">
+                <i class="fa-solid fa-eye"></i>
+              </span>
+              <span :class="{ hidden: !showPassword }">
+                <i class="fa-solid fa-eye-slash"></i>
+              </span>
+            </div>
+          </div>
+
           <ErrorMessage class="text-red-600" name="password" />
         </div>
 
@@ -158,7 +172,11 @@
             v-model="tos"
           />
           <label class="tos" keypath="register.accept" tag="label">
-            <a class="border-b border-black" style="cursor: pointer" target="_blank" href="https://www.sec.gov/Archives/edgar/data/1222840/000122284008000014/exhibit10533insuranceriskmgm.htm"
+            <a
+              class="border-b border-black"
+              style="cursor: pointer"
+              target="_blank"
+              href="https://www.sec.gov/Archives/edgar/data/1222840/000122284008000014/exhibit10533insuranceriskmgm.htm"
               ><b>I agree on Terms and Condition</b></a
             >
           </label>
@@ -225,16 +243,16 @@ export default {
       "toggle/toggleBetweenLoginAndRegisterModal",
     ]),
     toggleLoginModal() {
-      this.$refs.form.resetForm()
-      this['toggle/toggleLoginModal']();
+      this.$refs.form.resetForm();
+      this["toggle/toggleLoginModal"]();
     },
     toggleRegisterModal() {
-      this.$refs.form.resetForm()
-      this['toggle/toggleRegisterModal']();
+      this.$refs.form.resetForm();
+      this["toggle/toggleRegisterModal"]();
     },
     toggleBetweenLoginAndRegisterModal() {
-      this.$refs.form.resetForm()
-      this['toggle/toggleBetweenLoginAndRegisterModal']();
+      this.$refs.form.resetForm();
+      this["toggle/toggleBetweenLoginAndRegisterModal"]();
     },
     async submitRegister() {
       try {
@@ -248,8 +266,8 @@ export default {
           this.reg_show_alert = false;
           this.reg_alert_variant = "bg-green-500";
           this.reg_alert_msg = "Please wait! Your account is being created.";
-          this.$refs.form.resetForm()
-          this['toggle/toggleBetweenLoginAndRegisterModal']();
+          this.$refs.form.resetForm();
+          this["toggle/toggleBetweenLoginAndRegisterModal"]();
         }, 1500);
       } catch (error) {
         if (error.response) {
@@ -269,6 +287,10 @@ export default {
           console.log("Error", error.message);
         }
       }
+    },
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+      this.showType = this.showType === "password" ? "text" : "password";
     },
     enableRegisterButton() {
       return (
@@ -302,6 +324,8 @@ export default {
       reg_show_alert: false,
       reg_alert_variant: "bg-blue-500",
       reg_alert_msg: "Please wait! Your account is being created.",
+      showType: "password",
+      showPassword: false,
     };
   },
 };

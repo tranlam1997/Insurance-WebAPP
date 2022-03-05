@@ -192,7 +192,7 @@
                 >
                   Change password
                 </button>
-                <router-view user="user"></router-view>
+                <router-view :user-password="userPassword"></router-view>
               </div>
             </div>
             <button
@@ -216,13 +216,17 @@ import User from "../models/user";
 
 export default {
   name: "Profile",
-  computed: mapState({
+  computed: {...mapState({
     editState: (state) => state.toggle.editModalShow,
     changePasswordState: (state) => state.toggle.changePasswordModalShow,
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   }),
+    userPassword() {
+      return JSON.parse(localStorage.getItem("user")).password
+    }
+  },
   data() {
     return {
       editSchema: {
@@ -244,9 +248,9 @@ export default {
       this["toggle/toggleEditModalShow"]();
     },
     async handleEdit() {
-      (this.edit_show_alert = true),
-        (this.edit_alert_variant = "bg-blue-500"),
-        (this.edit_alert_msg = "Please wait!"),
+      this.edit_show_alert = true,
+        this.edit_alert_variant = "bg-blue-500",
+        this.edit_alert_msg = "Please wait!",
         UserService.editUserInfo(this.userData)
           .then((response) => {
             this.edit_alert_variant = "bg-green-500";

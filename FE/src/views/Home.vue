@@ -120,7 +120,7 @@
         </p>
       </div>
     </div>
-    <div class="sub-main-2 flex flex-row m-24">
+    <div class="sub-main-2 flex flex-row m-24 gap-5">
       <div class="self-start flex-1 flex flex-col gap-5">
         <h1 class="2xl:text-2xl xl:text-xl lg:text-l md:text-base font-normal">
           PsawnMOVE
