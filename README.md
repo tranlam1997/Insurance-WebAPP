@@ -16,6 +16,15 @@ Replace your SendGrid API key and Sendgrid Template in appsettings.json file (BE
 
 Onpen BE folder with Visual Studio, press F5, choose Debug > Start with debugging from the Visual Studio menu, or select the green Start arrow and project name on the Visual Studio toolbar.
 
+## Run FE
+Open FE folder, install modules by using command:
+```
+npm install
+```
+After install modules success, using command to run:
+```
+npm run serve
+```
 
 ## Remark
 There are 3 main roles: "Administrator", "Staff" and "User" and some APIs require role in this project. 
