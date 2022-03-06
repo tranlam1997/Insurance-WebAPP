@@ -21,7 +21,7 @@ Open FE folder, install modules by using command:
 ```
 npm install
 ```
-After install modules success, using command:
+After install modules success, using command to run:
 ```
 npm run serve
 ```
