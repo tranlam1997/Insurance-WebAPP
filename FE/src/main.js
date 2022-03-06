@@ -18,9 +18,12 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import GlobalComponents from "./globalComponents";
+
 
 
 const app = createApp(App);
+app.use(GlobalComponents);
 app.directive('click-outside', {
     mounted(el, binding) {
       el.clickOutsideEvent = function(event) {
