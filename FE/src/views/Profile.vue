@@ -85,7 +85,7 @@
               </p>
             </div>
             <div class="tw-flex tw-flex-row" :class="{ 'tw-hidden': !editState }">
-              <label class="tw-w-48 tw-font-bold tw-self-start">First name:</label>
+              <p class="tw-w-48 tw-font-bold tw-self-start">First name:</p>
               <div class="tw-flex tw-flex-col">
                 <vee-field
                   type="text"
@@ -100,7 +100,7 @@
               </div>
             </div>
             <div class="tw-flex tw-flex-row" :class="{ 'tw-hidden': !editState }">
-              <label class="tw-w-48 tw-font-bold tw-self-start">Last name:</label>
+              <p class="tw-w-48 tw-font-bold tw-self-start">Last name:</p>
               <div class="tw-flex tw-flex-col">
                 <vee-field
                   type="text"
@@ -116,7 +116,7 @@
               </div>
             </div>
             <div class="tw-flex tw-flex-row">
-              <label class="tw-w-48 tw-font-bold tw-self-start">Date Of Birth:</label>
+              <p class="tw-w-48 tw-font-bold tw-self-start">Date Of Birth:</p>
               <p class="tw-flex-1" :class="{ 'tw-hidden': editState }">
                 {{ user.data.dateOfBirth }}
               </p>
@@ -139,7 +139,7 @@
               <p class="tw-flex-1">{{ user.data.email }}</p>
             </div>
             <div class="tw-flex tw-flex-row">
-              <label class="tw-w-48 tw-font-bold tw-self-start">Phone:</label>
+              <p class="tw-w-48 tw-font-bold tw-self-start">Phone:</p>
               <p class="tw-flex-1" :class="{ 'tw-hidden': editState }">
                 {{ user.data.phoneNumber }}
               </p>
@@ -158,7 +158,7 @@
               </div>
             </div>
             <div class="tw-flex tw-flex-row">
-              <label class="tw-w-48 tw-font-bold tw-self-start">Address:</label>
+              <p class="tw-w-48 tw-font-bold tw-self-start">Address:</p>
               <p class="tw-flex-1" :class="{ 'tw-hidden': editState }">
                 {{ user.data.address }}
               </p>
@@ -225,7 +225,7 @@ export default {
   }),
     userPassword() {
       return JSON.parse(localStorage.getItem("user")).password
-    }
+    },
   },
   data() {
     return {
@@ -237,7 +237,7 @@ export default {
       userData: new User("", "", "", "", "", "", "", "", ""),
       user: null,
       edit_show_alert: false,
-      edit_alert_variant: "bg-blue-500",
+      edit_alert_variant: "tw-bg-blue-500",
       edit_alert_msg: "Please wait!",
     };
   },
@@ -249,11 +249,11 @@ export default {
     },
     async handleEdit() {
       this.edit_show_alert = true,
-        this.edit_alert_variant = "bg-blue-500",
+        this.edit_alert_variant = "tw-bg-blue-500",
         this.edit_alert_msg = "Please wait!",
         UserService.editUserInfo(this.userData)
           .then((response) => {
-            this.edit_alert_variant = "bg-green-500";
+            this.edit_alert_variant = "tw-bg-green-500";
             this.edit_alert_msg = "Successfully updated!";
             setTimeout(() => {
               this.edit_show_alert = false;
@@ -265,7 +265,7 @@ export default {
             return response;
           })
           .catch((error) => {
-            (this.edit_alert_variant = "bg-red-500"),
+            (this.edit_alert_variant = "tw-bg-red-500"),
               (this.edit_alert_msg = error),
               setTimeout(() => {
                 this.edit_show_alert = false;
@@ -279,7 +279,7 @@ export default {
     },
   },
   created() {
-    UserService.getUserInfo().then((response) => {
+     UserService.getUserInfo().then((response) => {
       this.user = response.data;
     });
   },
@@ -287,7 +287,7 @@ export default {
     if (this.editState) {
       this.toggleEditModalShow();
     }
-  },
+  }
 };
 </script>
 

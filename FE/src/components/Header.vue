@@ -1,7 +1,7 @@
 <template>
   <!-- Header -->
   <header id="header" class="tw-bg-blue-800 tw-text-base">
-    <nav class="tw-m-auto tw-flex tw-justify-between tw-py-3 tw-px-4">
+    <nav class="tw-m-auto tw-flex tw-justify-between tw-py-1 tw-px-4">
       <!-- App Name -->
       <router-link
         class="
@@ -18,9 +18,9 @@
         Psawn Insurance
       </router-link>
 
-      <div class="tw-text-base tw-text-white">
+      <div class="tw-text-base tw-text-white tw-self-center tw-m-0 tw-p-0">
         <!-- Primary Navigation -->
-        <ul class="tw-flex tw-flex-row tw-mt-1 tw-gap-4">
+        <ul class="tw-flex tw-flex-row tw-mt-4 tw-gap-4 tw-self-center">
           <li class="tw-self-center tw-text-white">
             <router-link class="tw-text-white" :to="{ name: 'Home' }">
               Home
@@ -102,16 +102,18 @@
                 {{ email }}
               </li>
               <li class="tw-px-6 tw-py-3 tw-pb-4">
-                <router-link to="/profile"><a href="/">Profile</a></router-link>
+                <router-link to="/user-profile"
+                  ><a href="/" class="tw-text-white">Profile</a></router-link
+                >
               </li>
               <li class="tw-px-6 tw-pt-3 tw-pb-4">
-                <a href="/">Settings</a>
+                <a class="tw-text-white" href="/">Settings</a>
               </li>
               <li
                 class="tw-px-6 tw-pb-2 tw-pt-3 tw-border-t"
                 @click.prevent="logOut"
               >
-                <a href="/">Logout</a>
+                <a href="/" class="tw-text-white">Logout</a>
               </li>
             </div>
           </li>
@@ -141,7 +143,7 @@ export default {
     loggedIn: {
       handler(newValue) {
         if (newValue) {
-          this.email = JSON.parse(localStorage.getItem("user")).email;
+          this.email = JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user"): localStorage.getItem("admin")).email;
         }
       },
       immediate: true,

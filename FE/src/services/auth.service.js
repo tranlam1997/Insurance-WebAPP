@@ -12,8 +12,13 @@ class AuthService {
       .then(response => {
         if (response.data.token) {
           const decoded = jwt_decode(response.data.token);
+          const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
           const userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
-          localStorage.setItem('user', JSON.stringify({...response.data, id: userId, email: user.email, password: user.password}));
+          if(role === 'User'){
+            localStorage.setItem('user', JSON.stringify({...response.data, id: userId, email: user.email, password: user.password, role}));
+          } else {
+            localStorage.setItem('admin', JSON.stringify({...response.data, id: userId, email: user.email, password: user.password, role}));
+          }
         }
         return response.data;
       });

@@ -13,7 +13,7 @@
       <vee-form class="animate tw-flex tw-flex-col tw-p-8" @submit="authenPass">
         <div class="container tw-flex tw-flex-col">
           <div>
-            <label for="email" class="tw-inline-block tw-mb-2"
+            <label for="currentPassword" class="tw-inline-block tw-mb-2"
               ><b>Current Password</b></label
             >
             <div class="tw-flex tw-flex-row">
@@ -166,7 +166,7 @@ export default {
       nextChangePassword: false,
       change_pass_alert_msg: "Password not correct",
       change_pass_show_alert: false,
-      change_pass_alert_variant: "bg-red-600",
+      change_pass_alert_variant: "tw-bg-red-600",
       currentPassword: "",
       newPassword: "",
       confirmNewPassword: "",
@@ -202,7 +202,7 @@ export default {
         });
         this.change_pass_show_alert = true;
         (this.change_pass_alert_msg = response.data.message),
-          (this.change_pass_alert_variant = "bg-green-600"),
+          (this.change_pass_alert_variant = "tw-bg-green-600"),
           setTimeout(() => {
             this.change_pass_show_alert = false;
           }, 500);
@@ -217,7 +217,7 @@ export default {
         window.location.reload();
       } catch (err) {
         this.change_pass_show_alert = true;
-        (this.change_pass_alert_variant = "bg-red-600"),
+        (this.change_pass_alert_variant = "tw-bg-red-600"),
           (this.change_pass_alert_msg = "Something went wrong"),
           setTimeout(() => {
             this.change_pass_show_alert = false;
@@ -232,7 +232,7 @@ export default {
     },
     turnOffModal() {
       this.toggleChangePasswordModalShow();
-      this.$router.push("/profile");
+      this.$router.push("/user-profile");
     },
     togglePassword() {
       this.showPassword = !this.showPassword;
@@ -255,5 +255,9 @@ export default {
 
 .error-message {
   left: 40%;
+}
+
+label { 
+  font-size: 1rem;
 }
 </style>

@@ -5,7 +5,12 @@
     :class="{ 'tw-hidden': !loginState }"
   >
     <div
-      class="tw-text-white tw-text-center tw-font-bold tw-px-8 tw-py-2 text-l tw-fixed tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center align-center"
+      class="
+        tw-text-white tw-text-center tw-font-bold tw-px-8 tw-py-2
+        text-l
+        tw-fixed tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center
+        align-center
+      "
       v-if="login_show_alert"
       :class="login_alert_variant"
     >
@@ -38,7 +43,19 @@
             size="50"
             required
             v-model="user.email"
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
           />
           <ErrorMessage class="tw-text-red-600" name="email" />
         </div>
@@ -49,7 +66,9 @@
               ><b>Password</b></label
             >
             <span class="tw-self-center tw-text-sm">
-              <a href="#" class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium"
+              <a
+                href="#"
+                class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium"
                 >Forgot password?</a
               ></span
             >
@@ -62,10 +81,30 @@
               size="20"
               required
               v-model="user.password"
-              class="tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+              class="
+                tw-w-full
+                tw-py-2
+                tw-px-3
+                tw-text-gray-800
+                tw-border
+                tw-border-gray-300
+                tw-transition
+                tw-duration-500
+                focus:tw-outline-none focus:tw-border-black
+                tw-rounded
+              "
             />
             <div
-              class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
+              class="
+                control
+                tw-self-center
+                tw-border
+                tw-border-gray-300
+                tw-bg-white
+                tw-py-2
+                tw-px-3
+                tw-rounded
+              "
               @click="togglePassword"
             >
               <span :class="{ 'tw-hidden': showPassword }">
@@ -87,7 +126,18 @@
             'tw-opacity-50': !enableSubmit(),
             'tw-cursor-not-allowed': !enableSubmit(),
           }"
-          class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
+          class="
+            tw-mt-4
+            tw-block
+            tw-w-full
+            tw-bg-blue-600
+            tw-text-white
+            tw-py-1.5
+            tw-px-3
+            tw-rounded
+            tw-transition
+            hover:tw-bg-blue-700
+          "
         >
           Login
         </button>
@@ -102,7 +152,13 @@
         </label>
       </div>
 
-      <div class="footerLogin container tw-flex tw-flex-row tw-mt-2 tw-justify-between">
+      <div
+        class="
+          footerLogin
+          container
+          tw-flex tw-flex-row tw-mt-2 tw-justify-between
+        "
+      >
         <button
           type="button"
           onclick="document.getElementById('id01').style.display='none'"
@@ -115,7 +171,11 @@
           >New to Psawn Insurance?
           <a
             href="#"
-            class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium tw-underline"
+            class="
+              tw-text-blue-500
+              hover:tw-text-blue-600
+              tw-font-medium tw-underline
+            "
             @click.prevent="toggleBetweenLoginAndRegisterModal"
             >Sign up</a
           ></span
@@ -129,6 +189,7 @@
 import { mapState } from "vuex";
 import { mapMutations } from "vuex";
 import User from "../models/user";
+import jwt_decode from "jwt-decode";
 
 export default {
   name: "LoginForm",
@@ -152,9 +213,9 @@ export default {
       },
       login_in_submission: false,
       login_show_alert: false,
-      login_alert_variant: "bg-blue-500",
+      login_alert_variant: "tw-bg-blue-500",
       login_alert_msg: "Please wait! We are logging you in.",
-      time: null
+      time: null,
     };
   },
   created() {
@@ -162,7 +223,7 @@ export default {
       this.rememberMe = true;
       this.user.email = localStorage.getItem("email");
     }
-    if (this.loggedIn) {
+    if (this.loggedIn ) {
       this.$router.push("/profile");
     }
   },
@@ -196,28 +257,30 @@ export default {
       try {
         this.login_in_submission = true;
         this.login_show_alert = true;
-        this.login_alert_variant = "bg-blue-500";
+        this.login_alert_variant = "tw-bg-blue-500";
         this.login_alert_msg = "Please wait! We are logging you in.";
         this.time = setTimeout(this.requestTimeOut, 5000);
         const response = await this.$store.dispatch("auth/login", this.user);
-        this.userToken = response.token;
-        this.login_alert_variant = "bg-green-500";
+        this.login_alert_variant = "tw-bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
+        if(this.isAdmin(response.token)){
+          setTimeout(() => { this.login_show_alert = false}, 1500)
+          this.$router.push("/admin");
+        }
         setTimeout(() => {
           this.toggleLoginModal();
         }, 500);
-        this.$store.dispatch("toggle/toggleUserInterface");
       } catch (error) {
         if (error.response) {
-        clearTimeout(this.time);
+          clearTimeout(this.time);
           this.login_alert_msg = error.response.data?.title
             ? error.response.data.title
             : error.response.data.message;
-          this.login_alert_variant = "bg-red-500";
+          this.login_alert_variant = "tw-g-red-500";
           this.login_show_alert = true;
           setTimeout(() => {
             this.login_show_alert = false;
-            this.login_alert_variant = "bg-blue-500";
+            this.login_alert_variant = "tw-bg-blue-500";
           }, 2000);
         } else if (error.request) {
           console.log(error.request);
@@ -228,7 +291,7 @@ export default {
     },
     requestTimeOut() {
       if (this.loginState || !this.loggedIn) {
-        this.login_alert_variant = "bg-red-500";
+        this.login_alert_variant = "tw-bg-red-500";
         this.login_show_alert = true;
         this.login_alert_msg = "Request timed out. Please try again.";
         setTimeout(() => {
@@ -256,6 +319,16 @@ export default {
         localStorage.removeItem("email");
         localStorage.removeItem("rememberMe");
       }
+    },
+    isAdmin(token) {
+      const decoded = jwt_decode(token);
+      const role =
+        decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        console.log(role)
+      if (role === "User") {
+        return false;
+      }
+      return true;
     },
   },
 };
@@ -306,6 +379,7 @@ export default {
 
 label {
   margin: 1rem 0;
+  font-size: 1rem;
 }
 
 /* Add Zoom Animation */
