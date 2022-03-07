@@ -28,7 +28,6 @@
           <p class="tw-font-bold">Amount paid:</p>
           <p>{{ lifeInsuranceContent.amountPaid }}</p>
         </div>
-        <button type="button" class="btn btn-info col-1 tw-ml-2" @click.prevent="showlifeDetails(lifeInsuranceContent.id)">See More</button>
       </div>
     </template>
   </div>
