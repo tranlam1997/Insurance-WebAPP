@@ -1,5 +1,8 @@
 <template>
   <div class="vehicle-insurance tw-gap-5">
+      <div>
+          <input type="text">
+      </div>
     <template
       class=""
       v-for="vehicleInsuranceContent in vehicleInsuranceContents"
@@ -14,43 +17,47 @@
           align-items-center
         "
       >
+        <div>
           <h1 class="text-info tw-font-black tw-my-8">
             {{ vehicleInsuranceContent.type }}
           </h1>
+        </div>
         <div class="" v-html="vehicleInsuranceContent.content"></div>
-        <button type="button" class="btn btn-info col-1 tw-ml-2" @click.prevent="showVehicleDetails(vehicleInsuranceContent.id)">See More</button>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9 tw-mt-8">
+          <p class="tw-font-bold">Person claim:</p>
+          <p>{{ vehicleInsuranceContent.personClaim }}</p>
+        </div>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
+          <p class="tw-font-bold">Vehicle claim:</p>
+          <p>{{ vehicleInsuranceContent.vehicleClaim }}</p>
+        </div>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
+          <p class="tw-font-bold">Price:</p>
+          <p>{{ vehicleInsuranceContent.amountPaid }}</p>
+        </div>
+        <button type="button" class="btn btn-info col-1 tw-ml-2">Buy</button>
       </div>
-      <router-view :vehicle-id="vehicleInsuranceContent.id"></router-view>
     </template>
   </div>
 </template>
 
 <script>
-// import PublicService from "../services/public.service.js";
+import PublicService from "../services/public.service.js";
 
 export default {
   name: "VehicleInsurance",
   data() {
     return {
-      vehicleInsuranceContents: [
-          {id: 'abcd', type: 'title 1', content: '<p>content 1</p>'},
-      ],
+      vehicleInsuranceContents: [],
     };
   },
   methods: {
-    showVehicleDetails(vehicleId) {
-        this.$router.push({
-            path: "/vehicle-insurance/details",
-            query: {
-            id: vehicleId,
-            },
-        });
-        },
-    },
+    fetchVehicleInsuranceContent() {},
+  },
   created() {
-    // PublicService.getAllVehicleInsuranceContent().then((response) => {
-    //   this.vehicleInsuranceContents = response.data.data;
-    // });
+    PublicService.getAllVehicleInsuranceContent().then((response) => {
+      this.vehicleInsuranceContents = response.data.data;
+    });
   },
 };
 </script>

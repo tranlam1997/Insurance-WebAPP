@@ -103,7 +103,7 @@ export default {
   },
   data() {
     return {
-      title: "Soft UI Dashboard PRO",
+      title: "Psawn Insurance",
       controls: "dashboardsExamples",
       isActive: "active",
     };

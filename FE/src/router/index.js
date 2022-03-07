@@ -10,6 +10,7 @@ import Rtl from "@/views/Rtl.vue";
 import SignIn from "@/views/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 import AdminBoard from "@/views/AdminBoard.vue";
+import Details from "@/views/Details.vue"
 
 const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
@@ -45,7 +46,15 @@ const routes = [
       default: VehicleInsurance,
       Header,
       Footer
+    },
+    children: [
+      {
+      path: '/details/:id',
+      component: {
+        default: Details
+      }
     }
+    ]
   },
   {
     name: 'Profile',

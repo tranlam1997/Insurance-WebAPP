@@ -39,9 +39,10 @@
                 tw-bg-blue-800
                 tw-border-b
                 tw-hidden
+                tw-p-0
               "
             >
-              <li class="tw-p-3 tw-mt-3">
+              <li class="tw-p-3 tw-mt-4">
                 <a class="tw-text-white" href="/">Home Insurance</a>
               </li>
               <li class="tw-p-3">
@@ -51,7 +52,11 @@
                 <a class="tw-text-white" href="/">Medical Insurance</a>
               </li>
               <li class="tw-p-3">
-                <router-link to="/vehicle-insurance"><a class="tw-text-white" href="/">Vehicle Insurance</a></router-link>
+                <router-link to="/vehicle-insurance"
+                  ><a class="tw-text-white" href="/"
+                    >Vehicle Insurance</a
+                  ></router-link
+                >
               </li>
             </ul>
           </li>
@@ -143,7 +148,11 @@ export default {
     loggedIn: {
       handler(newValue) {
         if (newValue) {
-          this.email = JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user"): localStorage.getItem("admin")).email;
+          this.email = JSON.parse(
+            localStorage.getItem("user")
+              ? localStorage.getItem("user")
+              : localStorage.getItem("admin")
+          ).email;
         }
       },
       immediate: true,
