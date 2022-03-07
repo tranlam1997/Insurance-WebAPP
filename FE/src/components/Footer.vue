@@ -19,24 +19,32 @@
         <h6>Categories</h6>
         <ul class="footer-links tw-font-medium">
           <li>
-            <a href="http://scanfcode.com/category/front-end-development/"
-              >Home Insurance</a
-            >
+            <router-link to="/home-insurance">
+              <a href="http://scanfcode.com/category/front-end-development/"
+                >Home Insurance</a
+              >
+            </router-link>
           </li>
           <li>
-            <a href="http://scanfcode.com/category/back-end-development/"
-              >Life Insurance</a
-            >
+            <router-link to="/life-insurance">
+              <a href="http://scanfcode.com/category/back-end-development/"
+                >Life Insurance</a
+              >
+            </router-link>
           </li>
           <li>
-            <a href="http://scanfcode.com/category/java-programming-language/"
-              >Medical Insurance</a
-            >
+            <router-link to="/medical-insurance">
+              <a href="http://scanfcode.com/category/java-programming-language/"
+                >Medical Insurance</a
+              >
+            </router-link>
           </li>
           <li>
-            <a href="http://scanfcode.com/category/android/"
-              >Vehicle Insurance</a
-            >
+            <router-link to="/vehicle-insurance">
+              <a href="http://scanfcode.com/category/android/"
+                >Vehicle Insurance</a
+              >
+            </router-link>
           </li>
           <li>
             <a href="http://scanfcode.com/category/templates/"
