@@ -30,13 +30,6 @@
           <p class="tw-font-bold">Amount paid:</p>
           <p>{{ vehicleInsuranceContent.amountPaid }}</p>
         </div>
-        <button
-          type="button"
-          class="btn btn-info col-1 tw-ml-2"
-          @click.prevent="showVehicleDetails(vehicleInsuranceContent.id)"
-        >
-          Buy
-        </button>
       </div>
       <router-view :vehicle-id="vehicleInsuranceContent.id"></router-view>
     </template>

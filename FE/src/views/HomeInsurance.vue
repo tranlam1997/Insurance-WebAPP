@@ -24,7 +24,6 @@
           <p class="tw-font-bold">Amount paid:</p>
           <p>{{ homeInsuranceContent.amountPaid }}</p>
         </div>
-        <button type="button" class="btn btn-info col-1 tw-ml-2">Buy</button>
       </div>
     </template>
   </div>
