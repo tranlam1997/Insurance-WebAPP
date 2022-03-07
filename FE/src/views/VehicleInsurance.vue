@@ -32,9 +32,7 @@ export default {
   name: "VehicleInsurance",
   data() {
     return {
-      vehicleInsuranceContents: [
-          {id: 'abcd', type: 'title 1', content: '<p>content 1</p>'},
-      ],
+      vehicleInsuranceContents: [],
     };
   },
   methods: {
@@ -48,9 +46,9 @@ export default {
         },
     },
   created() {
-    // PublicService.getAllVehicleInsuranceContent().then((response) => {
-    //   this.vehicleInsuranceContents = response.data.data;
-    // });
+    PublicService.getAllVehicleInsuranceContent().then((response) => {
+      this.vehicleInsuranceContents = response.data.data;
+    });
   },
 };
 </script>
