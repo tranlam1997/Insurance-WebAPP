@@ -121,11 +121,11 @@
         <h1
           class="
             tw-font-semibold
-            2xl:text-l
-            xl:text-l
-            lg:tw-text-base
-            md:tw-text-base
-            sm:tw-text-sm
+            tw-2xl:text-l
+            tw-xl:text-l
+            tw-lg:tw-text-base
+            tw-md:tw-text-base
+            tw-sm:tw-text-sm
             tw-text-sm tw-mt-2
           "
         >

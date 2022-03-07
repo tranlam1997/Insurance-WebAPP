@@ -264,7 +264,7 @@ export default {
         this.login_alert_variant = "tw-bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
         if(this.isAdmin(response.token)){
-          setTimeout(() => { this.login_show_alert = false}, 1500)
+          setTimeout(() => { this.login_show_alert = false; this.$refs.form.resetForm();}, 1500)
           this.$router.push("/admin");
         }
         setTimeout(() => {

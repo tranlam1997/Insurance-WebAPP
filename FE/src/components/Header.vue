@@ -51,7 +51,7 @@
                 <a class="tw-text-white" href="/">Medical Insurance</a>
               </li>
               <li class="tw-p-3">
-                <a class="tw-text-white" href="/">Vehicle Insurance</a>
+                <router-link to="/vehicle-insurance"><a class="tw-text-white" href="/">Vehicle Insurance</a></router-link>
               </li>
             </ul>
           </li>
