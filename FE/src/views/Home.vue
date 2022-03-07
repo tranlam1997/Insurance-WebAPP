@@ -1,202 +1,515 @@
 <template>
-  <div class="hero-image text-white">
+  <div class="hero-image tw-text-white">
     <div class="hero-text">
       <h1
-        class="2xl:text-5xl xl:text-5xl lg:text-4xl md:text-4xl sm:text-3xl text-3xl font-bold"
+        class="
+          2xl:tw-text-5xl
+          xl:tw-text-5xl
+          lg:tw-text-4xl
+          md:tw-text-4xl
+          sm:tw-text-3xl
+          tw-text-3xl tw-font-bold tw-text-white
+        "
       >
         With Psawn Insurance Your Future Protected
       </h1>
       <h2
-        class="2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+        class="
+          2xl:tw-text-2xl
+          xl:tw-text-2xl
+          lg:tw-text-xl
+          md:tw-text-xl
+          sm:text-l
+          text-l
+          tw-font-light tw-text-white
+        "
       >
         No one can surely predict the future. But we can protect it.
       </h2>
-      <div class="mt-12">
+      <div class="tw-mt-12">
         <button
           type="button"
           disabled
-          class="border p-2 hover:bg-white hover:text-black"
+          class="tw-border tw-p-2 hover:tw-bg-white hover:tw-text-black"
         >
           Learn More
         </button>
       </div>
     </div>
   </div>
-  <div class="main my-20 mx-4">
-    <div class="sub-main-1 flex flex-row gap-5 justify-between m-24">
-      <div class="self-start flex-1 flex flex-col gap-5">
-        <h1 class="2xl:text-2xl xl:text-xl lg:text-l md:text-base font-normal">
+  <div class="main tw-my-20 tw-mx-4">
+    <div
+      class="sub-main-1 tw-flex tw-flex-row tw-gap-5 tw-justify-between tw-m-24"
+    >
+      <div class="tw-self-start tw-flex-1 tw-flex tw-flex-col tw-gap-5">
+        <h1
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-xl
+            lg:text-l
+            md:tw-text-base
+            tw-font-normal
+          "
+        >
           Financial security for life
         </h1>
         <a
           href=""
-          class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-xs text-xs"
+          class="
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-xs
+            tw-text-xs
+          "
           ><svg
-            class="fa-solid fa-circle-arrow-right mr-5 fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-600"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-mr-5 tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-600
+            "
           ></svg
           >See more</a
         >
       </div>
       <div
-        class="flex flex-col flex-1 justify-start self-start px-10 h-80 cursor-pointer"
+        class="
+          tw-flex
+          tw-flex-col
+          tw-flex-1
+          tw-justify-start
+          tw-self-start
+          tw-px-10
+          tw-h-80
+          tw-cursor-pointer
+        "
       >
-        <div class="flex flex-row gap-5 justify-between mt-5">
+        <div class="tw-flex tw-flex-row tw-gap-5 tw-justify-between tw-mt-5">
           <p
-            class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
+            class="
+              2xl:text-l
+              xl:text-l
+              lg:tw-text-base
+              md:tw-text-base
+              sm:tw-text-sm
+              tw-text-sm
+            "
           >
             Critical Illness
           </p>
           <i
-            class="fa-solid fa-circle-arrow-right self-center fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-500"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-self-center tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-500
+            "
           ></i>
         </div>
         <h1
-          class="font-semibold 2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm mt-2"
+          class="
+            tw-font-semibold
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-sm
+            tw-text-sm tw-mt-2
+          "
         >
           ManuBright Care 2 Plus
         </h1>
         <i
-          class="fa-solid fa-heart-pulse 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l self-start m-5 fill-current text-blue-700"
+          class="
+            fa-solid fa-heart-pulse
+            2xl:tw-text-5xl
+            xl:tw-text-4xl
+            lg:tw-text-3xl
+            md:tw-text-2xl
+            sm:tw-text-xl
+            text-l
+            tw-self-start tw-m-5 tw-fill-current tw-text-blue-700
+          "
         ></i>
         <p
-          class="2xl:text-2xl xl:text-2xl lg:text-l md:text-l sm:text-base text-sm font-light"
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-2xl
+            lg:text-l
+            md:text-l
+            sm:tw-text-base
+            tw-text-sm tw-font-light
+          "
         >
           Plant it right, win the fight!
         </p>
       </div>
       <div
-        class="flex flex-col justify-start flex-1 self-start px-10 h-80 cursor-pointer"
+        class="
+          tw-flex
+          tw-flex-col
+          tw-justify-start
+          tw-flex-1
+          tw-self-start
+          tw-px-10
+          tw-h-80
+          tw-cursor-pointer
+        "
       >
-        <div class="flex flex-row gap-5 justify-between mt-5">
+        <div class="tw-flex tw-flex-row tw-gap-5 tw-justify-between tw-mt-5">
           <p
-            class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
+            class="
+              2xl:text-l
+              xl:text-l
+              lg:tw-text-base
+              md:tw-text-base
+              sm:tw-text-sm
+              tw-text-sm
+            "
           >
             Savings
           </p>
           <i
-            class="fa-solid fa-circle-arrow-right self-center fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-500"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-self-center tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-500
+            "
           ></i>
         </div>
         <h1
-          class="font-semibold mt-2 2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
+          class="
+            tw-font-semibold tw-mt-2
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-sm
+            tw-text-sm
+          "
         >
           ManuGrand Saver 2
         </h1>
         <i
-          class="fa-brands fa-pagelines 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l self-start m-5 fill-current text-blue-700"
+          class="
+            fa-brands fa-pagelines
+            2xl:tw-text-5xl
+            xl:tw-text-4xl
+            lg:tw-text-3xl
+            md:tw-text-2xl
+            sm:tw-text-xl
+            text-l
+            tw-self-start tw-m-5 tw-fill-current tw-text-blue-700
+          "
         ></i>
         <p
-          class="2xl:text-2xl xl:text-2xl lg:text-l md:text-l sm:text-base text-sm font-light"
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-2xl
+            lg:text-l
+            md:text-l
+            sm:tw-text-base
+            tw-text-sm tw-font-light
+          "
         >
           Offers the certianty of long-term savings, plus an option to pass on
           wealth
         </p>
       </div>
       <div
-        class="flex flex-col justify-start flex-1 self-start px-10 h-80 cursor-pointer"
+        class="
+          tw-flex
+          tw-flex-col
+          tw-justify-start
+          tw-flex-1
+          tw-self-start
+          tw-px-10
+          tw-h-80
+          tw-cursor-pointer
+        "
       >
-        <div class="flex flex-row gap-5 justify-between mt-5">
+        <div class="tw-flex tw-flex-row tw-gap-5 tw-justify-between tw-mt-5">
           <p
-            class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
+            class="
+              2xl:text-l
+              xl:text-l
+              lg:tw-text-base
+              md:tw-text-base
+              sm:tw-text-sm
+              tw-text-sm
+            "
           >
             Savings
           </p>
           <i
-            class="fa-solid fa-circle-arrow-right self-center xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl fill-current text-red-500"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-self-center
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-fill-current tw-text-red-500
+            "
           ></i>
         </div>
         <h1
-          class="font-semibold mt-2 2xl:text-l xl:text-l lg:text-base md:text-base sm:text-sm text-sm"
+          class="
+            tw-font-semibold tw-mt-2
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-sm
+            tw-text-sm
+          "
         >
           ManuCentery
         </h1>
         <i
-          class="fa-solid fa-user-group 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l self-start m-5 fill-current text-blue-700"
+          class="
+            fa-solid fa-user-group
+            2xl:tw-text-5xl
+            xl:tw-text-4xl
+            lg:tw-text-3xl
+            md:tw-text-2xl
+            sm:tw-text-xl
+            text-l
+            tw-self-start tw-m-5 tw-fill-current tw-text-blue-700
+          "
         ></i>
         <p
-          class="2xl:text-2xl xl:text-2xl lg:text-l md:text-l sm:text-base text-sm font-light"
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-2xl
+            lg:text-l
+            md:text-l
+            sm:tw-text-base
+            tw-text-sm tw-font-light
+          "
         >
-          Regular payouts up to 100 years & flexibility to pass on your wealth
+          Regular payouts up to 100 years & tw-flexibility to pass on your
+          wealth
         </p>
       </div>
     </div>
-    <div class="sub-main-2 flex flex-row m-24 gap-5">
-      <div class="self-start flex-1 flex flex-col gap-5">
-        <h1 class="2xl:text-2xl xl:text-xl lg:text-l md:text-base font-normal">
+    <div class="sub-main-2 tw-flex tw-flex-row tw-m-24 tw-gap-5">
+      <div class="tw-self-start tw-flex-1 tw-flex tw-flex-col tw-gap-5">
+        <h1
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-xl
+            lg:text-l
+            md:tw-text-base
+            tw-font-normal
+          "
+        >
           PsawnMOVE
         </h1>
         <a
           href=""
-          class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-xs text-xs"
+          class="
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-xs
+            tw-text-xs
+          "
           ><svg
-            class="fa-solid fa-circle-arrow-right mr-5 fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-600"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-mr-5 tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-600
+            "
           ></svg
           >See more</a
         >
       </div>
       <div
-        class="sub-main-2-img-1 flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+        class="
+          sub-main-2-img-1
+          tw-flex-1 tw-text-white
+          2xl:tw-text-2xl
+          xl:tw-text-2xl
+          lg:tw-text-xl
+          md:tw-text-xl
+          sm:text-l
+          text-l
+          tw-font-light
+        "
       >
         <img src="../../public/assets/img/sub-main-2-img1.jpg" alt="" />
         <p>What is PsawnMove?</p>
       </div>
       <div
-        class="sub-main-2-img-2 flex-1 text-white 2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-l text-l font-light"
+        class="
+          sub-main-2-img-2
+          tw-flex-1 tw-text-white
+          2xl:tw-text-2xl
+          xl:tw-text-2xl
+          lg:tw-text-xl
+          md:tw-text-xl
+          sm:text-l
+          text-l
+          tw-font-light
+        "
       >
         <img src="../../public/assets/img/sub-main-2-img2.jpg" alt="" />
         <p>FAQ</p>
       </div>
     </div>
-    <div class="sub-main-3 flex flex-row m-24">
-      <div class="self-start w-96 flex flex-col gap-5">
-        <h1 class="2xl:text-2xl xl:text-xl lg:text-l md:text-base font-normal">
+    <div class="sub-main-3 tw-flex tw-flex-row tw-m-24">
+      <div class="tw-self-start tw-w-96 tw-flex tw-flex-col tw-gap-5">
+        <h1
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-xl
+            lg:text-l
+            md:tw-text-base
+            tw-font-normal
+          "
+        >
           News & Insights
         </h1>
         <a
           href=""
-          class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-xs text-xs"
+          class="
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-xs
+            tw-text-xs
+          "
           ><svg
-            class="fa-solid fa-circle-arrow-right mr-5 fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-600"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-mr-5 tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-600
+            "
           ></svg
           >See more</a
         >
       </div>
-      <div class="flex flex-col gap-5">
-        <div class="flex flex-row gap-5">
+      <div class="tw-flex tw-flex-col tw-gap-5">
+        <div class="tw-flex tw-flex-row tw-gap-5">
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img3.jpg" alt="" />
             <p>New year new income</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img9.jpg" alt="" />
             <p>New report for Psawn Insurance</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img5.jpg" alt="" />
             <p>Insurance policy updated</p>
           </div>
         </div>
-        <div class="flex flex-row gap-5">
+        <div class="tw-flex tw-flex-row tw-gap-5">
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img6.jpg" alt="" />
-            <p style="left: 2%; top: -25%;">New idea about manage insurance policy</p>
+            <p style="left: 2%; top: -25%">
+              New idea about manage insurance policy
+            </p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img10.jpg" alt="" />
             <p style="left: 5%">Cyber Insurance</p>
           </div>
           <div
-            class="flex-1 text-white 2xl:text-xl xl:text-xl lg:text-l md:text-l sm:text-base text-base font-light"
+            class="
+              tw-flex-1 tw-text-white
+              2xl:tw-text-xl
+              xl:tw-text-xl
+              lg:text-l
+              md:text-l
+              sm:tw-text-base
+              tw-text-base tw-font-light
+            "
           >
             <img src="../../public/assets/img/sub-main-2-img8.jpg" alt="" />
             <p>Psawn Easy Win Lucky Draw</p>
@@ -204,56 +517,143 @@
         </div>
       </div>
     </div>
-    <div class="sub-main-4 flex flex-row m-24">
-      <div class="self-start w-96 flex flex-col gap-5">
-        <h1 class="2xl:text-2xl xl:text-xl lg:text-l md:text-base font-normal">
+    <div class="sub-main-4 tw-flex tw-flex-row tw-m-24">
+      <div class="tw-self-start tw-w-96 tw-flex tw-flex-col tw-gap-5">
+        <h1
+          class="
+            2xl:tw-text-2xl
+            xl:tw-text-xl
+            lg:text-l
+            md:tw-text-base
+            tw-font-normal
+          "
+        >
           Services
         </h1>
         <a
           href=""
-          class="2xl:text-l xl:text-l lg:text-base md:text-base sm:text-xs text-xs"
+          class="
+            2xl:text-l
+            xl:text-l
+            lg:tw-text-base
+            md:tw-text-base
+            sm:tw-text-xs
+            tw-text-xs
+          "
           ><svg
-            class="fa-solid fa-circle-arrow-right mr-5 fill-current xl:text-l lg:text-base sm:text-base text-sm md:text-base 2xl:text-xl text-red-600"
+            class="
+              fa-solid fa-circle-arrow-right
+              tw-mr-5 tw-fill-current
+              xl:text-l
+              lg:tw-text-base
+              sm:tw-text-base
+              tw-text-sm
+              md:tw-text-base
+              2xl:tw-text-xl
+              tw-text-red-600
+            "
           ></svg
           >See more</a
         >
       </div>
-      <div class="content-sub-main-4 flex flex-1 flex-col gap-5">
-        <div class="flex flex-row flex-1 gap-5">
-          <div class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4">
+      <div class="content-sub-main-4 tw-flex tw-flex-1 tw-flex-col tw-gap-5">
+        <div class="tw-flex tw-flex-row tw-flex-1 tw-gap-5">
+          <div
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
+          >
             <i
-              class="fa-solid fa-circle-dollar-to-slot 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l"
+              class="
+                fa-solid fa-circle-dollar-to-slot
+                2xl:tw-text-5xl
+                xl:tw-text-4xl
+                lg:tw-text-3xl
+                md:tw-text-2xl
+                sm:tw-text-xl
+                text-l
+              "
             ></i>
-            <p class="self-start">Fire a claim</p>
-          </div>
-          <div class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4">
-            <i
-              class="fa-solid fa-user-tie 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l"
-            ></i>
-            <p class="self-start">Change contact details online</p>
-          </div>
-          <div class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4">
-            <i
-              class="fa-brands fa-bitcoin 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l"
-            ></i>
-            <p class="self-start">MPF account consolidation</p>
-          </div>
-        </div>
-        <div class="flex flex-row flex-1 gap-5">
-          <div class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4">
-            <i
-              class="fa-solid fa-wallet 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l"
-            ></i>
-            <p class="self-start">Make a payment</p>
-          </div>
-          <div class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4">
-            <i
-              class="fa-solid fa-file-arrow-down 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-l"
-            ></i>
-            <p class="self-start">Form library</p>
+            <p class="tw-self-start">Fire a claim</p>
           </div>
           <div
-            class="flex flex-row gap-5 flex-1 pb-16 pl-4 pt-4"
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
+          >
+            <i
+              class="
+                fa-solid fa-user-tie
+                2xl:tw-text-5xl
+                xl:tw-text-4xl
+                lg:tw-text-3xl
+                md:tw-text-2xl
+                sm:tw-text-xl
+                text-l
+              "
+            ></i>
+            <p class="tw-self-start">Change contact details online</p>
+          </div>
+          <div
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
+          >
+            <i
+              class="
+                fa-brands fa-bitcoin
+                2xl:tw-text-5xl
+                xl:tw-text-4xl
+                lg:tw-text-3xl
+                md:tw-text-2xl
+                sm:tw-text-xl
+                text-l
+              "
+            ></i>
+            <p class="tw-self-start">MPF account consolidation</p>
+          </div>
+        </div>
+        <div class="tw-flex tw-flex-row tw-flex-1 tw-gap-5">
+          <div
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
+          >
+            <i
+              class="
+                fa-solid fa-wallet
+                2xl:tw-text-5xl
+                xl:tw-text-4xl
+                lg:tw-text-3xl
+                md:tw-text-2xl
+                sm:tw-text-xl
+                text-l
+              "
+            ></i>
+            <p class="tw-self-start">Make a payment</p>
+          </div>
+          <div
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
+          >
+            <i
+              class="
+                fa-solid fa-file-arrow-down
+                2xl:tw-text-5xl
+                xl:tw-text-4xl
+                lg:tw-text-3xl
+                md:tw-text-2xl
+                sm:tw-text-xl
+                text-l
+              "
+            ></i>
+            <p class="tw-self-start">Form library</p>
+          </div>
+          <div
+            class="
+              tw-flex tw-flex-row tw-gap-5 tw-flex-1 tw-pb-16 tw-pl-4 tw-pt-4
+            "
             style="box-shadow: none"
           ></div>
         </div>
@@ -263,7 +663,6 @@
 </template>
 
 <script>
-
 export default {
   name: "Home",
 };
@@ -280,6 +679,7 @@ export default {
 }
 
 .hero-text {
+  color: white !important;
   text-align: center;
   position: absolute;
   top: 40%;

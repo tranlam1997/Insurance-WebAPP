@@ -1,18 +1,18 @@
 <template>
   <footer class="site-footer">
-    <div class="flex flex-row gap-10 mx-20 mb-10 justify-center align-center">
-      <div class="flex flex-col w-2/3">
+    <div class="tw-flex tw-flex-row tw-gap-10 tw-mx-20 tw-mb-10 tw-justify-center align-center">
+      <div class="tw-flex tw-flex-col tw-w-2/3">
         <h6>About us</h6>
-        <p class="font-medium">
+        <p class="tw-font-medium">
           Psawn Insurance is committed to providing a complete, balanced
           financial solution and building sound financial security to enable our
           customers to live and share their dreams with the next generation.
         </p>
       </div>
 
-      <div class="text-center">
+      <div class="tw-text-center">
         <h6>Categories</h6>
-        <ul class="footer-links font-medium">
+        <ul class="footer-links tw-font-medium">
           <li>
             <a href="http://scanfcode.com/category/front-end-development/"
               >Home Insurance</a
@@ -41,9 +41,9 @@
         </ul>
       </div>
 
-      <div class="text-center">
+      <div class="tw-text-center">
         <h6>Quick Links</h6>
-        <ul class="footer-links font-medium">
+        <ul class="footer-links tw-font-medium">
           <li><a href="http://scanfcode.com/about/">About Us</a></li>
           <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
           <li>
@@ -60,7 +60,7 @@
     </div>
     <hr />
 
-    <div class="mx-10 mt-4 font-medium">
+    <div class="tw-mx-10 tw-mt-4 tw-font-medium">
       <div class="col-md-8 col-sm-6 col-xs-12">
         <p class="copyright-text">
           Copyright &copy; 2022 All Rights Reserved by

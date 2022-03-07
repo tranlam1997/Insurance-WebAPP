@@ -2,11 +2,11 @@
   <!-- The Modal -->
   <div
     id="register"
-    class="modal-register flex flex-row justify-center align-center"
-    :class="{ hidden: !registerState }"
+    class="modal-register tw-flex tw-flex-row tw-justify-center align-center"
+    :class="{ 'tw-hidden': !registerState }"
   >
     <div
-      class="text-white text-center px-8 py-2 font-bold h-14 text-l sticky top-0 rounded-3xl z-10 flex justify-center align-center"
+      class="tw-text-white tw-text-center tw-px-8 tw-py-2 tw-font-bold tw-h-14 text-l tw-sticky tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center align-center"
       v-if="reg_show_alert"
       :class="reg_alert_variant"
     >
@@ -15,16 +15,16 @@
     <!-- Modal Content -->
     <vee-form
       :validation-schema="registerSchema"
-      class="modal-content animate flex flex-col p-8"
+      class="modal-content animate tw-flex tw-flex-col tw-p-8"
       @submit="submitRegister"
       ref="form"
     >
-      <div class="header-register text-black text-3xl font-black text-center">
+      <div class="header-register tw-text-black tw-text-3xl tw-font-black tw-text-center">
         Register
       </div>
-      <div class="container flex flex-col">
+      <div class="container tw-flex tw-flex-col">
         <div>
-          <label for="firstName" class="inline-block mb-2"
+          <label for="firstName" class="tw-inline-block tw-mb-2"
             ><b>First Name</b></label
           >
           <vee-field
@@ -33,14 +33,14 @@
             name="firstName"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.firstName"
           />
-          <ErrorMessage class="text-red-600" name="firstName" />
+          <ErrorMessage class="tw-text-red-600" name="firstName" />
         </div>
 
         <div>
-          <label for="lastName" class="inline-block mb-2"
+          <label for="lastName" class="tw-inline-block tw-mb-2"
             ><b>Last Name</b></label
           >
           <vee-field
@@ -49,14 +49,14 @@
             name="lastName"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.lastName"
           />
-          <ErrorMessage class="text-red-600" name="lastName" />
+          <ErrorMessage class="tw-text-red-600" name="lastName" />
         </div>
 
         <div>
-          <label for="dateOfBirth" class="inline-block mb-2"
+          <label for="dateOfBirth" class="tw-inline-block tw-mb-2"
             ><b>Date Of Birth</b></label
           >
           <vee-field
@@ -65,14 +65,14 @@
             name="dateOfBirth"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.dateOfBirth"
           />
-          <ErrorMessage class="text-red-600" name="dateOfBirth" />
+          <ErrorMessage class="tw-text-red-600" name="dateOfBirth" />
         </div>
 
         <div>
-          <label for="email" class="inline-block mb-2"
+          <label for="email" class="tw-inline-block tw-mb-2"
             ><b>Email Address</b></label
           >
           <vee-field
@@ -81,28 +81,28 @@
             name="email"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.email"
           />
-          <ErrorMessage class="text-red-600" name="email" />
+          <ErrorMessage class="tw-text-red-600" name="email" />
         </div>
 
         <div>
-          <label for="address" class="inline-block mb-2"><b>Address</b></label>
+          <label for="address" class="tw-inline-block tw-mb-2"><b>Address</b></label>
           <vee-field
             type="text"
             placeholder="Enter Address"
             name="address"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.address"
           />
-          <ErrorMessage class="text-red-600" name="address" />
+          <ErrorMessage class="tw-text-red-600" name="address" />
         </div>
 
         <div>
-          <label for="phoneNumber" class="inline-block mb-2"
+          <label for="phoneNumber" class="tw-inline-block tw-mb-2"
             ><b>Phone Number</b></label
           >
           <vee-field
@@ -111,44 +111,44 @@
             name="phoneNumber"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="user.phoneNumber"
           />
-          <ErrorMessage class="text-red-600" name="phoneNumber" />
+          <ErrorMessage class="tw-text-red-600" name="phoneNumber" />
         </div>
 
         <div class="">
-          <label for="password" class="inline-block mb-2"
+          <label for="password" class="tw-inline-block tw-mb-2"
             ><b>Password</b></label
           >
-          <div class="flex flex-row">
+          <div class="tw-flex tw-flex-row">
             <vee-field
               :type="showType"
               placeholder="Enter Password"
               name="password"
               size="10"
               required
-              class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+              class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
               v-model="user.password"
             />
             <div
-              class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+              class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
               @click="togglePassword"
             >
-              <span :class="{ hidden: showPassword }">
+              <span :class="{'tw-hidden': showPassword }">
                 <i class="fa-solid fa-eye"></i>
               </span>
-              <span :class="{ hidden: !showPassword }">
+              <span :class="{'tw-hidden': !showPassword }">
                 <i class="fa-solid fa-eye-slash"></i>
               </span>
             </div>
           </div>
 
-          <ErrorMessage class="text-red-600" name="password" />
+          <ErrorMessage class="tw-text-red-600" name="password" />
         </div>
 
         <div>
-          <label for="confirm_password" class="inline-block mb-2"
+          <label for="confirm_password" class="tw-inline-block tw-mb-2"
             ><b>Confirm Password</b></label
           >
           <vee-field
@@ -157,23 +157,23 @@
             name="confirm_password"
             size="50"
             required
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             v-model="confirm_password"
           />
-          <ErrorMessage class="text-red-600" name="confirm_password" />
+          <ErrorMessage class="tw-text-red-600" name="confirm_password" />
         </div>
 
-        <div class="mt-3 pl-1 flex flex-row gap-1">
+        <div class="tw-mt-3 tw-pl-1 tw-flex tw-flex-row tw-gap-1">
           <vee-field
             type="checkbox"
             name="tos"
             value="1"
-            class="w-4 h-4 rounded self-center"
+            class="tw-w-4 tw-h-4 tw-rounded tw-self-center"
             v-model="tos"
           />
           <label class="tos" keypath="register.accept" tag="label">
             <a
-              class="border-b border-black"
+              class="tw-border-b tw-border-black"
               style="cursor: pointer"
               target="_blank"
               href="https://www.sec.gov/Archives/edgar/data/1222840/000122284008000014/exhibit10533insuranceriskmgm.htm"
@@ -181,34 +181,34 @@
             >
           </label>
         </div>
-        <ErrorMessage class="text-red-600 block" name="tos" />
+        <ErrorMessage class="tw-text-red-600 tw-block" name="tos" />
 
         <button
           type="submit"
           :disabled="!enableRegisterButton()"
           :class="{
-            'opacity-50': !enableRegisterButton(),
-            'cursor-not-allowed': !enableRegisterButton(),
+            'tw-opacity-50': !enableRegisterButton(),
+            'tw-cursor-not-allowed': !enableRegisterButton(),
           }"
-          class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
+          class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
         >
           Submit
         </button>
       </div>
 
-      <div class="footerLogin container flex flex-row mt-8 justify-between">
+      <div class="footerLogin container tw-flex tw-flex-row tw-mt-8 tw-justify-between">
         <button
           type="button"
           onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn block rounded text-white py-2 px-3"
+          class="cancelbtn tw-block tw-rounded tw-text-white tw-py-2 tw-px-3"
           @click.prevent="toggleRegisterModal"
         >
           Cancel
         </button>
-        <span class="psw self-center"
+        <span class="psw tw-self-center"
           >Already have an account ?<a
             href="#"
-            class="text-blue-500 hover:text-blue-600 font-medium underline"
+            class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium tw-underline"
             @click.prevent="toggleBetweenLoginAndRegisterModal"
             >Sign in</a
           ></span

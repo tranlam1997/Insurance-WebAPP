@@ -1,26 +1,26 @@
 <template>
-  <div class="about flex flex-col mb-36">
-    <div class="introduction text-5xl text-white font-thin p-10 mt-5 antialiased">
+  <div class="about tw-flex tw-flex-col tw-mb-36">
+    <div class="introduction tw-text-5xl tw-text-white tw-font-thin tw-p-10 tw-mt-5 tw-antialiased">
       <h1 class="">
-        Decisions made <span class="italic font-semibold">easier.</span>
+        Decisions made <span class="tw-italic tw-font-semibold">easier.</span>
       </h1>
-      <h1>Lives made <span class="italic font-semibold">better.</span></h1>
+      <h1>Lives made <span class="tw-italic tw-font-semibold">better.</span></h1>
     </div>
-    <div class="achievement flex flex-row gap-10 justify-between mt-24 mx-10">
-      <div class="business p-8 flex-1">
-        <i class="fa-solid fa-building-columns text-5xl"></i>
-        <h2 class="mt-5 mb-2 font-bold">Our Business</h2>
-        <p class="font-thin">Psawn provides financial advice, insurance, as well as wealth and asset management solutions to help people make their decisions easier and lives better, and to ensure they are well-protected.</p>
+    <div class="achievement tw-flex tw-flex-row tw-gap-10 tw-justify-between tw-mt-24 tw-mx-10">
+      <div class="business tw-p-8 tw-flex-1">
+        <i class="fa-solid fa-building-columns tw-text-5xl"></i>
+        <h2 class="tw-mt-5 tw-mb-2 tw-font-bold">Our Business</h2>
+        <p class="tw-font-thin">Psawn provides financial advice, insurance, as well as wealth and asset management solutions to help people make their decisions easier and lives better, and to ensure they are well-protected.</p>
       </div>
-      <div class="history p-8 flex-1">
-        <i class="fa-solid fa-book-open text-5xl"></i>
-        <h2 class="mt-5 mb-2 font-bold">Our History</h2>
-        <p class="font-thin">Psawn was founded in 2022 by a group of professionals who had a passion for providing financial advice and wealth management solutions to people. Today, Manulife is the largest financial services company in the world.</p>
+      <div class="history tw-p-8 tw-flex-1">
+        <i class="fa-solid fa-book-open tw-text-5xl"></i>
+        <h2 class="tw-mt-5 tw-mb-2 tw-font-bold">Our History</h2>
+        <p class="tw-font-thin">Psawn was founded in 2022 by a group of professionals who had a passion for providing financial advice and wealth management solutions to people. Today, Manulife is the largest financial services company in the world.</p>
       </div>
-      <div class="award p-8 flex-1">
-        <i class="fa-solid fa-medal text-5xl"></i>
-        <h2 class="mt-5 mb-2 font-bold">Our Awards</h2>
-        <p class="font-thin">Psawn has been awarded the “Best Financial Services Company” by the Financial Services Association of America (FSA) for its services and products.</p>
+      <div class="award tw-p-8 tw-flex-1">
+        <i class="fa-solid fa-medal tw-text-5xl"></i>
+        <h2 class="tw-mt-5 tw-mb-2 tw-font-bold">Our Awards</h2>
+        <p class="tw-font-thin">Psawn has been awarded the “Best Financial Services Company” by the Financial Services Association of America (FSA) for its services and products.</p>
       </div>
     </div>
   </div>

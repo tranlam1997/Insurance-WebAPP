@@ -5,6 +5,7 @@
   <router-view name="Footer"></router-view>
   <log-in-form></log-in-form>
   <register-form></register-form>
+  <router-view name="Admin"></router-view>
 </template>
 
 <script>

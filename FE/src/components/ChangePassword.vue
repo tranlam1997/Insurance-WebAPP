@@ -1,22 +1,22 @@
 <template>
-  <div class="change-password justify-center align-center">
+  <div class="change-password tw-justify-center align-center">
     <div
-      class="error-message text-white text-center font-bold px-8 py-2 text-l fixed top-0 rounded-3xl z-10 flex justify-center align-center"
+      class="error-message tw-text-white tw-text-center tw-font-bold tw-px-8 tw-py-2 text-l tw-fixed tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center align-center"
       v-if="change_pass_show_alert"
       :class="change_pass_alert_variant"
     >
       {{ change_pass_alert_msg }}
     </div>
     <div
-      class="modal-content-v1 2xl:w-1/3 xl:w-1/3 lg:w-2/4 md:w-2/4 sm:w-3/4 w-3/4 fixed top-60 2xl:left-1/3 xl:left-1/3 lg:left-1/4 md:left-1/4 sm:left-24 left-16 bg-gray-200"
+      class="modal-content-v1 2xl:tw-w-1/3 xl:tw-w-1/3 lg:tw-w-2/4 md:tw-w-2/4 sm:tw-w-3/4 tw-w-3/4 tw-fixed tw-top-60 2xl:tw-left-1/3 xl:tw-left-1/3 lg:tw-left-1/4 md:tw-left-1/4 sm:tw-left-24 tw-left-16 tw-bg-gray-200"
     >
-      <vee-form class="animate flex flex-col p-8" @submit="authenPass">
-        <div class="container flex flex-col">
+      <vee-form class="animate tw-flex tw-flex-col tw-p-8" @submit="authenPass">
+        <div class="container tw-flex tw-flex-col">
           <div>
-            <label for="email" class="inline-block mb-2"
+            <label for="email" class="tw-inline-block tw-mb-2"
               ><b>Current Password</b></label
             >
-            <div class="flex flex-row">
+            <div class="tw-flex tw-flex-row">
               <vee-field
                 :type="showType"
                 placeholder="Enter Current Password"
@@ -24,42 +24,42 @@
                 size="50"
                 required
                 v-model="currentPassword"
-                class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
               />
               <div
-                class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+                class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
                 @click="togglePassword"
               >
-                <span :class="{ hidden: showPassword }">
+                <span :class="{ 'tw-hidden': showPassword }">
                   <i class="fa-solid fa-eye"></i>
                 </span>
-                <span :class="{ hidden: !showPassword }">
+                <span :class="{ 'tw-hidden': !showPassword }">
                   <i class="fa-solid fa-eye-slash"></i>
                 </span>
               </div>
             </div>
 
-            <ErrorMessage class="text-red-600" name="currentPassword" />
+            <ErrorMessage class="tw-text-red-600" name="currentPassword" />
           </div>
 
           <button
             type="submit"
             :disabled="!enableSubmit()"
             :class="{
-              'opacity-50': !enableSubmit(),
-              'cursor-not-allowed': !enableSubmit(),
+              'tw-opacity-50': !enableSubmit(),
+              'tw-cursor-not-allowed': !enableSubmit(),
             }"
-            class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
+            class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
           >
             Next
           </button>
         </div>
       </vee-form>
-      <div class="footerLogin container flex flex-row mt-2 justify-between">
+      <div class="footerLogin container tw-flex tw-flex-row tw-mt-2 tw-justify-between">
         <button
           type="button"
           onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn block rounded text-white py-2 px-3 border bg-blue-500 hover:bg-blue-600 ml-8 mb-4 -mt-4"
+          class="cancelbtn tw-block tw-rounded tw-text-white tw-py-2 tw-px-3 tw-border tw-bg-blue-500 hover:tw-bg-blue-600 tw-ml-8 tw-mb-4 tw--mt-4"
           @click.prevent="turnOffModal"
         >
           Cancel
@@ -68,21 +68,21 @@
     </div>
 
     <div
-      class="modal-content-v2 2xl:w-1/3 xl:w-1/3 lg:w-2/4 md:w-2/4 sm:w-3/4 w-3/4 fixed top-60 2xl:left-1/3 xl:left-1/3 lg:left-1/4 md:left-1/4 sm:left-24 left-16 bg-gray-200"
+      class="modal-content-v2 2xl:tw-w-1/3 xl:tw-w-1/3 lg:tw-w-2/4 md:tw-w-2/4 sm:tw-w-3/4 tw-w-3/4 tw-fixed tw-top-60 2xl:tw-left-1/3 xl:tw-left-1/3 lg:tw-left-1/4 md:tw-left-1/4 sm:tw-left-24 tw-left-16 tw-bg-gray-200"
       v-if="nextChangePassword"
     >
       <vee-form
         :validation-schema="changePassSchema"
-        class="animate flex flex-col p-8 gap-2"
+        class="animate tw-flex tw-flex-col tw-p-8 tw-gap-2"
         @submit="handleSubmit"
         ref="form"
       >
-        <div class="container flex flex-col gap-2">
+        <div class="container tw-flex tw-flex-col tw-gap-2">
           <div>
-            <label for="email" class="inline-block mb-2"
+            <label for="email" class="tw-inline-block tw-mb-2"
               ><b>New Password</b></label
             >
-            <div class="flex flex-row">
+            <div class="tw-flex tw-flex-row">
               <vee-field
                 :type="showType"
                 placeholder="Enter New Password"
@@ -90,26 +90,26 @@
                 size="50"
                 required
                 v-model="newPassword"
-                class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
               />
               <div
-                class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+                class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
                 @click="togglePassword"
               >
-                <span :class="{ hidden: showPassword }">
+                <span :class="{ 'tw-hidden': showPassword }">
                   <i class="fa-solid fa-eye"></i>
                 </span>
-                <span :class="{ hidden: !showPassword }">
+                <span :class="{ 'tw-hidden': !showPassword }">
                   <i class="fa-solid fa-eye-slash"></i>
                 </span>
               </div>
             </div>
 
-            <ErrorMessage class="text-red-600" name="password" />
+            <ErrorMessage class="tw-text-red-600" name="password" />
           </div>
 
           <div>
-            <label for="email" class="inline-block mb-2"
+            <label for="email" class="tw-inline-block tw-mb-2"
               ><b>Confirm Password</b></label
             >
             <vee-field
@@ -119,19 +119,19 @@
               size="50"
               required
               v-model="confirmNewPassword"
-              class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+              class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             />
-            <ErrorMessage class="text-red-600" name="confirm_password" />
+            <ErrorMessage class="tw-text-red-600" name="confirm_password" />
           </div>
 
           <button
             type="submit"
             :disabled="!enableSubmitV2()"
             :class="{
-              'opacity-50': !enableSubmitV2(),
-              'cursor-not-allowed': !enableSubmitV2(),
+              'tw-opacity-50': !enableSubmitV2(),
+              'tw-cursor-not-allowed': !enableSubmitV2(),
             }"
-            class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
+            class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
           >
             Submit
           </button>
@@ -140,7 +140,7 @@
       <button
         type="button"
         onclick="document.getElementById('id01').style.display='none'"
-        class="cancelbtn block rounded text-white py-2 px-3 border bg-blue-500 hover:bg-blue-600 ml-8 mb-4 -mt-4"
+        class="cancelbtn tw-block tw-rounded tw-text-white tw-py-2 tw-px-3 tw-border tw-bg-blue-500 hover:tw-bg-blue-600 tw-ml-8 tw-mb-4 tw--mt-4"
         @click.prevent="turnOffModal"
       >
         Cancel

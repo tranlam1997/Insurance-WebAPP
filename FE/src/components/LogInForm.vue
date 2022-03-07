@@ -1,11 +1,11 @@
 <template>
   <!-- The Modal -->
   <div
-    class="modal-login flex flex-row justify-center align-center"
-    :class="{ hidden: !loginState }"
+    class="modal-login tw-flex tw-flex-row tw-justify-center align-center"
+    :class="{ 'tw-hidden': !loginState }"
   >
     <div
-      class="text-white text-center font-bold px-8 py-2 text-l fixed top-0 rounded-3xl z-10 flex justify-center align-center"
+      class="tw-text-white tw-text-center tw-font-bold tw-px-8 tw-py-2 text-l tw-fixed tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center align-center"
       v-if="login_show_alert"
       :class="login_alert_variant"
     >
@@ -14,21 +14,21 @@
 
     <!-- Modal Content -->
     <vee-form
-      class="modal-content animate flex flex-col p-8 max-w-max"
+      class="modal-content animate tw-flex tw-flex-col tw-p-8 tw-max-w-max"
       :validation-schema="loginSchema"
       @submit="handleLogin"
       ref="form"
     >
-      <div class="header-login m-auto">
+      <div class="header-login tw-m-auto">
         <img
           src="../../public/assets/img/logo-brand.png"
           class="container"
           alt="logo brand"
         />
       </div>
-      <div class="container flex flex-col">
+      <div class="container tw-flex tw-flex-col">
         <div>
-          <label for="email" class="inline-block mb-2"
+          <label for="email" class="tw-inline-block tw-mb-2"
             ><b>Email Address</b></label
           >
           <vee-field
@@ -38,23 +38,23 @@
             size="50"
             required
             v-model="user.email"
-            class="block w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
           />
-          <ErrorMessage class="text-red-600" name="email" />
+          <ErrorMessage class="tw-text-red-600" name="email" />
         </div>
 
         <div>
-          <div class="flex flex-row justify-between">
-            <label for="password" class="inline-block mb-2"
+          <div class="tw-flex tw-flex-row tw-justify-between">
+            <label for="password" class="tw-inline-block tw-mb-2"
               ><b>Password</b></label
             >
-            <span class="self-center text-sm">
-              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium"
+            <span class="tw-self-center tw-text-sm">
+              <a href="#" class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium"
                 >Forgot password?</a
               ></span
             >
           </div>
-          <div class="flex flex-row">
+          <div class="tw-flex tw-flex-row">
             <vee-field
               :type="showType"
               placeholder="Enter Password"
@@ -62,32 +62,32 @@
               size="20"
               required
               v-model="user.password"
-              class="w-full py-2 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+              class="tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
             />
             <div
-              class="control self-center border border-gray-300 bg-white py-2 px-3 rounded"
+              class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
               @click="togglePassword"
             >
-              <span :class="{ hidden: showPassword }">
+              <span :class="{ 'tw-hidden': showPassword }">
                 <i class="fa-solid fa-eye"></i>
               </span>
-              <span :class="{ hidden: !showPassword }">
+              <span :class="{ 'tw-hidden': !showPassword }">
                 <i class="fa-solid fa-eye-slash"></i>
               </span>
             </div>
           </div>
 
-          <ErrorMessage class="text-red-600" name="password" />
+          <ErrorMessage class="tw-text-red-600" name="password" />
         </div>
 
         <button
           type="submit"
           :disabled="!enableSubmit()"
           :class="{
-            'opacity-50': !enableSubmit(),
-            'cursor-not-allowed': !enableSubmit(),
+            'tw-opacity-50': !enableSubmit(),
+            'tw-cursor-not-allowed': !enableSubmit(),
           }"
-          class="mt-4 block w-full bg-blue-600 text-white py-1.5 px-3 rounded transition hover:bg-blue-700"
+          class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
         >
           Login
         </button>
@@ -102,20 +102,20 @@
         </label>
       </div>
 
-      <div class="footerLogin container flex flex-row mt-2 justify-between">
+      <div class="footerLogin container tw-flex tw-flex-row tw-mt-2 tw-justify-between">
         <button
           type="button"
           onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn block rounded text-white py-2 px-3"
+          class="cancelbtn tw-block tw-rounded tw-text-white tw-py-2 tw-px-3"
           @click.prevent="toggleLoginModal"
         >
           Cancel
         </button>
-        <span class="psw self-center text-sm"
+        <span class="psw tw-self-center tw-text-sm"
           >New to Psawn Insurance?
           <a
             href="#"
-            class="text-blue-500 hover:text-blue-600 font-medium underline"
+            class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium tw-underline"
             @click.prevent="toggleBetweenLoginAndRegisterModal"
             >Sign up</a
           ></span

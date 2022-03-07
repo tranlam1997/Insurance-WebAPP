@@ -18,12 +18,13 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import GlobalComponents from "./globalComponents";
+import SoftUIDashboard from "./soft-ui-dashboard";
+import "./assets/css/nucleo-icons.css";
+import "./assets/css/nucleo-svg.css";
 
 
 
 const app = createApp(App);
-app.use(GlobalComponents);
 app.directive('click-outside', {
     mounted(el, binding) {
       el.clickOutsideEvent = function(event) {
@@ -39,6 +40,7 @@ app.directive('click-outside', {
   });
 app.use(store);
 app.use(router);
+app.use(SoftUIDashboard);
 app.use(VeeValidatePlugin);
 app.use(VueAxios, axios);
 app.component("font-awesome-icon", FontAwesomeIcon);

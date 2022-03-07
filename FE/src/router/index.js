@@ -1,16 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import jwt_decode from 'jwt-decode';
 import store from '../store'
-import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
-
-import Dashboard from "@/pages/Dashboard.vue";
-import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
-import Typography from "@/pages/Typography.vue";
-import Icons from "@/pages/Icons.vue";
-import Maps from "@/pages/Maps.vue";
-import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Dashboard from "@/views/DashboardFrame.vue";
+import Tables from "@/views/Tables.vue";
+import Billing from "@/views/Billing.vue";
+import VirtualReality from "@/views/VirtualReality.vue";
+import ProfileAdmin from "@/views/ProfileAdmin.vue";
+import Rtl from "@/views/Rtl.vue";
+import SignIn from "@/views/SignIn.vue";
+import SignUp from "@/views/SignUp.vue";
+import AdminBoard from "@/views/AdminBoard.vue";
 
 const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
@@ -54,9 +53,11 @@ const routes = [
     ]
   },
   {
-    path: "/",
-    component: DashboardLayout,
-    redirect: "/dashboard",
+    name: 'Admin',
+    path: '/admin',
+    components: {
+      Admin: AdminBoard,
+    },
     children: [
       {
         path: "dashboard",
@@ -64,45 +65,42 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: "user",
-        name: "User Profile",
-        component: UserProfile,
+        path: "tables",
+        name: "Tables",
+        component: Tables,
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList,
+        path: "billing",
+        name: "Billing",
+        component: Billing,
       },
       {
-        path: "typography",
-        name: "Typography",
-        component: Typography,
+        path: "virtual-reality",
+        name: "Virtual Reality",
+        component: VirtualReality,
       },
       {
-        path: "icons",
-        name: "Icons",
-        component: Icons,
+        path: "profile",
+        name: "Profile",
+        component: ProfileAdmin,
       },
       {
-        path: "maps",
-        name: "Maps",
-        meta: {
-          hideFooter: true,
-        },
-        component: Maps,
+        path: "rtl-page",
+        name: "Rtl",
+        component: Rtl,
       },
       {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications,
+        path: "sign-in",
+        name: "Sign In",
+        component: SignIn,
       },
       {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO,
+        path: "sign-up",
+        name: "Sign Up",
+        component: SignUp,
       },
-    ],
-  },
+    ]
+}
 ];
 
 const router = createRouter({

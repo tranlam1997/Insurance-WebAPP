@@ -1,58 +1,81 @@
 <template>
   <!-- Header -->
-  <header id="header" class="bg-blue-800 text-base">
-    <nav class="m-auto flex justify-between py-3 px-4">
+  <header id="header" class="tw-bg-blue-800 tw-text-base">
+    <nav class="tw-m-auto tw-flex tw-justify-between tw-py-3 tw-px-4">
       <!-- App Name -->
       <router-link
-        class="text-white font-bold uppercase text-2xl mr-4 self-center"
+        class="
+          tw-text-white
+          tw-font-bold
+          tw-uppercase
+          tw-text-2xl
+          tw-mr-4
+          tw-self-center
+        "
         :to="{ name: 'Home' }"
         exact-active-class="no-active"
       >
         Psawn Insurance
       </router-link>
 
-      <div class="text-base text-white">
+      <div class="tw-text-base tw-text-white">
         <!-- Primary Navigation -->
-        <ul class="flex flex-row mt-1 gap-4">
-          <li class="self-center">
-            <router-link class="" :to="{ name: 'Home' }"> Home </router-link>
+        <ul class="tw-flex tw-flex-row tw-mt-1 tw-gap-4">
+          <li class="tw-self-center tw-text-white">
+            <router-link class="tw-text-white" :to="{ name: 'Home' }">
+              Home
+            </router-link>
           </li>
-          <li class="dropdown-menu self-center">
-            <a
-              href="
-            "
-            >
+          <li class="dropdown-menu-tw tw-self-center">
+            <a class="tw-text-white" href="">
               Products & Services <i class="fa-solid fa-angle-down"></i>
             </a>
             <ul
-              class="dropdown-content flex-col absolute top-19 bg-blue-800 border-b hidden"
+              class="
+                dropdown-content-tw
+                tw-flex-col
+                tw-absolute
+                tw-top-19
+                tw-bg-blue-800
+                tw-border-b
+                tw-hidden
+              "
             >
-              <li class="p-3 mt-3">
-                <a href="/">Home Insurance</a>
+              <li class="tw-p-3 tw-mt-3">
+                <a class="tw-text-white" href="/">Home Insurance</a>
               </li>
-              <li class="p-3">
-                <a href="/">Life Insurance</a>
+              <li class="tw-p-3">
+                <a class="tw-text-white" href="/">Life Insurance</a>
               </li>
-              <li class="p-3">
-                <a href="/">Medical Insurance</a>
+              <li class="tw-p-3">
+                <a class="tw-text-white" href="/">Medical Insurance</a>
               </li>
-              <li class="p-3">
-                <a href="/">Vehicle Insurance</a>
+              <li class="tw-p-3">
+                <a class="tw-text-white" href="/">Vehicle Insurance</a>
               </li>
             </ul>
           </li>
           <!-- Navigation Links -->
-          <li class="self-center">
-            <router-link class="" :to="{ name: 'About' }"> About </router-link>
+          <li class="tw-self-center">
+            <router-link class="tw-text-white" :to="{ name: 'About' }">
+              About
+            </router-link>
           </li>
-          <li class="self-center" :class="{ hidden: loggedIn }">
-            <div class="flex flex-row gap-2">
-              <a class="self-center" href="#" @click.prevent="toggleLoginModal">
+          <li class="tw-self-center" :class="{ 'tw-hidden': loggedIn }">
+            <div class="tw-flex tw-flex-row tw-gap-2">
+              <a
+                class="tw-self-center tw-text-white"
+                href="#"
+                @click.prevent="toggleLoginModal"
+              >
                 Login
               </a>
               <button
                 type="button"
-                class="buttonRegister p-2 rounded text-white bg-orange-700 ml-1"
+                class="
+                  buttonRegister
+                  tw-p-2 tw-rounded tw-text-white tw-bg-orange-700 tw-ml-1
+                "
                 href="#"
                 @click.prevent="toggleRegisterModal"
               >
@@ -60,24 +83,34 @@
               </button>
             </div>
           </li>
-          <li class="self-center" :class="{ hidden: !loggedIn }" v-click-outside="clickOutSide">
+          <li
+            class="tw-self-center"
+            :class="{ 'tw-hidden': !loggedIn }"
+            v-click-outside="clickOutSide"
+          >
             <a @click.prevent="toggleUserModalShow"
-              ><i class="fa-solid fa-user text-l mx-4 cursor-pointer"></i
+              ><i class="fa-solid fa-user text-l tw-mx-4 tw-cursor-pointer"></i
             ></a>
             <div
-              class="dropdown-content flex-col absolute top-19 right-5 bg-blue-900"
+              class="
+                dropdown-content
+                tw-flex-col tw-absolute tw-top-19 tw-right-5 tw-bg-blue-900
+              "
               v-if="userModalShow"
             >
-              <li class="px-6 py-3 mt-3" v-if="email">
+              <li class="tw-px-6 tw-py-3 tw-mt-3" v-if="email">
                 {{ email }}
               </li>
-              <li class="px-6 py-3 pb-4">
+              <li class="tw-px-6 tw-py-3 tw-pb-4">
                 <router-link to="/profile"><a href="/">Profile</a></router-link>
               </li>
-              <li class="px-6 pt-3 pb-4">
+              <li class="tw-px-6 tw-pt-3 tw-pb-4">
                 <a href="/">Settings</a>
               </li>
-              <li class="px-6 pb-2 pt-3 border-t" @click.prevent="logOut">
+              <li
+                class="tw-px-6 tw-pb-2 tw-pt-3 tw-border-t"
+                @click.prevent="logOut"
+              >
                 <a href="/">Logout</a>
               </li>
             </div>
@@ -95,7 +128,7 @@ export default {
   name: "Header",
   data() {
     return {
-      email: ""
+      email: "",
     };
   },
   computed: mapState({
@@ -107,12 +140,12 @@ export default {
   watch: {
     loggedIn: {
       handler(newValue) {
-        if(newValue) {
+        if (newValue) {
           this.email = JSON.parse(localStorage.getItem("user")).email;
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     ...mapMutations([
@@ -134,7 +167,7 @@ export default {
       this.$router.push("/");
     },
     clickOutSide() {
-      if(this.userModalShow) {
+      if (this.userModalShow) {
         this.toggleUserModalShow();
       }
     },
@@ -150,7 +183,7 @@ export default {
   }
 }
 
-.dropdown-menu:hover .dropdown-content {
+.dropdown-menu-tw:hover .dropdown-content-tw {
   display: flex;
 }
 </style>
