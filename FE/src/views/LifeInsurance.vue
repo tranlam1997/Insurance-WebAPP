@@ -25,10 +25,6 @@
           <p>{{ lifeInsuranceContent.personClaim }}</p>
         </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Life claim:</p>
-          <p>{{ lifeInsuranceContent.lifeClaim }}</p>
-        </div>
-        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
           <p class="tw-font-bold">Amount paid:</p>
           <p>{{ lifeInsuranceContent.amountPaid }}</p>
         </div>
