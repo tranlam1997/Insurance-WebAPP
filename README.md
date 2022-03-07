@@ -14,6 +14,8 @@ Update-Database
 ## Run BE
 Replace your SendGrid API key and Sendgrid Template in appsettings.json file (BE folder).
 
+Replace your from mail in Services/IMailService.cs file (BE folder).
+
 Onpen BE folder with Visual Studio, press F5, choose Debug > Start with debugging from the Visual Studio menu, or select the green Start arrow and project name on the Visual Studio toolbar.
 
 ## Run FE
