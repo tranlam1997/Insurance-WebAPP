@@ -26,7 +26,7 @@
 </template>
 
 <script>
-// import PublicService from "../services/public.service.js";
+import PublicService from "../services/public.service.js";
 
 export default {
   name: "VehicleInsurance",
