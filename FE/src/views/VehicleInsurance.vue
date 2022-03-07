@@ -1,5 +1,8 @@
 <template>
   <div class="vehicle-insurance tw-gap-5">
+      <div>
+          <input type="text">
+      </div>
     <template
       class=""
       v-for="vehicleInsuranceContent in vehicleInsuranceContents"

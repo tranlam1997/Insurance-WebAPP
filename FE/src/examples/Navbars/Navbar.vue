@@ -30,21 +30,12 @@
           </div>
         </div>
         <ul class="navbar-nav justify-content-end">
-          <li class="nav-item d-flex align-items-center">
-            <router-link
-              :to="{ name: 'Sign In' }"
-              class="px-0 nav-link font-weight-bold"
-              :class="textWhite ? textWhite : 'text-body'"
-            >
+          <li class="nav-item d-flex align-items-center tw-cursor-pointer" @click.prevent="logOut">
               <i
-                class="fa fa-user"
+                class="fa-solid fa-arrow-right-from-bracket"
                 :class="this.$store.state.admin.isRTL ? 'ms-sm-2' : 'me-sm-1'"
               ></i>
-              <span v-if="this.$store.state.admin.isRTL" class="d-sm-inline d-none"
-                >يسجل دخول</span
-              >
-              <span v-else class="d-sm-inline d-none">Sign In </span>
-            </router-link>
+              <span class="d-sm-inline d-none">Log out </span>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a
@@ -142,7 +133,12 @@
                 <a class="dropdown-item border-radius-md" href="javascript:;">
                   <div class="py-1 d-flex">
                     <div
-                      class="my-auto avatar avatar-sm bg-gradient-secondary me-3"
+                      class="
+                        my-auto
+                        avatar avatar-sm
+                        bg-gradient-secondary
+                        me-3
+                      "
                     >
                       <svg
                         width="12px"
@@ -222,6 +218,10 @@ export default {
     toggleSidebar() {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
+    },
+    logOut() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/");
     },
   },
   components: {
