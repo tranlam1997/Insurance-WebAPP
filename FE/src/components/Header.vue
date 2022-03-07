@@ -102,7 +102,7 @@
                 {{ email }}
               </li>
               <li class="tw-px-6 tw-py-3 tw-pb-4">
-                <router-link to="/user-profile"
+                <router-link to="/profile"
                   ><a href="/" class="tw-text-white">Profile</a></router-link
                 >
               </li>
