@@ -39,19 +39,25 @@
                 tw-bg-blue-800
                 tw-border-b
                 tw-hidden
+                tw-p-0
               "
             >
-              <li class="tw-p-3 tw-mt-3">
-                <a class="tw-text-white" href="/">Home Insurance</a>
+              <li class="tw-p-3 tw-mt-4">
+                 <router-link to="/home-insurance"><a class="tw-text-white" href="/">Home Insurance</a></router-link>
               </li>
               <li class="tw-p-3">
-                <a class="tw-text-white" href="/">Life Insurance</a>
+                <router-link to="/life-insurance"><a class="tw-text-white" href="/">Life Insurance</a></router-link>
               </li>
               <li class="tw-p-3">
-                <a class="tw-text-white" href="/">Medical Insurance</a>
+                <router-link to="/medical-insurance"><a class="tw-text-white" href="/">Medical Insurance</a></router-link>
+                
               </li>
               <li class="tw-p-3">
-                <router-link to="/vehicle-insurance"><a class="tw-text-white" href="/">Vehicle Insurance</a></router-link>
+                <router-link to="/vehicle-insurance"
+                  ><a class="tw-text-white" href="/"
+                    >Vehicle Insurance</a
+                  ></router-link
+                >
               </li>
             </ul>
           </li>
@@ -143,7 +149,11 @@ export default {
     loggedIn: {
       handler(newValue) {
         if (newValue) {
-          this.email = JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user"): localStorage.getItem("admin")).email;
+          this.email = JSON.parse(
+            localStorage.getItem("user")
+              ? localStorage.getItem("user")
+              : localStorage.getItem("admin")
+          ).email;
         }
       },
       immediate: true,
