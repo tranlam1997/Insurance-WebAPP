@@ -20,14 +20,6 @@
           </h1>
         </div>
         <div class="" v-html="medicalInsuranceContent.content"></div>
-        <div class="tw-flex tw-flex-row tw-gap-5 col-9 tw-mt-8">
-          <p class="tw-font-bold">Person claim:</p>
-          <p>{{ medicalInsuranceContent.personClaim }}</p>
-        </div>
-        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Medical claim:</p>
-          <p>{{ medicalInsuranceContent.medicalClaim }}</p>
-        </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
           <p class="tw-font-bold">Amount paid:</p>
           <p>{{ medicalInsuranceContent.amountPaid }}</p>
