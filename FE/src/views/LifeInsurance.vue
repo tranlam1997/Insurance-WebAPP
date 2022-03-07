@@ -1,13 +1,13 @@
 <template>
-  <div class="vehicle-insurance tw-gap-5">
+  <div class="life-insurance tw-gap-5">
     <template
       class=""
-      v-for="vehicleInsuranceContent in vehicleInsuranceContents"
-      :key="vehicleInsuranceContent.vehiclePolicyId"
+      v-for="lifeInsuranceContent in lifeInsuranceContents"
+      :key="lifeInsuranceContent.lifePolicyId"
     >
       <div
         class="
-          vehicle-content
+          life-content
           tw-flex tw-flex-col
           gap-1
           d-flex
@@ -16,23 +16,23 @@
       >
         <div>
           <h1 class="text-info tw-font-black tw-my-8">
-            {{ vehicleInsuranceContent.type }}
+            {{ lifeInsuranceContent.type }}
           </h1>
         </div>
-        <div class="" v-html="vehicleInsuranceContent.content"></div>
+        <div class="" v-html="lifeInsuranceContent.content"></div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9 tw-mt-8">
           <p class="tw-font-bold">Person claim:</p>
-          <p>{{ vehicleInsuranceContent.personClaim }}</p>
+          <p>{{ lifeInsuranceContent.personClaim }}</p>
         </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Vehicle claim:</p>
-          <p>{{ vehicleInsuranceContent.vehicleClaim }}</p>
+          <p class="tw-font-bold">Life claim:</p>
+          <p>{{ lifeInsuranceContent.lifeClaim }}</p>
         </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Price:</p>
-          <p>{{ vehicleInsuranceContent.amountPaid }}</p>
+          <p class="tw-font-bold">Amount paid:</p>
+          <p>{{ lifeInsuranceContent.amountPaid }}</p>
         </div>
-        <button type="button" class="btn btn-info col-1 tw-ml-2" @click.prevent="showVehicleDetails(vehicleInsuranceContent.id)">See More</button>
+        <button type="button" class="btn btn-info col-1 tw-ml-2" @click.prevent="showlifeDetails(lifeInsuranceContent.id)">See More</button>
       </div>
     </template>
   </div>
@@ -42,32 +42,32 @@
 import PublicService from "../services/public.service.js";
 
 export default {
-  name: "VehicleInsurance",
+  name: "LifeInsurance",
   data() {
     return {
-      vehicleInsuranceContents: [],
+      lifeInsuranceContents: [],
     };
   },
   methods: {
-    showVehicleDetails(vehicleId) {
+    showlifeDetails(lifeId) {
         this.$router.push({
-            name: "VehicleDetails",
+            name: "lifeDetails",
             params: {
-            id: vehicleId,
+            id: lifeId,
             },
         });
         },
     },
   created() {
-    PublicService.getAllVehicleInsuranceContent().then((response) => {
-      this.vehicleInsuranceContents = response.data.data;
+    PublicService.getAllLifeInsuranceContent().then((response) => {
+      this.lifeInsuranceContents = response.data.data;
     });
   },
 };
 </script>
 
 <style scoped lang="scss">
-.vehicle-insurance {
+.life-insurance {
   background-color: #4682b4;
   font-size: 1rem;
   padding: 1rem;
@@ -80,7 +80,7 @@ export default {
   align-items: center;
 }
 
-.vehicle-content {
+.life-content {
   background-color: #f6f6f2;
   width: 100%;
   height: 100%;

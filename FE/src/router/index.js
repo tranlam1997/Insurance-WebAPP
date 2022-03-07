@@ -19,6 +19,9 @@ const Footer = () => import('@/components/Footer.vue');
 const Profile = () => import('@/views/Profile.vue'); 
 const ChangePassword = () => import('@/components/ChangePassword.vue')
 const VehicleInsurance = () => import('@/views/VehicleInsurance.vue')
+const MedicalInsurance = () => import('@/views/MedicalInsurance.vue')
+const LifeInsurance = () => import('@/views/LifeInsurance.vue')
+const HomeInsurance = () => import('@/views/HomeInsurance.vue')
 
 const routes = [
   {
@@ -44,6 +47,57 @@ const routes = [
     path: '/vehicle-insurance',
     components: {
       default: VehicleInsurance,
+      Header,
+      Footer
+    },
+    children: [
+      {
+      path: '/details/:id',
+      component: {
+        default: Details
+      }
+    }
+    ]
+  },
+  {
+    name: 'LifeInsurance',
+    path: '/life-insurance',
+    components: {
+      default: LifeInsurance,
+      Header,
+      Footer
+    },
+    children: [
+      {
+      path: '/details/:id',
+      component: {
+        default: Details
+      }
+    }
+    ]
+  },
+  {
+    name: 'MedicalInsurance',
+    path: '/medical-insurance',
+    components: {
+      default: MedicalInsurance,
+      Header,
+      Footer
+    },
+    children: [
+      {
+      path: '/details/:id',
+      component: {
+        default: Details
+      }
+    }
+    ]
+  },
+  {
+    name: 'HomeInsurance',
+    path: '/home-insurance',
+    components: {
+      default: HomeInsurance,
       Header,
       Footer
     },

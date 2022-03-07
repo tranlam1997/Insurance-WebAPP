@@ -43,13 +43,14 @@
               "
             >
               <li class="tw-p-3 tw-mt-4">
-                <a class="tw-text-white" href="/">Home Insurance</a>
+                 <router-link to="/home-insurance"><a class="tw-text-white" href="/">Home Insurance</a></router-link>
               </li>
               <li class="tw-p-3">
-                <a class="tw-text-white" href="/">Life Insurance</a>
+                <router-link to="/life-insurance"><a class="tw-text-white" href="/">Life Insurance</a></router-link>
               </li>
               <li class="tw-p-3">
-                <a class="tw-text-white" href="/">Medical Insurance</a>
+                <router-link to="/medical-insurance"><a class="tw-text-white" href="/">Medical Insurance</a></router-link>
+                
               </li>
               <li class="tw-p-3">
                 <router-link to="/vehicle-insurance"

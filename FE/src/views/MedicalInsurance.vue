@@ -1,16 +1,13 @@
 <template>
-  <div class="vehicle-insurance tw-gap-5">
-      <div>
-          <input type="text">
-      </div>
+  <div class="medical-insurance tw-gap-5">
     <template
       class=""
-      v-for="vehicleInsuranceContent in vehicleInsuranceContents"
-      :key="vehicleInsuranceContent.vehiclePolicyId"
+      v-for="medicalInsuranceContent in medicalInsuranceContents"
+      :key="medicalInsuranceContent.medicalPolicyId"
     >
       <div
         class="
-          vehicle-content
+          medical-content
           tw-flex tw-flex-col
           gap-1
           d-flex
@@ -19,21 +16,21 @@
       >
         <div>
           <h1 class="text-info tw-font-black tw-my-8">
-            {{ vehicleInsuranceContent.type }}
+            {{ medicalInsuranceContent.type }}
           </h1>
         </div>
-        <div class="" v-html="vehicleInsuranceContent.content"></div>
+        <div class="" v-html="medicalInsuranceContent.content"></div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9 tw-mt-8">
           <p class="tw-font-bold">Person claim:</p>
-          <p>{{ vehicleInsuranceContent.personClaim }}</p>
+          <p>{{ medicalInsuranceContent.personClaim }}</p>
         </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Vehicle claim:</p>
-          <p>{{ vehicleInsuranceContent.vehicleClaim }}</p>
+          <p class="tw-font-bold">Medical claim:</p>
+          <p>{{ medicalInsuranceContent.medicalClaim }}</p>
         </div>
         <div class="tw-flex tw-flex-row tw-gap-5 col-9">
-          <p class="tw-font-bold">Price:</p>
-          <p>{{ vehicleInsuranceContent.amountPaid }}</p>
+          <p class="tw-font-bold">Amount paid:</p>
+          <p>{{ medicalInsuranceContent.amountPaid }}</p>
         </div>
         <button type="button" class="btn btn-info col-1 tw-ml-2">Buy</button>
       </div>
@@ -45,25 +42,25 @@
 import PublicService from "../services/public.service.js";
 
 export default {
-  name: "VehicleInsurance",
+  name: "MedicalInsurance",
   data() {
     return {
-      vehicleInsuranceContents: [],
+      medicalInsuranceContents: [],
     };
   },
   methods: {
-    fetchVehicleInsuranceContent() {},
+    fetchmedicalInsuranceContent() {},
   },
   created() {
-    PublicService.getAllVehicleInsuranceContent().then((response) => {
-      this.vehicleInsuranceContents = response.data.data;
+    PublicService.getAllMedicalInsuranceContent().then((response) => {
+      this.medicalInsuranceContents = response.data.data;
     });
   },
 };
 </script>
 
 <style scoped lang="scss">
-.vehicle-insurance {
+.medical-insurance {
   background-color: #4682b4;
   font-size: 1rem;
   padding: 1rem;
@@ -76,7 +73,7 @@ export default {
   align-items: center;
 }
 
-.vehicle-content {
+.medical-content {
   background-color: #f6f6f2;
   width: 100%;
   height: 100%;
