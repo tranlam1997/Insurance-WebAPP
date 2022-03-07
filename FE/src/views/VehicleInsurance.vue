@@ -14,11 +14,29 @@
           align-items-center
         "
       >
-          <h1 class="text-info tw-font-black tw-my-8">
-            {{ vehicleInsuranceContent.type }}
-          </h1>
+        <h1 class="text-info tw-font-black tw-my-8">
+          {{ vehicleInsuranceContent.type }}
+        </h1>
         <div class="" v-html="vehicleInsuranceContent.content"></div>
-        <button type="button" class="btn btn-info col-1 tw-ml-2" @click.prevent="showVehicleDetails(vehicleInsuranceContent.id)">See More</button>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
+          <p class="tw-font-bold">Person claim:</p>
+          <p>{{ vehicleInsuranceContent.personClaim }}</p>
+        </div>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
+          <p class="tw-font-bold">Vehicle claim:</p>
+          <p>{{ vehicleInsuranceContent.vehicleClaim }}</p>
+        </div>
+        <div class="tw-flex tw-flex-row tw-gap-5 col-9">
+          <p class="tw-font-bold">Amount paid:</p>
+          <p>{{ vehicleInsuranceContent.amountPaid }}</p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-info col-1 tw-ml-2"
+          @click.prevent="showVehicleDetails(vehicleInsuranceContent.id)"
+        >
+          Buy
+        </button>
       </div>
       <router-view :vehicle-id="vehicleInsuranceContent.id"></router-view>
     </template>
@@ -37,14 +55,14 @@ export default {
   },
   methods: {
     showVehicleDetails(vehicleId) {
-        this.$router.push({
-            path: "/vehicle-insurance/details",
-            query: {
-            id: vehicleId,
-            },
-        });
+      this.$router.push({
+        path: "/vehicle-insurance/details",
+        query: {
+          id: vehicleId,
         },
+      });
     },
+  },
   created() {
     PublicService.getAllVehicleInsuranceContent().then((response) => {
       this.vehicleInsuranceContents = response.data.data;
