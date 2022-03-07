@@ -17,6 +17,7 @@ const Header = () => import('@/components/Header.vue');
 const Footer = () => import('@/components/Footer.vue');
 const Profile = () => import('@/views/Profile.vue'); 
 const ChangePassword = () => import('@/components/ChangePassword.vue')
+const VehicleInsurance = () => import('@/views/VehicleInsurance.vue')
 
 const routes = [
   {
@@ -35,6 +36,15 @@ const routes = [
       default: About,
       Header,
       Footer,
+    }
+  },
+  {
+    name: 'VehicleInsurance',
+    path: '/vehicle-insurance',
+    components: {
+      default: VehicleInsurance,
+      Header,
+      Footer
     }
   },
   {
