@@ -6,7 +6,12 @@
     :class="{ 'tw-hidden': !registerState }"
   >
     <div
-      class="tw-text-white tw-text-center tw-px-8 tw-py-2 tw-font-bold tw-h-14 text-l tw-sticky tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center align-center"
+      class="
+        tw-text-white tw-text-center tw-px-8 tw-py-2 tw-font-bold tw-h-14
+        text-l
+        tw-sticky tw-top-0 tw-rounded-3xl tw-z-10 tw-flex tw-justify-center
+        align-center
+      "
       v-if="reg_show_alert"
       :class="reg_alert_variant"
     >
@@ -19,7 +24,12 @@
       @submit="submitRegister"
       ref="form"
     >
-      <div class="header-register tw-text-black tw-text-3xl tw-font-black tw-text-center">
+      <div
+        class="
+          header-register
+          tw-text-black tw-text-3xl tw-font-black tw-text-center
+        "
+      >
         Register
       </div>
       <div class="container tw-flex tw-flex-col">
@@ -33,7 +43,19 @@
             name="firstName"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.firstName"
           />
           <ErrorMessage class="tw-text-red-600" name="firstName" />
@@ -49,7 +71,19 @@
             name="lastName"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.lastName"
           />
           <ErrorMessage class="tw-text-red-600" name="lastName" />
@@ -65,7 +99,19 @@
             name="dateOfBirth"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.dateOfBirth"
           />
           <ErrorMessage class="tw-text-red-600" name="dateOfBirth" />
@@ -81,21 +127,47 @@
             name="email"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.email"
           />
           <ErrorMessage class="tw-text-red-600" name="email" />
         </div>
 
         <div>
-          <label for="address" class="tw-inline-block tw-mb-2"><b>Address</b></label>
+          <label for="address" class="tw-inline-block tw-mb-2"
+            ><b>Address</b></label
+          >
           <vee-field
             type="text"
             placeholder="Enter Address"
             name="address"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.address"
           />
           <ErrorMessage class="tw-text-red-600" name="address" />
@@ -111,7 +183,19 @@
             name="phoneNumber"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="user.phoneNumber"
           />
           <ErrorMessage class="tw-text-red-600" name="phoneNumber" />
@@ -128,17 +212,38 @@
               name="password"
               size="10"
               required
-              class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+              class="
+                tw-block
+                tw-w-full
+                tw-py-2
+                tw-px-3
+                tw-text-gray-800
+                tw-border
+                tw-border-gray-300
+                tw-transition
+                tw-duration-500
+                focus:tw-outline-none focus:tw-border-black
+                tw-rounded
+              "
               v-model="user.password"
             />
             <div
-              class="control tw-self-center tw-border tw-border-gray-300 tw-bg-white tw-py-2 tw-px-3 tw-rounded"
+              class="
+                control
+                tw-self-center
+                tw-border
+                tw-border-gray-300
+                tw-bg-white
+                tw-py-2
+                tw-px-3
+                tw-rounded
+              "
               @click="togglePassword"
             >
-              <span :class="{'tw-hidden': showPassword }">
+              <span :class="{ 'tw-hidden': showPassword }">
                 <i class="fa-solid fa-eye"></i>
               </span>
-              <span :class="{'tw-hidden': !showPassword }">
+              <span :class="{ 'tw-hidden': !showPassword }">
                 <i class="fa-solid fa-eye-slash"></i>
               </span>
             </div>
@@ -157,7 +262,19 @@
             name="confirm_password"
             size="50"
             required
-            class="tw-block tw-w-full tw-py-2 tw-px-3 tw-text-gray-800 tw-border tw-border-gray-300 tw-transition tw-duration-500 focus:tw-outline-none focus:tw-border-black tw-rounded"
+            class="
+              tw-block
+              tw-w-full
+              tw-py-2
+              tw-px-3
+              tw-text-gray-800
+              tw-border
+              tw-border-gray-300
+              tw-transition
+              tw-duration-500
+              focus:tw-outline-none focus:tw-border-black
+              tw-rounded
+            "
             v-model="confirm_password"
           />
           <ErrorMessage class="tw-text-red-600" name="confirm_password" />
@@ -190,13 +307,30 @@
             'tw-opacity-50': !enableRegisterButton(),
             'tw-cursor-not-allowed': !enableRegisterButton(),
           }"
-          class="tw-mt-4 tw-block tw-w-full tw-bg-blue-600 tw-text-white tw-py-1.5 tw-px-3 tw-rounded tw-transition hover:tw-bg-blue-700"
+          class="
+            tw-mt-4
+            tw-block
+            tw-w-full
+            tw-bg-blue-600
+            tw-text-white
+            tw-py-1.5
+            tw-px-3
+            tw-rounded
+            tw-transition
+            hover:tw-bg-blue-700
+          "
         >
           Submit
         </button>
       </div>
 
-      <div class="footerLogin container tw-flex tw-flex-row tw-mt-8 tw-justify-between">
+      <div
+        class="
+          footerLogin
+          container
+          tw-flex tw-flex-row tw-mt-8 tw-justify-between
+        "
+      >
         <button
           type="button"
           onclick="document.getElementById('id01').style.display='none'"
@@ -208,7 +342,11 @@
         <span class="psw tw-self-center"
           >Already have an account ?<a
             href="#"
-            class="tw-text-blue-500 hover:tw-text-blue-600 tw-font-medium tw-underline"
+            class="
+              tw-text-blue-500
+              hover:tw-text-blue-600
+              tw-font-medium tw-underline
+            "
             @click.prevent="toggleBetweenLoginAndRegisterModal"
             >Sign in</a
           ></span
@@ -257,14 +395,14 @@ export default {
     async submitRegister() {
       try {
         this.reg_show_alert = true;
-        this.reg_alert_variant = "bg-blue-500";
+        this.reg_alert_variant = "tw-bg-blue-500";
         this.reg_alert_msg = "Please wait! Your account is being created.";
         const response = await this.$store.dispatch("auth/register", this.user);
-        this.reg_alert_variant = "bg-green-500";
+        this.reg_alert_variant = "tw-bg-green-500";
         this.reg_alert_msg = response.message;
         setTimeout(() => {
           this.reg_show_alert = false;
-          this.reg_alert_variant = "bg-green-500";
+          this.reg_alert_variant = "tw-bg-green-500";
           this.reg_alert_msg = "Please wait! Your account is being created.";
           this.$refs.form.resetForm();
           this["toggle/toggleBetweenLoginAndRegisterModal"]();
@@ -275,11 +413,11 @@ export default {
           this.login_alert_msg = error.response.data?.title
             ? error.response.data.title
             : error.response.data.message;
-          this.login_alert_variant = "bg-red-500";
+          this.login_alert_variant = "tw-bg-red-500";
           this.login_show_alert = true;
           setTimeout(() => {
             this.login_show_alert = false;
-            this.login_alert_variant = "bg-blue-500";
+            this.login_alert_variant = "tw-bg-blue-500";
           }, 2000);
         } else if (error.request) {
           console.log(error.request);
@@ -322,7 +460,7 @@ export default {
         tos: "tos",
       },
       reg_show_alert: false,
-      reg_alert_variant: "bg-blue-500",
+      reg_alert_variant: "tw-bg-blue-500",
       reg_alert_msg: "Please wait! Your account is being created.",
       showType: "password",
       showPassword: false,
@@ -389,6 +527,7 @@ export default {
 
 label {
   margin: 1rem 0;
+  font-size: 1rem;
 }
 
 /* Add Zoom Animation */

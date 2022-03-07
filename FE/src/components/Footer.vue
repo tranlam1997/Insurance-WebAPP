@@ -1,6 +1,11 @@
 <template>
   <footer class="site-footer">
-    <div class="tw-flex tw-flex-row tw-gap-10 tw-mx-20 tw-mb-10 tw-justify-center align-center">
+    <div
+      class="
+        tw-flex tw-flex-row tw-gap-10 tw-mx-20 tw-mb-10 tw-justify-center
+        align-center
+      "
+    >
       <div class="tw-flex tw-flex-col tw-w-2/3">
         <h6>About us</h6>
         <p class="tw-font-medium">
@@ -61,14 +66,14 @@
     <hr />
 
     <div class="tw-mx-10 tw-mt-4 tw-font-medium">
-      <div class="col-md-8 col-sm-6 col-xs-12">
+      <div class="">
         <p class="copyright-text">
           Copyright &copy; 2022 All Rights Reserved by
           <a href="#">Psawn Insurance</a>.
         </p>
       </div>
 
-      <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="">
         <ul class="social-icons">
           <li>
             <a class="facebook" href="#"

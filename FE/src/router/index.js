@@ -81,7 +81,7 @@ const routes = [
       },
       {
         path: "profile",
-        name: "Profile",
+        name: "ProfileAdmin",
         component: ProfileAdmin,
       },
       {

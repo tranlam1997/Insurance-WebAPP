@@ -1,10 +1,10 @@
 <template>
   <div class="about tw-flex tw-flex-col tw-mb-36">
     <div class="introduction tw-text-5xl tw-text-white tw-font-thin tw-p-10 tw-mt-5 tw-antialiased">
-      <h1 class="">
+      <h1 class="tw-text-white">
         Decisions made <span class="tw-italic tw-font-semibold">easier.</span>
       </h1>
-      <h1>Lives made <span class="tw-italic tw-font-semibold">better.</span></h1>
+      <h1 class="tw-text-white">Lives made <span class="tw-italic tw-font-semibold">better.</span></h1>
     </div>
     <div class="achievement tw-flex tw-flex-row tw-gap-10 tw-justify-between tw-mt-24 tw-mx-10">
       <div class="business tw-p-8 tw-flex-1">
