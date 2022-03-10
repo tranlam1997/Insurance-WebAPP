@@ -28,13 +28,14 @@ namespace Sem3Project.Controllers
         private readonly IMapper _mapper;
         private IConfiguration _config;
         private IMailService _mailService;
- 
+
         public UserController(
-            IUserRepository UserRepository, 
-            IMapper mapper, 
-            IConfiguration config, 
+            IUserRepository UserRepository,
+            IMapper mapper,
+            IConfiguration config,
             IMailService mailService
-        ) {
+        )
+        {
             _userRepository = UserRepository;
             _mapper = mapper;
             _config = config;
@@ -66,12 +67,9 @@ namespace Sem3Project.Controllers
                     userDtos.Add(_mapper.Map<UserDto>(user));
                 }
 
-                return Ok(new
-                {
-                    Data = userDtos,
-                    Metadata = metadata,
-                });
-            } catch (Exception ex)
+                return Ok(new { Data = userDtos, Metadata = metadata, });
+            }
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
@@ -85,16 +83,15 @@ namespace Sem3Project.Controllers
             {
                 var result = _userRepository.CreateUser(userRegisterDto);
                 return Ok(new { message = "Register success" });
-            } 
+            }
             catch (ValidationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
-            
         }
 
         [HttpPost("login")]
@@ -107,21 +104,21 @@ namespace Sem3Project.Controllers
                 if (user == null)
                 {
                     return BadRequest(new { message = "Wrong email or password" });
-                } 
+                }
                 else
                 {
                     var token = Generate(user);
                     return Ok(new { token });
                 }
-            } 
+            }
             catch (ValidationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            } 
+            }
         }
 
         [HttpPut]
@@ -140,11 +137,11 @@ namespace Sem3Project.Controllers
                 {
                     return NotFound(new { message = "User not found" });
                 }
-            } 
+            }
             catch (ValidationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
@@ -183,17 +180,17 @@ namespace Sem3Project.Controllers
             try
             {
                 var user = _userRepository.GetUser(id);
-                
+
                 if (user == null)
                 {
                     return NotFound(new { message = "User not found" });
-                } 
-                else 
+                }
+                else
                 {
                     var userDto = _mapper.Map<UserDto>(user);
                     return Ok(new { Data = userDto });
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
@@ -204,8 +201,8 @@ namespace Sem3Project.Controllers
             //{
             //    return NotFound("User not found");
             //}
-            //return Ok(new 
-            //{ 
+            //return Ok(new
+            //{
             //    Data = result
             //});
         }
@@ -257,11 +254,13 @@ namespace Sem3Project.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
 
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Audience"],
-              claims,
-              expires: DateTime.Now.AddMinutes(3600),
-              signingCredentials: credentials);
+            var token = new JwtSecurityToken(
+                _config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(3600),
+                signingCredentials: credentials
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

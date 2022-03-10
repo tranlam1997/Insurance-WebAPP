@@ -132,7 +132,6 @@ D:\GitHub\Sem3Project\BE\Sem3Project\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\GitHub\Sem3Project\BE\Sem3Project\bin\Debug\net5.0\BCrypt.Net-Next.dll
 D:\GitHub\Sem3Project\BE\Sem3Project\bin\Debug\net5.0\SendGrid.dll
 D:\GitHub\Sem3Project\BE\Sem3Project\bin\Debug\net5.0\StarkbankEcdsa.dll
-D:\GitHub\ProjectSem3FPT\BE\Sem3Project\bin\Debug\net5.0\appsettings.Development.json
 D:\GitHub\ProjectSem3FPT\BE\Sem3Project\bin\Debug\net5.0\appsettings.json
 D:\GitHub\ProjectSem3FPT\BE\Sem3Project\bin\Debug\net5.0\Sem3Project.exe
 D:\GitHub\ProjectSem3FPT\BE\Sem3Project\bin\Debug\net5.0\Sem3Project.deps.json
@@ -337,3 +336,4 @@ C:\Users\foet1\Desktop\New folder (8)\ProjectSem3FPT\BE\Sem3Project\obj\Debug\ne
 C:\Users\foet1\Desktop\New folder (8)\ProjectSem3FPT\BE\Sem3Project\obj\Debug\net5.0\Sem3Project.pdb
 C:\Users\foet1\Desktop\New folder (8)\ProjectSem3FPT\BE\Sem3Project\obj\Debug\net5.0\Sem3Project.genruntimeconfig.cache
 C:\Users\foet1\Desktop\New folder (8)\ProjectSem3FPT\BE\Sem3Project\obj\Debug\net5.0\ref\Sem3Project.dll
+D:\GitHub\ProjectSem3FPT\BE\Sem3Project\bin\Debug\net5.0\PayPal.dll

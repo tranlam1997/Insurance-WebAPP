@@ -10,8 +10,8 @@ namespace Sem3Project.Repositories.IRepository
         PagedList<HomePolicy> GetHomePolicies(PaginationFilter paginationFilter);
 
         PagedList<HomePolicy> GetHomePoliciesForAdmin(
-           PaginationFilter paginationFilter,
-           HomePolicyFilter homePolicyFilter
+            PaginationFilter paginationFilter,
+            HomePolicyFilter homePolicyFilter
         );
 
         HomePolicy GetHomePolicy(string id);

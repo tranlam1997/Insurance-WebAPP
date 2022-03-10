@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PayPal.Api;
 
 namespace Sem3Project.Controllers
 {
@@ -37,7 +38,8 @@ namespace Sem3Project.Controllers
             IVehiclePolicyRepository vehiclePolicyRepository,
             IConfiguration config,
             IMailService mailService
-        ) {
+        )
+        {
             _vehicleInsuranceRepository = vehicleInsuranceRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -48,11 +50,16 @@ namespace Sem3Project.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> CreateVehicleInsurance([FromBody] VehicleInsuranceCreateDto vehicleInsuranceCreateDto) {
+        public async Task<IActionResult> CreateVehicleInsurance(
+            [FromBody] VehicleInsuranceCreateDto vehicleInsuranceCreateDto
+        )
+        {
             try
             {
                 var currentUser = GetCurrentUser();
-                var existVehiclePolicy = _vehiclePolicyRepository.GetVehiclePolicyForAdmin(vehicleInsuranceCreateDto.VehiclePolicyId);
+                var existVehiclePolicy = _vehiclePolicyRepository.GetVehiclePolicyForAdmin(
+                    vehicleInsuranceCreateDto.VehiclePolicyId
+                );
                 var existUser = _userRepository.GetUser(vehicleInsuranceCreateDto.UserId);
 
                 if (existVehiclePolicy == null)
@@ -112,7 +119,7 @@ namespace Sem3Project.Controllers
         public IActionResult VerifyInsurance([FromQuery] string token)
         {
             var result = _vehicleInsuranceRepository.VerifyInsurance(token);
-            
+
             if (result == false)
             {
                 return BadRequest(new { message = "Invalid token" });
@@ -130,7 +137,10 @@ namespace Sem3Project.Controllers
             try
             {
                 var currentUser = GetCurrentUser();
-                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePolicies(paginationFilter, currentUser.Id);
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePolicies(
+                    paginationFilter,
+                    currentUser.Id
+                );
                 var metadata = new
                 {
                     vehicleInsurances.TotalCount,
@@ -146,17 +156,15 @@ namespace Sem3Project.Controllers
                 foreach (var vehicleInsurance in vehicleInsurances)
                 {
                     VehicleInsuranceDto data = _mapper.Map<VehicleInsuranceDto>(vehicleInsurance);
-                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(vehicleInsurance.VehiclePolicy);
+                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(
+                        vehicleInsurance.VehiclePolicy
+                    );
                     data.VehiclePolicy = vehiclePolicy;
-                    
+
                     vehicleInsuranceDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = vehicleInsuranceDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = vehicleInsuranceDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -167,12 +175,16 @@ namespace Sem3Project.Controllers
         [HttpGet]
         [Authorize(Roles = "Administrator,Staff")]
         public IActionResult GetInsurancesForAdmin(
-            [FromQuery] PaginationFilter paginationFilter, 
+            [FromQuery] PaginationFilter paginationFilter,
             [FromQuery] VehicleInsuranceFilter vehicleInsuranceFilter
-        ) {
+        )
+        {
             try
             {
-                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePoliciesForAdmin(paginationFilter, vehicleInsuranceFilter);
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePoliciesForAdmin(
+                    paginationFilter,
+                    vehicleInsuranceFilter
+                );
                 var metadata = new
                 {
                     vehicleInsurances.TotalCount,
@@ -187,8 +199,12 @@ namespace Sem3Project.Controllers
                 var vehicleInsuranceForAdminDtos = new List<VehicleInsuranceForAdminDto>();
                 foreach (var vehicleInsurance in vehicleInsurances)
                 {
-                    VehicleInsuranceForAdminDto data = _mapper.Map<VehicleInsuranceForAdminDto>(vehicleInsurance);
-                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(vehicleInsurance.VehiclePolicy);
+                    VehicleInsuranceForAdminDto data = _mapper.Map<VehicleInsuranceForAdminDto>(
+                        vehicleInsurance
+                    );
+                    VehiclePolicy vehiclePolicy = _mapper.Map<VehiclePolicy>(
+                        vehicleInsurance.VehiclePolicy
+                    );
                     data.VehiclePolicy = vehiclePolicy;
 
                     //Do user có liên kết tới bảng khác nên sẽ bị lỗi JSON
@@ -208,16 +224,79 @@ namespace Sem3Project.Controllers
 
                     vehicleInsuranceForAdminDtos.Add(data);
                 }
-                return Ok(new
-                {
-                    Data = vehicleInsuranceForAdminDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = vehicleInsuranceForAdminDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
+        }
+
+        [HttpPost("pay")]
+        public IActionResult Pay()
+        {
+            var accessToken = new OAuthTokenCredential(_config["Paypal:clientId"], _config["Paypal:secret"]).GetAccessToken();
+            var apiContext = new APIContext(accessToken);
+
+            var payment = Payment.Create(apiContext, new Payment
+            {
+                intent = "sale",
+                payer = new Payer
+                {
+                    payment_method = "paypal"
+                },
+                transactions = new List<Transaction>
+                {
+                    new Transaction
+                    {
+                        description = "Transaction description.",
+                        amount = new Amount
+                        {
+                            currency = "USD",
+                            total = "100.00",
+                            details = new Details
+                            {
+                                tax = "15",
+                                shipping = "10",
+                                subtotal = "75"
+                            }
+                        },
+                        item_list = new ItemList
+                        {
+                            items = new List<Item>
+                            {
+                                new Item
+                                {
+                                    name = "Item Name",
+                                    currency = "USD",
+                                    price = "15",
+                                    quantity = "5",
+                                    sku = "sku",
+                                }
+                            }
+                        }
+                    }
+                },
+                redirect_urls = new RedirectUrls
+                {
+                    return_url = "https://localhost:44312/swagger/index.html",
+                    cancel_url = "https://localhost:44312/swagger/index.html"
+                }
+            });
+            return Ok(new
+            {
+                accessToken,
+                payment
+            });
+        }
+
+        [HttpGet("check")]
+        public IActionResult Check()
+        {
+            var accessToken = new OAuthTokenCredential(_config["Paypal:clientId"], _config["Paypal:secret"]).GetAccessToken();
+            var apiContext = new APIContext(accessToken);
+            var payment = Payment.Get(apiContext, "PAYID-MIUHGKA54S39975UR0370404");
+            return Ok(payment);
         }
 
         private Identifier GetCurrentUser()

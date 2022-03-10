@@ -35,13 +35,19 @@ namespace Sem3Project.Repositories
         public PagedList<HomePolicy> GetHomePolicies(PaginationFilter paginationFilter)
         {
             return PagedList<HomePolicy>.ToPagedList(
-                _db.HomePolicies.OrderBy(hp => hp.CreatedDate).Where(hp => hp.IsReleased == true).ToList(),
+                _db.HomePolicies
+                    .OrderBy(hp => hp.CreatedDate)
+                    .Where(hp => hp.IsReleased == true)
+                    .ToList(),
                 paginationFilter.PageNumber,
                 paginationFilter.PageSize
             );
         }
 
-        public PagedList<HomePolicy> GetHomePoliciesForAdmin(PaginationFilter paginationFilter, HomePolicyFilter homePolicyFilter)
+        public PagedList<HomePolicy> GetHomePoliciesForAdmin(
+            PaginationFilter paginationFilter,
+            HomePolicyFilter homePolicyFilter
+        )
         {
             var x = _db.HomePolicies.OrderBy(hp => hp.CreatedDate);
 
@@ -72,7 +78,9 @@ namespace Sem3Project.Repositories
             try
             {
                 Guid guid = Guid.Parse(id);
-                var homePolicy = _db.HomePolicies.FirstOrDefault(hp => hp.Id == guid && hp.IsReleased == true);
+                var homePolicy = _db.HomePolicies.FirstOrDefault(
+                    hp => hp.Id == guid && hp.IsReleased == true
+                );
                 return homePolicy;
             }
             catch (Exception)
@@ -100,9 +108,15 @@ namespace Sem3Project.Repositories
             return _db.SaveChanges() > 0;
         }
 
-        public bool UpdateHomePolicy(HomePolicyUpdateDto homePolicyUpdateDto, string id, string modifiedBy)
+        public bool UpdateHomePolicy(
+            HomePolicyUpdateDto homePolicyUpdateDto,
+            string id,
+            string modifiedBy
+        )
         {
-            HomePolicy homePolicy = _db.HomePolicies.Where(hp => hp.Id == Guid.Parse(id)).FirstOrDefault();
+            HomePolicy homePolicy = _db.HomePolicies
+                .Where(hp => hp.Id == Guid.Parse(id))
+                .FirstOrDefault();
             homePolicy.Type = homePolicyUpdateDto.Type;
             homePolicy.Content = homePolicyUpdateDto.Content;
             homePolicy.AmountPaid = homePolicyUpdateDto.AmountPaid;

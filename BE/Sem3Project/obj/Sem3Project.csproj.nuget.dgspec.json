@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj": {}
+    "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj": {
+    "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
+        "projectUniqueName": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
         "projectName": "Sem3Project",
-        "projectPath": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
-        "packagesPath": "C:\\Users\\foet1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\obj\\",
+        "projectPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\foet1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,6 +82,10 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "PayPal": {
+              "target": "Package",
+              "version": "[1.9.1, )"
+            },
             "SendGrid": {
               "target": "Package",
               "version": "[9.25.3, )"
@@ -113,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

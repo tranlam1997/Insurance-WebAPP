@@ -21,7 +21,7 @@ namespace Sem3Project.Repositories.IRepository
         bool CreateVehiclePolicy(VehiclePolicyCreateDto vehiclePolicyCreateDto, string createdBy);
 
         bool UpdateVehiclePolicy(
-            VehiclePolicyUpdateDto vehiclePolicyUpdateDto, 
+            VehiclePolicyUpdateDto vehiclePolicyUpdateDto,
             string id,
             string modifiedBy
         );

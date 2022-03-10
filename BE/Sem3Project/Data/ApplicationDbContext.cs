@@ -3,7 +3,7 @@ using Sem3Project.Models;
 
 namespace Sem3Project.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

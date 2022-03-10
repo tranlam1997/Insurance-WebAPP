@@ -5,12 +5,9 @@ using System.Security.Claims;
 
 namespace Sem3Project.Helpers
 {
-    public class GetUserInfo: ControllerBase
+    public class GetUserInfo : ControllerBase
     {
-        public GetUserInfo()
-        {
-            
-        }
+        public GetUserInfo() { }
 
         public Identifier GetABC()
         {

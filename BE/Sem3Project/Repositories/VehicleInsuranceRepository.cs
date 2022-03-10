@@ -20,11 +20,12 @@ namespace Sem3Project.Repositories
         }
 
         public VehicleInsurance CreateVehicleInsurance(
-            VehicleInsuranceCreateDto vehicleInsuranceCreateDto, 
-            User user, 
+            VehicleInsuranceCreateDto vehicleInsuranceCreateDto,
+            User user,
             VehiclePolicy vehiclePolicy,
             string createdBy
-        ) {
+        )
+        {
             var vehicleInsurance = new VehicleInsurance();
 
             vehicleInsurance.PlateNumber = vehicleInsuranceCreateDto.PlateNumber;
@@ -48,7 +49,10 @@ namespace Sem3Project.Repositories
             return vehicleInsurance;
         }
 
-        public PagedList<VehicleInsurance> GetVehiclePolicies(PaginationFilter paginationFilter, string userId)
+        public PagedList<VehicleInsurance> GetVehiclePolicies(
+            PaginationFilter paginationFilter,
+            string userId
+        )
         {
             return PagedList<VehicleInsurance>.ToPagedList(
                 _db.VehicleInsurances
@@ -64,21 +68,31 @@ namespace Sem3Project.Repositories
         public PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(
             PaginationFilter paginationFilter,
             VehicleInsuranceFilter vehicleInsuranceFilter
-        ) {
+        )
+        {
             var x = _db.VehicleInsurances
                 .Include(vi => vi.VehiclePolicy)
                 .Include(vi => vi.User)
-                .OrderBy(vi => vi.CreatedDate); 
+                .OrderBy(vi => vi.CreatedDate);
 
             if (!string.IsNullOrWhiteSpace(vehicleInsuranceFilter.Search))
             {
-                x = (IOrderedQueryable<VehicleInsurance>)x.Where(u =>
-                        u.User.Email.ToLower().Contains(vehicleInsuranceFilter.Search.Trim().ToLower()) ||
-                        u.User.PhoneNumber.Contains(vehicleInsuranceFilter.Search.Trim().ToLower())
-                );
+                x =
+                    (IOrderedQueryable<VehicleInsurance>)x.Where(
+                        u =>
+                            u.User.Email
+                                .ToLower()
+                                .Contains(vehicleInsuranceFilter.Search.Trim().ToLower())
+                            || u.User.PhoneNumber.Contains(
+                                vehicleInsuranceFilter.Search.Trim().ToLower()
+                            )
+                    );
             }
 
-            if (vehicleInsuranceFilter.IsVerified == "true" || vehicleInsuranceFilter.IsVerified == "false")
+            if (
+                vehicleInsuranceFilter.IsVerified == "true"
+                || vehicleInsuranceFilter.IsVerified == "false"
+            )
             {
                 bool isVerified;
 

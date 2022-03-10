@@ -10,8 +10,8 @@ namespace Sem3Project.Repositories.IRepository
         PagedList<MedicalPolicy> GetMedicalPolicies(PaginationFilter paginationFilter);
 
         PagedList<MedicalPolicy> GetMedicalPoliciesForAdmin(
-           PaginationFilter paginationFilter,
-           MedicalPolicyFilter medicalPolicyFilter
+            PaginationFilter paginationFilter,
+            MedicalPolicyFilter medicalPolicyFilter
         );
 
         MedicalPolicy GetMedicalPolicy(string id);

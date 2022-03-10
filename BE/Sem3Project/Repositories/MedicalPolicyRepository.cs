@@ -18,7 +18,10 @@ namespace Sem3Project.Repositories
             _db = db;
         }
 
-        public bool CreateMedicalPolicy(MedicalPolicyCreateDto medicalPolicyCreateDto, string createdBy)
+        public bool CreateMedicalPolicy(
+            MedicalPolicyCreateDto medicalPolicyCreateDto,
+            string createdBy
+        )
         {
             var medicalPolicy = new MedicalPolicy();
             medicalPolicy.Type = medicalPolicyCreateDto.Type;
@@ -35,19 +38,26 @@ namespace Sem3Project.Repositories
         public PagedList<MedicalPolicy> GetMedicalPolicies(PaginationFilter paginationFilter)
         {
             return PagedList<MedicalPolicy>.ToPagedList(
-                _db.MedicalPolicies.OrderBy(mp => mp.CreatedDate).Where(mp => mp.IsReleased == true).ToList(),
+                _db.MedicalPolicies
+                    .OrderBy(mp => mp.CreatedDate)
+                    .Where(mp => mp.IsReleased == true)
+                    .ToList(),
                 paginationFilter.PageNumber,
                 paginationFilter.PageSize
             );
         }
 
         public PagedList<MedicalPolicy> GetMedicalPoliciesForAdmin(
-            PaginationFilter paginationFilter, 
+            PaginationFilter paginationFilter,
             MedicalPolicyFilter medicalPolicyFilter
-        ) {
+        )
+        {
             var x = _db.MedicalPolicies.OrderBy(mp => mp.CreatedDate);
 
-            if (medicalPolicyFilter.IsReleased == "true" || medicalPolicyFilter.IsReleased == "false")
+            if (
+                medicalPolicyFilter.IsReleased == "true"
+                || medicalPolicyFilter.IsReleased == "false"
+            )
             {
                 bool isReleased;
 
@@ -75,7 +85,9 @@ namespace Sem3Project.Repositories
             try
             {
                 Guid guid = Guid.Parse(id);
-                var medicalPolicy = _db.MedicalPolicies.FirstOrDefault(lp => lp.Id == guid && lp.IsReleased == true);
+                var medicalPolicy = _db.MedicalPolicies.FirstOrDefault(
+                    lp => lp.Id == guid && lp.IsReleased == true
+                );
                 return medicalPolicy;
             }
             catch (Exception)
@@ -104,11 +116,14 @@ namespace Sem3Project.Repositories
         }
 
         public bool UpdateMedicalPolicy(
-            MedicalPolicyUpdateDto medicalPolicyUpdateDto, 
-            string id, 
+            MedicalPolicyUpdateDto medicalPolicyUpdateDto,
+            string id,
             string modifiedBy
-        ) {
-            MedicalPolicy medicalPolicy = _db.MedicalPolicies.Where(lp => lp.Id == Guid.Parse(id)).FirstOrDefault();
+        )
+        {
+            MedicalPolicy medicalPolicy = _db.MedicalPolicies
+                .Where(lp => lp.Id == Guid.Parse(id))
+                .FirstOrDefault();
             if (medicalPolicy != null)
             {
                 medicalPolicy.Type = medicalPolicyUpdateDto.Type;
@@ -118,7 +133,10 @@ namespace Sem3Project.Repositories
                 medicalPolicy.ModifiedDate = DateTime.Now;
                 medicalPolicy.ModifiedBy = modifiedBy;
 
-                if (medicalPolicyUpdateDto.IsReleased == true && medicalPolicyUpdateDto.IsReleased == false)
+                if (
+                    medicalPolicyUpdateDto.IsReleased == true
+                    && medicalPolicyUpdateDto.IsReleased == false
+                )
                 {
                     medicalPolicy.ModifiedDate = DateTime.Now;
                 }

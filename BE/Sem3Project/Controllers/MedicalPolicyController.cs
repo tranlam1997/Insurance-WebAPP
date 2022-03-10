@@ -31,7 +31,8 @@ namespace Sem3Project.Controllers
             IMapper mapper,
             IUserRepository userRepository,
             IConfiguration config
-        ) {
+        )
+        {
             _medicalPolicyRepository = medicalPolicyRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -40,12 +41,17 @@ namespace Sem3Project.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public IActionResult CreateMedicalPolicy([FromBody] MedicalPolicyCreateDto medicalPolicyCreateDto)
+        public IActionResult CreateMedicalPolicy(
+            [FromBody] MedicalPolicyCreateDto medicalPolicyCreateDto
+        )
         {
             try
             {
                 var currentUser = GetCurrentUser();
-                var result = _medicalPolicyRepository.CreateMedicalPolicy(medicalPolicyCreateDto, currentUser.Id);
+                var result = _medicalPolicyRepository.CreateMedicalPolicy(
+                    medicalPolicyCreateDto,
+                    currentUser.Id
+                );
                 return Ok(new { message = "Create policy success" });
             }
             catch (ValidationException ex)
@@ -116,11 +122,7 @@ namespace Sem3Project.Controllers
                     medicalPolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = medicalPolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = medicalPolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -133,7 +135,8 @@ namespace Sem3Project.Controllers
         public IActionResult GetMedicalPoliciesForAdmin(
             [FromQuery] PaginationFilter paginationFilter,
             [FromQuery] MedicalPolicyFilter medicalPolicyFilter
-        ) {
+        )
+        {
             try
             {
                 var medicalPolicies = _medicalPolicyRepository.GetMedicalPoliciesForAdmin(
@@ -191,11 +194,7 @@ namespace Sem3Project.Controllers
                     medicalPolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = medicalPolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = medicalPolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -269,7 +268,7 @@ namespace Sem3Project.Controllers
                 if (medicalPolicy == null)
                 {
                     return NotFound(new { message = "Medical policy not found" });
-                } 
+                }
                 else
                 {
                     var medicalPolicyDto = _mapper.Map<MedicalPolicyDto>(medicalPolicy);
@@ -319,7 +318,10 @@ namespace Sem3Project.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
-        public IActionResult UpdateMedicalPolicy([FromBody] MedicalPolicyUpdateDto medicalPolicyUpdateDto, string id)
+        public IActionResult UpdateMedicalPolicy(
+            [FromBody] MedicalPolicyUpdateDto medicalPolicyUpdateDto,
+            string id
+        )
         {
             try
             {

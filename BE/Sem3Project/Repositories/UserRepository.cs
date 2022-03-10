@@ -31,10 +31,14 @@ namespace Sem3Project.Repositories
             else
             {
                 return PagedList<User>.ToPagedList(
-                    _db.Users.OrderBy(u => u.CreatedDate).Where(u => 
-                        u.Email.ToLower().Contains(search.Trim().ToLower()) ||
-                        u.PhoneNumber.Contains(search.Trim().ToLower())
-                    ).ToList(),
+                    _db.Users
+                        .OrderBy(u => u.CreatedDate)
+                        .Where(
+                            u =>
+                                u.Email.ToLower().Contains(search.Trim().ToLower())
+                                || u.PhoneNumber.Contains(search.Trim().ToLower())
+                        )
+                        .ToList(),
                     paginationFilter.PageNumber,
                     paginationFilter.PageSize
                 );
@@ -66,7 +70,7 @@ namespace Sem3Project.Repositories
             if (_db.Users.Any(u => u.Email == userRegisterDto.Email))
             {
                 throw new Exception("Email already taken");
-            } 
+            }
             else
             {
                 var user = new User();
@@ -85,7 +89,6 @@ namespace Sem3Project.Repositories
                 _db.Users.Add(user);
                 return Save();
             }
-            
         }
 
         public bool UpdateUser(UserUpdateDto userUpdateDto, string id)
@@ -102,7 +105,7 @@ namespace Sem3Project.Repositories
                 existUser.ModifiedDate = DateTime.Now;
                 _db.Users.Update(existUser);
                 return Save();
-            } 
+            }
             else
             {
                 return false;

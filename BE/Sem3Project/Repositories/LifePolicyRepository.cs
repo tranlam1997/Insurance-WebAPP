@@ -36,7 +36,10 @@ namespace Sem3Project.Repositories
         public PagedList<LifePolicy> GetLifePolicies(PaginationFilter paginationFilter)
         {
             return PagedList<LifePolicy>.ToPagedList(
-                _db.LifePolicies.OrderBy(lp => lp.CreatedDate).Where(lp => lp.IsReleased == true).ToList(),
+                _db.LifePolicies
+                    .OrderBy(lp => lp.CreatedDate)
+                    .Where(lp => lp.IsReleased == true)
+                    .ToList(),
                 paginationFilter.PageNumber,
                 paginationFilter.PageSize
             );
@@ -45,7 +48,8 @@ namespace Sem3Project.Repositories
         public PagedList<LifePolicy> GetLifePoliciesForAdmin(
             PaginationFilter paginationFilter,
             LifePolicyFilter lifePolicyFilter
-        ) {
+        )
+        {
             var x = _db.LifePolicies.OrderBy(lp => lp.CreatedDate);
 
             if (lifePolicyFilter.IsReleased == "true" || lifePolicyFilter.IsReleased == "false")
@@ -76,7 +80,9 @@ namespace Sem3Project.Repositories
             try
             {
                 Guid guid = Guid.Parse(id);
-                var lifePolicy = _db.LifePolicies.FirstOrDefault(lp => lp.Id == guid && lp.IsReleased == true);
+                var lifePolicy = _db.LifePolicies.FirstOrDefault(
+                    lp => lp.Id == guid && lp.IsReleased == true
+                );
                 return lifePolicy;
             }
             catch (Exception)
@@ -105,11 +111,14 @@ namespace Sem3Project.Repositories
         }
 
         public bool UpdateLifePolicy(
-            LifePolicyUpdateDto lifePolicyUpdateDto, 
-            string id, 
+            LifePolicyUpdateDto lifePolicyUpdateDto,
+            string id,
             string modifiedBy
-         ) {
-            LifePolicy lifePolicy = _db.LifePolicies.Where(lp => lp.Id == Guid.Parse(id)).FirstOrDefault();
+        )
+        {
+            LifePolicy lifePolicy = _db.LifePolicies
+                .Where(lp => lp.Id == Guid.Parse(id))
+                .FirstOrDefault();
             if (lifePolicy != null)
             {
                 lifePolicy.Type = lifePolicyUpdateDto.Type;
@@ -127,7 +136,8 @@ namespace Sem3Project.Repositories
 
                 _db.LifePolicies.Update(lifePolicy);
                 return Save();
-            } else
+            }
+            else
             {
                 return false;
             }

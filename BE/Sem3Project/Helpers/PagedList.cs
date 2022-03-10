@@ -38,7 +38,11 @@ namespace Sem3Project.Helpers
             throw new NotImplementedException();
         }
 
-        internal static PagedList<VehicleInsurance> ToPagedList(object p, int pageNumber, int pageSize)
+        internal static PagedList<VehicleInsurance> ToPagedList(
+            object p,
+            int pageNumber,
+            int pageSize
+        )
         {
             throw new NotImplementedException();
         }

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
+using PayPal.Api;
 
 namespace Sem3Project.Controllers
 {
@@ -31,7 +32,8 @@ namespace Sem3Project.Controllers
             IMapper mapper,
             IUserRepository userRepository,
             IConfiguration config
-        ) {
+        )
+        {
             _homePolicyRepository = homePolicyRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -39,13 +41,17 @@ namespace Sem3Project.Controllers
         }
 
         [HttpPost]
+        //[ClaimRequirement(ClaimTypes.Role, "Administrator,Staff")]
         [Authorize(Roles = "Administrator")]
         public IActionResult CreateHomePolicy([FromBody] HomePolicyCreateDto homePolicyCreateDto)
         {
             try
             {
                 var currentUser = GetCurrentUser();
-                var result = _homePolicyRepository.CreateHomePolicy(homePolicyCreateDto, currentUser.Id);
+                var result = _homePolicyRepository.CreateHomePolicy(
+                    homePolicyCreateDto,
+                    currentUser.Id
+                );
                 return Ok(new { message = "Create policy success" });
             }
             catch (ValidationException ex)
@@ -116,11 +122,7 @@ namespace Sem3Project.Controllers
                     homePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = homePolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = homePolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -133,11 +135,12 @@ namespace Sem3Project.Controllers
         public IActionResult GetHomePoliciesForAdmin(
             [FromQuery] PaginationFilter paginationFilter,
             [FromQuery] HomePolicyFilter homePolicyFilter
-        ) {
+        )
+        {
             try
             {
                 var homePolicies = _homePolicyRepository.GetHomePoliciesForAdmin(
-                    paginationFilter, 
+                    paginationFilter,
                     homePolicyFilter
                 );
                 var metadata = new
@@ -191,11 +194,7 @@ namespace Sem3Project.Controllers
                     homePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = homePolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = homePolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -213,7 +212,7 @@ namespace Sem3Project.Controllers
                 if (homePolicy == null)
                 {
                     return NotFound(new { message = "Home policy not found" });
-                } 
+                }
                 else
                 {
                     var homePolicyDto = _mapper.Map<HomePolicyDto>(homePolicy);
@@ -266,6 +265,7 @@ namespace Sem3Project.Controllers
             try
             {
                 var homePolicy = _homePolicyRepository.GetHomePolicyForAdmin(id);
+
                 if (homePolicy == null)
                 {
                     return NotFound(new { message = "Home policy not found" });
@@ -319,7 +319,10 @@ namespace Sem3Project.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
-        public IActionResult UpdateHomePolicy([FromBody] HomePolicyUpdateDto homePolicyUpdateDto, string id)
+        public IActionResult UpdateHomePolicy(
+            [FromBody] HomePolicyUpdateDto homePolicyUpdateDto,
+            string id
+        )
         {
             try
             {

@@ -30,7 +30,8 @@ namespace Sem3Project.Controllers
             IMapper mapper,
             IUserRepository userRepository,
             IConfiguration config
-        ) {
+        )
+        {
             _lifePolicyRepository = lifePolicyRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -44,7 +45,10 @@ namespace Sem3Project.Controllers
             try
             {
                 var currentUser = GetCurrentUser();
-                var result = _lifePolicyRepository.CreateLifePolicy(lifePolicyCreateDto, currentUser.Id);
+                var result = _lifePolicyRepository.CreateLifePolicy(
+                    lifePolicyCreateDto,
+                    currentUser.Id
+                );
                 return Ok(new { message = "Create policy success" });
             }
             catch (ValidationException ex)
@@ -116,12 +120,7 @@ namespace Sem3Project.Controllers
                     lifePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = lifePolicyDtos,
-                    metadata = metadata
-                });
-
+                return Ok(new { Data = lifePolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -134,7 +133,8 @@ namespace Sem3Project.Controllers
         public IActionResult GetLifePoliciesForAdmin(
             [FromQuery] PaginationFilter paginationFilter,
             [FromQuery] LifePolicyFilter lifePolicyFilter
-        ) {
+        )
+        {
             try
             {
                 var lifePolicies = _lifePolicyRepository.GetLifePoliciesForAdmin(
@@ -195,11 +195,7 @@ namespace Sem3Project.Controllers
                     lifePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = lifePolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = lifePolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -267,8 +263,8 @@ namespace Sem3Project.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles ="Administrator,Staff")]
-        public IActionResult GetLifePolicyForAdmin(string id) 
+        [Authorize(Roles = "Administrator,Staff")]
+        public IActionResult GetLifePolicyForAdmin(string id)
         {
             try
             {
@@ -326,7 +322,10 @@ namespace Sem3Project.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
-        public IActionResult UpdateLifePolicy([FromBody] LifePolicyUpdateDto lifePolicyUpdateDto, string id)
+        public IActionResult UpdateLifePolicy(
+            [FromBody] LifePolicyUpdateDto lifePolicyUpdateDto,
+            string id
+        )
         {
             try
             {

@@ -31,7 +31,8 @@ namespace Sem3Project.Controllers
             IMapper mapper,
             IUserRepository userRepository,
             IConfiguration config
-        ) {
+        )
+        {
             _vehiclePolicyRepository = vehiclePolicyRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -40,18 +41,23 @@ namespace Sem3Project.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public IActionResult CreateVehiclePolicy([FromBody] VehiclePolicyCreateDto vehiclePolicyCreateDto)
+        public IActionResult CreateVehiclePolicy(
+            [FromBody] VehiclePolicyCreateDto vehiclePolicyCreateDto
+        )
         {
             try
             {
                 var currentUser = GetCurrentUser();
-                var result = _vehiclePolicyRepository.CreateVehiclePolicy(vehiclePolicyCreateDto, currentUser.Id);
+                var result = _vehiclePolicyRepository.CreateVehiclePolicy(
+                    vehiclePolicyCreateDto,
+                    currentUser.Id
+                );
                 return Ok(new { message = "Create policy success" });
-            } 
+            }
             catch (ValidationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
@@ -121,12 +127,8 @@ namespace Sem3Project.Controllers
                     vehiclePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = vehiclePolicyDtos,
-                    metadata = metadata
-                });
-            } 
+                return Ok(new { Data = vehiclePolicyDtos, metadata = metadata });
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
@@ -136,13 +138,14 @@ namespace Sem3Project.Controllers
         [HttpGet]
         [Authorize(Roles = "Administrator,Staff")]
         public IActionResult GetVehiclePoliciesForAdmin(
-            [FromQuery] PaginationFilter paginationFilter, 
+            [FromQuery] PaginationFilter paginationFilter,
             [FromQuery] VehiclePolicyFilter vehiclePolicyFilter
-        ) {
+        )
+        {
             try
             {
                 var vehiclePolicies = _vehiclePolicyRepository.GetVehiclePoliciesForAdmin(
-                    paginationFilter, 
+                    paginationFilter,
                     vehiclePolicyFilter
                 );
                 var metadata = new
@@ -177,7 +180,6 @@ namespace Sem3Project.Controllers
                                 Role = user.Role,
                             };
                         }
-
                     }
 
                     if (vehiclePolicy.ModifiedBy != null)
@@ -200,11 +202,7 @@ namespace Sem3Project.Controllers
                     vehiclePolicyDtos.Add(data);
                 }
 
-                return Ok(new
-                {
-                    Data = vehiclePolicyDtos,
-                    metadata = metadata
-                });
+                return Ok(new { Data = vehiclePolicyDtos, metadata = metadata });
             }
             catch (Exception ex)
             {
@@ -223,12 +221,12 @@ namespace Sem3Project.Controllers
             try
             {
                 var vehiclePolicy = _vehiclePolicyRepository.GetVehiclePolicy(id);
-                
+
                 if (vehiclePolicy == null)
                 {
                     return NotFound(new { message = "Vehicle policy not found" });
-                } 
-                else 
+                }
+                else
                 {
                     var vehiclePolicyDto = _mapper.Map<VehiclePolicyDto>(vehiclePolicy);
 
@@ -268,8 +266,7 @@ namespace Sem3Project.Controllers
 
                     return Ok(new { Data = vehiclePolicyDto });
                 }
-                
-            } 
+            }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
@@ -283,12 +280,12 @@ namespace Sem3Project.Controllers
             try
             {
                 var vehiclePolicy = _vehiclePolicyRepository.GetVehiclePolicyForAdmin(id);
-                
+
                 if (vehiclePolicy == null)
                 {
                     return NotFound(new { message = "Vehicle policy not found" });
-                } 
-                else 
+                }
+                else
                 {
                     var vehiclePolicyDto = _mapper.Map<VehiclePolicyDto>(vehiclePolicy);
 
@@ -328,7 +325,6 @@ namespace Sem3Project.Controllers
 
                     return Ok(new { Data = vehiclePolicyDto });
                 }
-                
             }
             catch (Exception ex)
             {
@@ -338,14 +334,17 @@ namespace Sem3Project.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
-        public IActionResult UpdateVehiclePolicy([FromBody] VehiclePolicyUpdateDto vehiclePolicyUpdateDto, string id)
+        public IActionResult UpdateVehiclePolicy(
+            [FromBody] VehiclePolicyUpdateDto vehiclePolicyUpdateDto,
+            string id
+        )
         {
             try
             {
                 var currentUser = GetCurrentUser();
                 var result = _vehiclePolicyRepository.UpdateVehiclePolicy(
-                    vehiclePolicyUpdateDto, 
-                    id, 
+                    vehiclePolicyUpdateDto,
+                    id,
                     currentUser.Id
                 );
 
@@ -365,7 +364,7 @@ namespace Sem3Project.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            } 
+            }
         }
 
         private Identifier GetCurrentUser()

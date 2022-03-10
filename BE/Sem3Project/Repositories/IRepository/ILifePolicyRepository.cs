@@ -10,8 +10,8 @@ namespace Sem3Project.Repositories
         PagedList<LifePolicy> GetLifePolicies(PaginationFilter paginationFilter);
 
         PagedList<LifePolicy> GetLifePoliciesForAdmin(
-           PaginationFilter paginationFilter,
-           LifePolicyFilter lifePolicyFilter
+            PaginationFilter paginationFilter,
+            LifePolicyFilter lifePolicyFilter
         );
 
         LifePolicy GetLifePolicy(string id);

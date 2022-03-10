@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Sem3Project.Repositories
 {
-    public class VehiclePolicyRepository: IVehiclePolicyRepository
+    public class VehiclePolicyRepository : IVehiclePolicyRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -18,9 +18,11 @@ namespace Sem3Project.Repositories
             _db = db;
         }
 
-        public bool CreateVehiclePolicy(VehiclePolicyCreateDto vehiclePolicyCreateDto, string createdBy)
+        public bool CreateVehiclePolicy(
+            VehiclePolicyCreateDto vehiclePolicyCreateDto,
+            string createdBy
+        )
         {
-            
             var vehiclePolicy = new VehiclePolicy();
 
             vehiclePolicy.Type = vehiclePolicyCreateDto.Type;
@@ -37,28 +39,36 @@ namespace Sem3Project.Repositories
             return Save();
         }
 
-        public PagedList<VehiclePolicy> GetVehiclePolicies(PaginationFilter paginationFilter) {
+        public PagedList<VehiclePolicy> GetVehiclePolicies(PaginationFilter paginationFilter)
+        {
             return PagedList<VehiclePolicy>.ToPagedList(
-                    _db.VehiclePolicies.OrderBy(vp => vp.CreatedDate).Where(vp => vp.IsReleased == true).ToList(),
-                    paginationFilter.PageNumber,
-                    paginationFilter.PageSize
+                _db.VehiclePolicies
+                    .OrderBy(vp => vp.CreatedDate)
+                    .Where(vp => vp.IsReleased == true)
+                    .ToList(),
+                paginationFilter.PageNumber,
+                paginationFilter.PageSize
             );
         }
 
         public PagedList<VehiclePolicy> GetVehiclePoliciesForAdmin(
-            PaginationFilter paginationFilter, 
+            PaginationFilter paginationFilter,
             VehiclePolicyFilter vehiclePolicyFilter
-        ) {
+        )
+        {
             var x = _db.VehiclePolicies.OrderBy(vp => vp.CreatedDate);
 
-            if (vehiclePolicyFilter.IsReleased == "true" || vehiclePolicyFilter.IsReleased == "false")
+            if (
+                vehiclePolicyFilter.IsReleased == "true"
+                || vehiclePolicyFilter.IsReleased == "false"
+            )
             {
                 bool isReleased;
 
                 if (vehiclePolicyFilter.IsReleased == "true")
                 {
                     isReleased = true;
-                } 
+                }
                 else
                 {
                     isReleased = false;
@@ -95,7 +105,9 @@ namespace Sem3Project.Repositories
             try
             {
                 Guid guid = Guid.Parse(id);
-                var vehiclePolicy = _db.VehiclePolicies.FirstOrDefault(vp => vp.Id == guid && vp.IsReleased == true);
+                var vehiclePolicy = _db.VehiclePolicies.FirstOrDefault(
+                    vp => vp.Id == guid && vp.IsReleased == true
+                );
                 return vehiclePolicy;
             }
             catch (Exception)
@@ -124,11 +136,14 @@ namespace Sem3Project.Repositories
         }
 
         public bool UpdateVehiclePolicy(
-            VehiclePolicyUpdateDto vehiclePolicyUpdateDto, 
+            VehiclePolicyUpdateDto vehiclePolicyUpdateDto,
             string id,
             string modifiedBy
-        ) {
-            VehiclePolicy vehiclePolicy = _db.VehiclePolicies.Where(vp => vp.Id == Guid.Parse(id)).FirstOrDefault();
+        )
+        {
+            VehiclePolicy vehiclePolicy = _db.VehiclePolicies
+                .Where(vp => vp.Id == Guid.Parse(id))
+                .FirstOrDefault();
 
             if (vehiclePolicy != null)
             {
@@ -148,7 +163,7 @@ namespace Sem3Project.Repositories
 
                 _db.VehiclePolicies.Update(vehiclePolicy);
                 return Save();
-            } 
+            }
             else
             {
                 return false;

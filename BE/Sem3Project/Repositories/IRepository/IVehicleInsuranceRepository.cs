@@ -8,15 +8,21 @@ namespace Sem3Project.Repositories.IRepository
     public interface IVehicleInsuranceRepository
     {
         VehicleInsurance CreateVehicleInsurance(
-            VehicleInsuranceCreateDto vehicleInsuranceCreateDto, 
-            User user, 
+            VehicleInsuranceCreateDto vehicleInsuranceCreateDto,
+            User user,
             VehiclePolicy vehiclePolicy,
             string createdBy
         );
 
-        PagedList<VehicleInsurance> GetVehiclePolicies(PaginationFilter paginationFilter, string userId);
+        PagedList<VehicleInsurance> GetVehiclePolicies(
+            PaginationFilter paginationFilter,
+            string userId
+        );
 
-        PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(PaginationFilter paginationFilter, VehicleInsuranceFilter vehicleInsuranceFilter);
+        PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(
+            PaginationFilter paginationFilter,
+            VehicleInsuranceFilter vehicleInsuranceFilter
+        );
 
         bool VerifyInsurance(string token);
 

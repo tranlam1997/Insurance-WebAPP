@@ -595,6 +595,18 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "PayPal/1.9.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/net451/PayPal.dll": {}
+        },
+        "runtime": {
+          "lib/net451/PayPal.dll": {}
+        }
+      },
       "runtime.native.System/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2608,6 +2620,23 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "PayPal/1.9.1": {
+      "sha512": "b3vq6Lc9CwSooCX2tsZ02zb7E/K/cA6EILCoMynue+ZeVuitJNqt0YwxPnp7uN0Pccob02oDlpAjRLH+GRCRxA==",
+      "type": "package",
+      "path": "paypal/1.9.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/PayPal.dll",
+        "lib/net40/PayPal.xml",
+        "lib/net45/PayPal.dll",
+        "lib/net45/PayPal.xml",
+        "lib/net451/PayPal.dll",
+        "lib/net451/PayPal.xml",
+        "paypal.1.9.1.nupkg.sha512",
+        "paypal.nuspec"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -6034,25 +6063,26 @@
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
       "Microsoft.IdentityModel.Tokens >= 6.15.1",
       "Newtonsoft.Json >= 13.0.1",
+      "PayPal >= 1.9.1",
       "SendGrid >= 9.25.3",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "System.IdentityModel.Tokens.Jwt >= 6.15.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\foet1\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
+      "projectUniqueName": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
       "projectName": "Sem3Project",
-      "projectPath": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
-      "packagesPath": "C:\\Users\\foet1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\foet1\\Desktop\\New folder (8)\\ProjectSem3FPT\\BE\\Sem3Project\\obj\\",
+      "projectPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\Sem3Project.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\ProjectSem3FPT\\BE\\Sem3Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\foet1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6120,6 +6150,10 @@
             "target": "Package",
             "version": "[13.0.1, )"
           },
+          "PayPal": {
+            "target": "Package",
+            "version": "[1.9.1, )"
+          },
           "SendGrid": {
             "target": "Package",
             "version": "[9.25.3, )"
@@ -6151,8 +6185,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'PayPal 1.9.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "PayPal",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
