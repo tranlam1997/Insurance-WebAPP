@@ -21,6 +21,8 @@ namespace Sem3Project.Models
 
         public DateTime CreatedDate { get; set; }
 
+        public DateTime ModifiedDate { get; set; }
+
         public string Remark { get; set; }
 
         public string Status { get; set; }  
@@ -34,5 +36,9 @@ namespace Sem3Project.Models
         public InsuranceType InsuranceType { get; set; }
 
         public string VerifiedBy { get; set; }
+
+        public DateTime? VerifiedTime { get; set; }
+
+        public string PaymentId { get; set; }
     }
 }

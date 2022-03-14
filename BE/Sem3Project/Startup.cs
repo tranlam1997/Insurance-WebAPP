@@ -87,6 +87,7 @@ namespace Sem3Project
             services.AddScoped<IHomePolicyRepository, HomePolicyRepository>();
             services.AddScoped<IMedicalPolicyRepository, MedicalPolicyRepository>();
             services.AddScoped<IVehicleInsuranceRepository, VehicleInsuranceRepository>();
+            services.AddScoped<IReceiptRepository, ReceiptRepository>();
 
             // SendGrid
             services.AddTransient<IMailService, SendgridMailService>();

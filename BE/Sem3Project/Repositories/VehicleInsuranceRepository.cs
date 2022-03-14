@@ -49,7 +49,24 @@ namespace Sem3Project.Repositories
             return vehicleInsurance;
         }
 
-        public PagedList<VehicleInsurance> GetVehiclePolicies(
+        public VehicleInsurance GetVehicleInsurance(string id, string userId)
+        {
+            try
+            {
+                Guid vehicleInsuranceGuid = Guid.Parse(id);
+                Guid userGuid = Guid.Parse(userId);
+                var vehicleInsurance = _db.VehicleInsurances
+                    .Include(vi => vi.VehiclePolicy)
+                    .FirstOrDefault(vi => vi.Id == vehicleInsuranceGuid && vi.User.Id == userGuid);
+                return vehicleInsurance;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public PagedList<VehicleInsurance> GetVehicleInsurances(
             PaginationFilter paginationFilter,
             string userId
         )
@@ -65,7 +82,7 @@ namespace Sem3Project.Repositories
             );
         }
 
-        public PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(
+        public PagedList<VehicleInsurance> GetVehicleInsurancesForAdmin(
             PaginationFilter paginationFilter,
             VehicleInsuranceFilter vehicleInsuranceFilter
         )

@@ -90,12 +90,15 @@ namespace Sem3Project.Migrations
                     Balance = table.Column<int>(type: "int", nullable: false),
                     PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InsuranceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InsuranceType = table.Column<int>(type: "int", nullable: false),
-                    VerifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VerifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VerifiedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PaymentId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

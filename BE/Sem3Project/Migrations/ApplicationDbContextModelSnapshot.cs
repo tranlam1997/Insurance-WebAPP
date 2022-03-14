@@ -370,6 +370,12 @@ namespace Sem3Project.Migrations
                     b.Property<int>("MinimumPayment")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PaymentType")
                         .HasColumnType("nvarchar(max)");
 
@@ -384,6 +390,9 @@ namespace Sem3Project.Migrations
 
                     b.Property<string>("VerifiedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VerifiedTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

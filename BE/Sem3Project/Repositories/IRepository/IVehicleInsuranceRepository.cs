@@ -14,12 +14,14 @@ namespace Sem3Project.Repositories.IRepository
             string createdBy
         );
 
-        PagedList<VehicleInsurance> GetVehiclePolicies(
+        VehicleInsurance GetVehicleInsurance(string id, string userId);
+
+        PagedList<VehicleInsurance> GetVehicleInsurances(
             PaginationFilter paginationFilter,
             string userId
         );
 
-        PagedList<VehicleInsurance> GetVehiclePoliciesForAdmin(
+        PagedList<VehicleInsurance> GetVehicleInsurancesForAdmin(
             PaginationFilter paginationFilter,
             VehicleInsuranceFilter vehicleInsuranceFilter
         );

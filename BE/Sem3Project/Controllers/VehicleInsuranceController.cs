@@ -28,6 +28,7 @@ namespace Sem3Project.Controllers
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
         private readonly IVehiclePolicyRepository _vehiclePolicyRepository;
+        private readonly IReceiptRepository _receiptRepository;
         private IConfiguration _config;
         private IMailService _mailService;
 
@@ -36,6 +37,7 @@ namespace Sem3Project.Controllers
             IMapper mapper,
             IUserRepository userRepository,
             IVehiclePolicyRepository vehiclePolicyRepository,
+            IReceiptRepository receiptRepository,
             IConfiguration config,
             IMailService mailService
         )
@@ -44,6 +46,7 @@ namespace Sem3Project.Controllers
             _mapper = mapper;
             _userRepository = userRepository;
             _vehiclePolicyRepository = vehiclePolicyRepository;
+            _receiptRepository = receiptRepository;
             _config = config;
             _mailService = mailService;
         }
@@ -137,7 +140,7 @@ namespace Sem3Project.Controllers
             try
             {
                 var currentUser = GetCurrentUser();
-                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePolicies(
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehicleInsurances(
                     paginationFilter,
                     currentUser.Id
                 );
@@ -181,7 +184,7 @@ namespace Sem3Project.Controllers
         {
             try
             {
-                var vehicleInsurances = _vehicleInsuranceRepository.GetVehiclePoliciesForAdmin(
+                var vehicleInsurances = _vehicleInsuranceRepository.GetVehicleInsurancesForAdmin(
                     paginationFilter,
                     vehicleInsuranceFilter
                 );
@@ -232,71 +235,152 @@ namespace Sem3Project.Controllers
             }
         }
 
-        [HttpPost("pay")]
-        public IActionResult Pay()
+        [HttpGet("{id}/logged")]
+        [Authorize]
+        public IActionResult GetInsurance(string id)
         {
-            var accessToken = new OAuthTokenCredential(_config["Paypal:clientId"], _config["Paypal:secret"]).GetAccessToken();
-            var apiContext = new APIContext(accessToken);
-
-            var payment = Payment.Create(apiContext, new Payment
+            try
             {
-                intent = "sale",
-                payer = new Payer
+                var currentUser = GetCurrentUser();
+                var vehicleInsurance = _vehicleInsuranceRepository.GetVehicleInsurance(
+                    id,
+                    currentUser.Id
+                );
+
+                return Ok(vehicleInsurance);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
+        [HttpPost("{id}/pay")]
+        [Authorize]
+        public IActionResult Pay(string id, [FromBody] PaymentMethodDto paymentMethodDto)
+        {
+            try
+            {
+                var currentUser = GetCurrentUser();
+                var vehicleInsurance = _vehicleInsuranceRepository.GetVehicleInsurance(
+                    id,
+                    currentUser.Id
+                );
+
+                if (vehicleInsurance == null)
                 {
-                    payment_method = "paypal"
-                },
-                transactions = new List<Transaction>
+                    return NotFound(new { message = "Vehicle insurance not found" });
+                }
+
+                switch (paymentMethodDto.Method)
                 {
-                    new Transaction
+                    case "paypal":
                     {
-                        description = "Transaction description.",
-                        amount = new Amount
-                        {
-                            currency = "USD",
-                            total = "100.00",
-                            details = new Details
+                        var accessToken = new OAuthTokenCredential(
+                            _config["Paypal:clientId"],
+                            _config["Paypal:secret"]
+                        ).GetAccessToken();
+                        var apiContext = new APIContext(accessToken);
+
+                        var payment = Payment.Create(
+                            apiContext,
+                            new Payment
                             {
-                                tax = "15",
-                                shipping = "10",
-                                subtotal = "75"
-                            }
-                        },
-                        item_list = new ItemList
-                        {
-                            items = new List<Item>
-                            {
-                                new Item
+                                intent = "sale",
+                                payer = new Payer { payment_method = "paypal" },
+                                transactions = new List<Transaction>
                                 {
-                                    name = "Item Name",
-                                    currency = "USD",
-                                    price = "15",
-                                    quantity = "5",
-                                    sku = "sku",
+                                    new Transaction
+                                    {
+                                        description = "Transaction description.",
+                                        amount = new Amount
+                                        {
+                                            currency = "USD",
+                                            total = "100.00",
+                                            details = new Details
+                                            {
+                                                tax = "15",
+                                                shipping = "10",
+                                                subtotal = "75"
+                                            }
+                                        },
+                                        item_list = new ItemList
+                                        {
+                                            items = new List<Item>
+                                            {
+                                                new Item
+                                                {
+                                                    name = "Item Name",
+                                                    currency = "USD",
+                                                    price = "15",
+                                                    quantity = "5",
+                                                    sku = "sku",
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                redirect_urls = new RedirectUrls
+                                {
+                                    return_url = "https://localhost:44312/api/VehicleInsurance/check",
+                                    cancel_url = "https://localhost:44312/swagger/index.html"
                                 }
                             }
-                        }
+                        );
+
+                        ReceiptCreateDto receiptCreateDto = new ReceiptCreateDto()
+                        {
+                            MinimumPayment = Convert.ToInt32(
+                                double.Parse(payment.transactions[0].amount.total)
+                            ),
+                            Balance = Convert.ToInt32(
+                                double.Parse(payment.transactions[0].amount.total)
+                            ),
+                            PaymentType = "paypal",
+                            UserId = currentUser.Id,
+                            InsuranceId = id.ToLower(),
+                            InsuranceType = Enum.InsuranceType.Vehicle,
+                            PaymentId = payment.id,
+                        };
+
+                        _receiptRepository.CreateReceipt(receiptCreateDto);
+
+                        return Ok(new { accessToken, payment, receiptCreateDto });
                     }
-                },
-                redirect_urls = new RedirectUrls
-                {
-                    return_url = "https://localhost:44312/swagger/index.html",
-                    cancel_url = "https://localhost:44312/swagger/index.html"
+                    default:
+                    {
+                        return NotFound(new { message = "Not found supplied payment method" });
+                    }
                 }
-            });
-            return Ok(new
+            }
+            catch (Exception ex)
             {
-                accessToken,
-                payment
-            });
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
 
         [HttpGet("check")]
-        public IActionResult Check()
+        public IActionResult Check([FromQuery] string paymentId, [FromQuery] string payerId)
         {
-            var accessToken = new OAuthTokenCredential(_config["Paypal:clientId"], _config["Paypal:secret"]).GetAccessToken();
-            var apiContext = new APIContext(accessToken);
-            var payment = Payment.Get(apiContext, "PAYID-MIUHGKA54S39975UR0370404");
-            return Ok(payment);
+            try
+            {
+                var accessToken = new OAuthTokenCredential(
+                    _config["Paypal:clientId"],
+                    _config["Paypal:secret"]
+                ).GetAccessToken();
+                var apiContext = new APIContext(accessToken);
+                var paymentExecution = new PaymentExecution()
+                {
+                    payer_id = payerId,
+                };
+                Payment payment = new Payment() { id = paymentId };
+                payment.Execute(apiContext, paymentExecution);
+                return Ok(new { message = "Successful payment" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
 
         private Identifier GetCurrentUser()

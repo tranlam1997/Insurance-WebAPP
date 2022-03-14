@@ -10,7 +10,7 @@ using Sem3Project.Data;
 namespace Sem3Project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220221022645_AddSem3ToDb")]
+    [Migration("20220310101921_AddSem3ToDb")]
     partial class AddSem3ToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -372,6 +372,12 @@ namespace Sem3Project.Migrations
                     b.Property<int>("MinimumPayment")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PaymentType")
                         .HasColumnType("nvarchar(max)");
 
@@ -386,6 +392,9 @@ namespace Sem3Project.Migrations
 
                     b.Property<string>("VerifiedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VerifiedTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
