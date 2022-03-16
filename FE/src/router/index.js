@@ -10,18 +10,15 @@ import Rtl from "@/views/Rtl.vue";
 import SignIn from "@/views/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 import AdminBoard from "@/views/AdminBoard.vue";
-import Details from "@/views/Details.vue"
 
 const Home = () => import('@/views/Home.vue');
 const About = () => import('@/views/About.vue');
 const Header = () => import('@/components/Header.vue');
 const Footer = () => import('@/components/Footer.vue');
 const Profile = () => import('@/views/Profile.vue'); 
+const Details = () => import('@/views/Details.vue');
 const ChangePassword = () => import('@/components/ChangePassword.vue')
 const VehicleInsurance = () => import('@/views/VehicleInsurance.vue')
-const MedicalInsurance = () => import('@/views/MedicalInsurance.vue')
-const LifeInsurance = () => import('@/views/LifeInsurance.vue')
-const HomeInsurance = () => import('@/views/HomeInsurance.vue')
 
 const routes = [
   {
@@ -50,66 +47,21 @@ const routes = [
       Header,
       Footer
     },
-    children: [
-      {
-      path: '/details/:id',
-      component: {
-        default: Details
-      }
-    }
-    ]
+    children: [{
+      name: 'Details',
+      path: 'details/:id',
+      component: Details
+    }]
   },
-  {
-    name: 'LifeInsurance',
-    path: '/life-insurance',
-    components: {
-      default: LifeInsurance,
-      Header,
-      Footer
-    },
-    children: [
-      {
-      path: '/details/:id',
-      component: {
-        default: Details
-      }
-    }
-    ]
-  },
-  {
-    name: 'MedicalInsurance',
-    path: '/medical-insurance',
-    components: {
-      default: MedicalInsurance,
-      Header,
-      Footer
-    },
-    children: [
-      {
-      path: '/details/:id',
-      component: {
-        default: Details
-      }
-    }
-    ]
-  },
-  {
-    name: 'HomeInsurance',
-    path: '/home-insurance',
-    components: {
-      default: HomeInsurance,
-      Header,
-      Footer
-    },
-    children: [
-      {
-      path: '/details/:id',
-      component: {
-        default: Details
-      }
-    }
-    ]
-  },
+  // {
+  //   name: 'Details',
+  //   path: '/vehicle-insurance/details/:id',
+  //   components: {
+  //     default: Details, 
+  //     Header,
+  //     Footer
+  //   }
+  // },
   {
     name: 'Profile',
     path: '/profile',

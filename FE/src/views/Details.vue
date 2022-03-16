@@ -35,22 +35,28 @@
 </template>
 
 <script>
-import PublicService from "../services/public.service.js";
+// import PublicService from "../services/public.service.js";
 
 export default {
   name: "Details",
   data() {
     return {
-      vehicleDetail: '',
+      vehicleDetail: {
+        type: 'type1',
+        content: 'content1',
+        personClaim: 'personClaim1',
+        vehicleClaim: 'vehicleClaim1',
+        amountPaid: 'amountPaid1',
+      },
     };
   },
-  props: ['vehicleId'],
-  created() {
-    console.log(this.vehicleId)
-    PublicService.getVehicleInsuranceContentById(this.vehicleId).then((response) => {
-      this.vehicleDetail = response.data.data;
-    });
-  },
+  // props: ['vehicleId'],
+  // created() {
+  //   console.log(this.vehicleId)
+  //   PublicService.getVehicleInsuranceContentById(this.vehicleId).then((response) => {
+  //     this.vehicleDetail = response.data.data;
+  //   });
+  // },
 };
 </script>
 
