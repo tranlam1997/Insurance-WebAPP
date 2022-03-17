@@ -277,7 +277,21 @@ export default {
       this.$router.push('/profile/changePassword');
       this['toggle/toggleChangePasswordModalShow']();
     },
+  //     beforeRouteEnter(to, from, next) {
+  //   getPost(to.params.id, (err, post) => {
+  //     next(vm => vm.setData(err, post))
+  //   })
+  // }
   },
+    // eslint-disable-next-line no-unused-vars
+  //   async beforeRouteUpdate(to, from) {
+  //   this.post = null
+  //   try {
+  //     this.post = await getPost(to.params.id)
+  //   } catch (error) {
+  //     this.error = error.toString()
+  //   }
+  // },
   created() {
      UserService.getUserInfo().then((response) => {
       this.user = response.data;

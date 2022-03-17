@@ -31,7 +31,7 @@
           <p>{{ vehicleInsuranceContent.amountPaid }}</p>
         </div>
         <div>
-          <router-link :to="{ name: 'Details', params: { id: vehicleInsuranceContent.id } }" @click.prevent="showVehicleDetails"><button class="btn btn-primary" >View more</button></router-link>
+          <router-link :to="{ name: 'Details', params: { id: vehicleInsuranceContent.id } }" ><button class="btn btn-primary" >View more</button></router-link>
         </div>
       </div>
     </template>
@@ -53,26 +53,86 @@ export default {
         personClaim: "Person claim1",
         vehicleClaim: "Vehicle claim1",
         amountPaid: "Amount paid1",
-      }],
+      },
+        {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },
+              {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      },        {
+        id: '1235abc',
+        type: "VehicleInsurance",
+        content: "he Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science, and combining multiple lines of evidence from paleoclimate, observations, process understanding, and global and regional climate simulations.",
+        personClaim: "Person claim1",
+        vehicleClaim: "Vehicle claim1",
+        amountPaid: "Amount paid1",
+      }
+      ],
       detailsShow: false,
     };
   },
   methods: {
     showVehicleDetails() {
-      console.log(this.detailsShow,'methods')
       this.detailsShow = !this.detailsShow;
     },
   },
   created() {
-    console.log('created')
     PublicService.getAllVehicleInsuranceContent().then((response) => {
       this.vehicleInsuranceContents = response.data.data;
     });
   },
   updated() {
-    if(!this.$route.params.id) {
-      this.detailsShow = false;
-    }
+      this.detailsShow = !this.detailsShow;
   }
 };
 </script>

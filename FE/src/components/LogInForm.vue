@@ -276,7 +276,7 @@ export default {
           this.login_alert_msg = error.response.data?.title
             ? error.response.data.title
             : error.response.data.message;
-          this.login_alert_variant = "tw-g-red-500";
+          this.login_alert_variant = "tw-bg-red-500";
           this.login_show_alert = true;
           setTimeout(() => {
             this.login_show_alert = false;

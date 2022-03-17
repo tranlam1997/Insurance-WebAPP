@@ -1,0 +1,36 @@
+{
+  "hash": "81654989",
+  "browserHash": "dabeccab",
+  "optimized": {
+    "vue": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/vue.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/vue-router.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/@vuepress/bundler-vite/node_modules/vue-router/dist/vue-router.esm-bundler.js",
+      "needsInterop": false
+    },
+    "@vue/devtools-api": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/@vue_devtools-api.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/@vuepress/client/node_modules/@vue/devtools-api/lib/esm/index.js",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/@vueuse_core.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/@vueuse/core/index.mjs",
+      "needsInterop": false
+    },
+    "nprogress": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/nprogress.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/nprogress/nprogress.js",
+      "needsInterop": true
+    },
+    "@vuepress/shared": {
+      "file": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/docs/.vuepress/.cache/@vuepress_shared.js",
+      "src": "C:/Users/USER/Desktop/New folder (3)/ProjectSem3FPT/FE/node_modules/@vuepress/shared/lib/esm/index.js",
+      "needsInterop": false
+    }
+  }
+}
