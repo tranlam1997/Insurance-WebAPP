@@ -195,7 +195,6 @@ export default {
   name: "LoginForm",
   computed: mapState({
     loginState: (state) => state.toggle.loginModalShow,
-    editState: (state) => state.toggle.editModalShow,
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
@@ -223,7 +222,7 @@ export default {
       this.rememberMe = true;
       this.user.email = localStorage.getItem("email");
     }
-    if (this.loggedIn ) {
+    if (this.loggedIn) {
       this.$router.push("/profile");
     }
   },
@@ -263,9 +262,19 @@ export default {
         const response = await this.$store.dispatch("auth/login", this.user);
         this.login_alert_variant = "tw-bg-green-500";
         this.login_alert_msg = "Success! You are now logged in.";
-        if(this.isAdmin(response.token)){
-          setTimeout(() => { this.login_show_alert = false; this.$refs.form.resetForm();}, 1500)
+        if (this.isAdmin(response.token)) {
+          setTimeout(() => {
+            this.login_show_alert = false;
+            this.$refs.form.resetForm();
+          }, 1500);
           this.$router.push("/admin");
+        } else {
+          setTimeout(() => {
+            this.login_show_alert = false;
+            this.$refs.form.resetForm();
+          }, 1500);
+          const { id } = JSON.parse(localStorage.getItem("user"));
+          this.$router.push({ name: "User", params: { id } });
         }
         setTimeout(() => {
           this.toggleLoginModal();
@@ -324,7 +333,7 @@ export default {
       const decoded = jwt_decode(token);
       const role =
         decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-        console.log(role)
+      console.log(role);
       if (role === "User") {
         return false;
       }

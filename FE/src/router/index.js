@@ -28,7 +28,29 @@ const routes = [
       default: Home,
       Header,
       Footer,
+    },
+    beforeEnter: (to, from) => {
+      console.log(to);
+      console.log(from)
+      console.log(store.state.auth.status.loggedIn)
+      if (store.state.auth.status.loggedIn) {
+        return { path: '/user', params: {id: JSON.parse(localStorage.getItem('user')).id} }
     }
+  },
+},
+  {
+    path: '/user/:id',
+  //   children: [{
+  //     path: 'profile',
+  //     component: 
+  //   },
+  // ],
+  name: 'User',
+  components: {
+    default: Home,
+    Header,
+    Footer,
+  }
   },
   {
     name: 'About',
@@ -75,7 +97,8 @@ const routes = [
       path: 'changePassword',
       component: ChangePassword
     }
-    ]
+    ],
+    // alias: 
   },
   {
     name: 'Admin',
@@ -125,7 +148,11 @@ const routes = [
         component: SignUp,
       },
     ]
-}
+},
+{
+  path: '/:catchAll(.*)*',
+  redirect: { name: 'Home' },
+},
 ];
 
 const router = createRouter({

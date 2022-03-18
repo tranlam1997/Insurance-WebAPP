@@ -663,8 +663,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Home",
+    computed: mapState({
+    loginState: (state) => state.toggle.loginModalShow,
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  }),
 };
 </script>
 
