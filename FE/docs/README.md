@@ -1,6 +1,6 @@
 
 # This is the FE system for Insurance project
-# To run this service please properly, please run BE system and this simultaneously
+# To run this service properly, please run BE system and this simultaneously
 
 ## First to run this FE system you need to run this command
 ```
